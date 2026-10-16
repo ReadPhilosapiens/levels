@@ -1,0 +1,57 @@
+{
+ "date": "2026-10-16",
+ "instrument": "XAUUSD",
+ "price": 4153,
+ "condition": "Condition 3: D1 bull, H4 + H1 bear",
+ "note": "Z3 is with the trend. Z1 and Z2 are counter-trend, half size.",
+ "zones": [
+  {
+   "id": "Z1",
+   "dir": "SELL",
+   "size": "half",
+   "tf": "H1",
+   "type": "A",
+   "label": "H1 QML + LRM overlap",
+   "lo": 4193.4,
+   "hi": 4207.5,
+   "why": "Two H1 sell levels stacked on one price.",
+   "confirm": "M1 CHoCH (2 closes or 5 waves)",
+   "candle": "Red candle on the M1 A+ or SBR",
+   "sl": "20–25 pips above that candle (max 30)",
+   "tp": "4081, the H1 confirmed low",
+   "kill": "2 H1 closes above 4207.5. Then watch Z2."
+  },
+  {
+   "id": "Z2",
+   "dir": "SELL",
+   "size": "half",
+   "tf": "H4",
+   "type": "A",
+   "label": "H4 A+ (last resistance)",
+   "lo": 4217.7,
+   "hi": 4227.5,
+   "why": "The H4 level that, if broken twice, flips H4 bullish.",
+   "confirm": "M5 CHoCH (normal or 5 waves)",
+   "candle": "Red candle on the M5 A+ or SBR",
+   "sl": "20–25 pips above that candle",
+   "tp": "4088, the H4 confirmed low",
+   "kill": "2 H4 closes above 4227.5. H4 turns bullish: stop selling."
+  },
+  {
+   "id": "Z3",
+   "dir": "BUY",
+   "size": "full",
+   "tf": "D1",
+   "type": "A",
+   "label": "D1 QML / A+",
+   "lo": 4023.9,
+   "hi": 4061.7,
+   "why": "With the D1 trend. Daily levels give the biggest moves.",
+   "confirm": "H1 CHoCH up, then M1 CHoCH up",
+   "candle": "Green candle on the M1 A+ or RBS",
+   "sl": "25–30 pips below that candle",
+   "tp": "TP1 4155, TP2 4195",
+   "kill": "2 D1 closes below 4024. Next D1 zone 3959–3999."
+  }
+ ]
+}

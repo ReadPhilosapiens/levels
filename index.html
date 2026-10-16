@@ -1,215 +1,816 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-skin="night">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Levels">
 <meta name="theme-color" content="#12151c">
-<meta name="color-scheme" content="dark">
 <title>Levels</title>
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEuklEQVR4nO3dv20UQRTH8TUiJEJCIiBFgswFOHAnbsAFEBA6cAE04E4ucAHOsEQDFEABBCfQavd+4/nzZt4b3/eTGe7WSPP1m73lbn3x/sOnBTjljfc/AHERByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgD0tv2Q1x9bj8Gunj81fR0gzhw9OP79frL27uDz7/DzkX771thcmyyWPNNpHFyEEeTRBZrXok0xsEJab3MMooeGQrnHGY242HSINbYVirtTz/Xf3IMxf0UlW3F36aM5V8Ws79gIY4amyFxcgfZ9zHdRkMcrRJLPl0NG8TR19R9EMesBmRHHFM6ltG7D+KoUfcyxOrFy7qJrn0Qx/T69UEck0m8bDZHHOO0L+Hgl83EUaN6JVqW8MXnmvdBHKPVLWHOs8yv1hNHsfHXtVzKWIijh9u7Q3qpZrlsavBf9mfl6eE6/YDLm0Pmg9ePbPmO+YcqxeToKL1mOavuWMZCHEWKxkb7AX3LWIijt+rFcy9jIY581WOjfXOpOKwJ4hihtI/qYmwRR5b2s438PiJsKEfEEUucMhauc+QwfJHSvl8MK2NhcgzWuLQjy1iI40Xm1zYGL3AL4pjG+KqII8V8bFQ/y2XeEIePosX22omIQ+o0Nkqf7niOQhyh+Z69EsdpvceG4UH6IQ5niT7c0yGOE8aMDXW045fuZSxcPt8L9b8bvpgcxc6kjIU4NoK8kSII4ihzPmNjIY61weeh8REHpGluUrv+se7xE8zY2JtjcmxW7unhmjPHAeaI4yTDPhgbJ00QR2LlmB9dTRBHWnsfjA0lehxWnzZGhdBx5K96dR+MjYTQcRRhfpiLG0fFYpc+hbGRFjeOOswPQ0HjaFnjzOcyNl4UMY4Br06RI2IcCZc3B5P7rDE2coSLw/BdesyPRrHiyL83Y0sfjI1MseJI2C8Y86O3QHFUrGJFH4yNfFHiqL7ZL/OjnyifW0ksXs7yW609Y2MtxOSY605Z58Ngcrz7+rHxCI/fvqi/urp/NjlOjqLvNYU/P3+3PN1/cliVUfF4pDnH0fizvlfdB2Ht+U8OhWV25xmH+dj4j/3IhFsc6TLaV4v1bhdxW7Fa18zjkJHiE0e/DWWDhW/hEEfvDaXogNSTEOuD1J2W6ur+eVMkTeQYHcewDWWDGioEOiFl/aIZGofhlXIMMC4Orw0F1UJsK4yNmAbFwdiY0Yg4Bl/YgBXnbYUyIuseBxvKvPrGwYYyNbdthTLiM7h8rt7Fmn5PeeN7XzGAz+TgkwRT6BVH44eUEEGXOPjs4eswelthbEzEPg7GxqvR64PUJxNhbMyl17ZSfa8VxNHxnCP/5m6IqfsJaZxfoYtSUW7egoBCvBMMMREHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQ/gLQFY0WdvpmTwAAAABJRU5ErkJggg==">
 <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEuklEQVR4nO3dv20UQRTH8TUiJEJCIiBFgswFOHAnbsAFEBA6cAE04E4ucAHOsEQDFEABBCfQavd+4/nzZt4b3/eTGe7WSPP1m73lbn3x/sOnBTjljfc/AHERByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgD0tv2Q1x9bj8Gunj81fR0gzhw9OP79frL27uDz7/DzkX771thcmyyWPNNpHFyEEeTRBZrXok0xsEJab3MMooeGQrnHGY242HSINbYVirtTz/Xf3IMxf0UlW3F36aM5V8Ws79gIY4amyFxcgfZ9zHdRkMcrRJLPl0NG8TR19R9EMesBmRHHFM6ltG7D+KoUfcyxOrFy7qJrn0Qx/T69UEck0m8bDZHHOO0L+Hgl83EUaN6JVqW8MXnmvdBHKPVLWHOs8yv1hNHsfHXtVzKWIijh9u7Q3qpZrlsavBf9mfl6eE6/YDLm0Pmg9ePbPmO+YcqxeToKL1mOavuWMZCHEWKxkb7AX3LWIijt+rFcy9jIY581WOjfXOpOKwJ4hihtI/qYmwRR5b2s438PiJsKEfEEUucMhauc+QwfJHSvl8MK2NhcgzWuLQjy1iI40Xm1zYGL3AL4pjG+KqII8V8bFQ/y2XeEIePosX22omIQ+o0Nkqf7niOQhyh+Z69EsdpvceG4UH6IQ5niT7c0yGOE8aMDXW045fuZSxcPt8L9b8bvpgcxc6kjIU4NoK8kSII4ihzPmNjIY61weeh8REHpGluUrv+se7xE8zY2JtjcmxW7unhmjPHAeaI4yTDPhgbJ00QR2LlmB9dTRBHWnsfjA0lehxWnzZGhdBx5K96dR+MjYTQcRRhfpiLG0fFYpc+hbGRFjeOOswPQ0HjaFnjzOcyNl4UMY4Br06RI2IcCZc3B5P7rDE2coSLw/BdesyPRrHiyL83Y0sfjI1MseJI2C8Y86O3QHFUrGJFH4yNfFHiqL7ZL/OjnyifW0ksXs7yW609Y2MtxOSY605Z58Ngcrz7+rHxCI/fvqi/urp/NjlOjqLvNYU/P3+3PN1/cliVUfF4pDnH0fizvlfdB2Ht+U8OhWV25xmH+dj4j/3IhFsc6TLaV4v1bhdxW7Fa18zjkJHiE0e/DWWDhW/hEEfvDaXogNSTEOuD1J2W6ur+eVMkTeQYHcewDWWDGioEOiFl/aIZGofhlXIMMC4Orw0F1UJsK4yNmAbFwdiY0Yg4Bl/YgBXnbYUyIuseBxvKvPrGwYYyNbdthTLiM7h8rt7Fmn5PeeN7XzGAz+TgkwRT6BVH44eUEEGXOPjs4eswelthbEzEPg7GxqvR64PUJxNhbMyl17ZSfa8VxNHxnCP/5m6IqfsJaZxfoYtSUW7egoBCvBMMMREHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQ/gLQFY0WdvpmTwAAAABJRU5ErkJggg==">
 <link rel="manifest" href="data:application/json,%7B%22name%22%3A%20%22Levels%22%2C%20%22short_name%22%3A%20%22Levels%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22background_color%22%3A%20%22%2312151c%22%2C%20%22theme_color%22%3A%20%22%2312151c%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEuklEQVR4nO3dv20UQRTH8TUiJEJCIiBFgswFOHAnbsAFEBA6cAE04E4ucAHOsEQDFEABBCfQavd%2B4/nzZt4b3/eTGe7WSPP1m73lbn3x/sOnBTjljfc/AHERByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgD0tv2Q1x9bj8Gunj81fR0gzhw9OP79frL27uDz7/DzkX771thcmyyWPNNpHFyEEeTRBZrXok0xsEJab3MMooeGQrnHGY242HSINbYVirtTz/Xf3IMxf0UlW3F36aM5V8Ws79gIY4amyFxcgfZ9zHdRkMcrRJLPl0NG8TR19R9EMesBmRHHFM6ltG7D%2BKoUfcyxOrFy7qJrn0Qx/T69UEck0m8bDZHHOO0L%2BHgl83EUaN6JVqW8MXnmvdBHKPVLWHOs8yv1hNHsfHXtVzKWIijh9u7Q3qpZrlsavBf9mfl6eE6/YDLm0Pmg9ePbPmO%2BYcqxeToKL1mOavuWMZCHEWKxkb7AX3LWIijt%2BrFcy9jIY581WOjfXOpOKwJ4hihtI/qYmwRR5b2s438PiJsKEfEEUucMhauc%2BQwfJHSvl8MK2NhcgzWuLQjy1iI40Xm1zYGL3AL4pjG%2BKqII8V8bFQ/y2XeEIePosX22omIQ%2Bo0Nkqf7niOQhyh%2BZ69EsdpvceG4UH6IQ5niT7c0yGOE8aMDXW045fuZSxcPt8L9b8bvpgcxc6kjIU4NoK8kSII4ihzPmNjIY61weeh8REHpGluUrv%2Bse7xE8zY2JtjcmxW7unhmjPHAeaI4yTDPhgbJ00QR2LlmB9dTRBHWnsfjA0lehxWnzZGhdBx5K96dR%2BMjYTQcRRhfpiLG0fFYpc%2BhbGRFjeOOswPQ0HjaFnjzOcyNl4UMY4Br06RI2IcCZc3B5P7rDE2coSLw/BdesyPRrHiyL83Y0sfjI1MseJI2C8Y86O3QHFUrGJFH4yNfFHiqL7ZL/OjnyifW0ksXs7yW609Y2MtxOSY605Z58Ngcrz7%2BrHxCI/fvqi/urp/NjlOjqLvNYU/P3%2B3PN1/cliVUfF4pDnH0fizvlfdB2Ht%2BU8OhWV25xmH%2Bdj4j/3IhFsc6TLaV4v1bhdxW7Fa18zjkJHiE0e/DWWDhW/hEEfvDaXogNSTEOuD1J2W6ur%2BeVMkTeQYHcewDWWDGioEOiFl/aIZGofhlXIMMC4Orw0F1UJsK4yNmAbFwdiY0Yg4Bl/YgBXnbYUyIuseBxvKvPrGwYYyNbdthTLiM7h8rt7Fmn5PeeN7XzGAz%2BTgkwRT6BVH44eUEEGXOPjs4eswelthbEzEPg7GxqvR64PUJxNhbMyl17ZSfa8VxNHxnCP/5m6IqfsJaZxfoYtSUW7egoBCvBMMMREHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQ/gLQFY0WdvpmTwAAAABJRU5ErkJggg%3D%3D%22%2C%20%22sizes%22%3A%20%22180x180%22%2C%20%22type%22%3A%20%22image/png%22%7D%5D%7D">
-<style>
-:root{--bg:#12151c;--card:#1a1f29;--line:#272e3b;--ink:#e8e4da;--mute:#8b93a3;--gold:#e2b65c;--up:#5fbf98;--down:#e0745f;--r:16px;color-scheme:dark}
+<style>/* 8 skins. Every colour is a token; canvases read the same tokens. */
+:root,[data-skin="night"]{--bg:#12151c;--panel:#1a1f29;--ink:#e8e4da;--muted:#8b93a3;--line:#272e3b;--grid:rgba(232,228,218,.06);--up:#5fbf98;--down:#e0745f;--accent:#e2b65c;--gold:#e2b65c;--hl:rgba(226,182,92,.12);--zone:rgba(224,116,95,.22);--zone2:rgba(226,182,92,.25);--good:#5fbf98;--bad:#e0745f;--btnink:#1a1408;--nav:#151922;--rad:16px;--f-disp:-apple-system,"SF Pro Display",system-ui,sans-serif;--f-body:-apple-system,"SF Pro Text",system-ui,sans-serif;--f-mono:ui-monospace,"SF Mono",Menlo,monospace;color-scheme:dark}
+[data-skin="desk"]{--bg:#1b1611;--panel:#241d16;--ink:#efe3cf;--muted:#a3927b;--line:#3a2f23;--grid:rgba(239,227,207,.06);--up:#8fbf6a;--down:#d9694a;--accent:#d9a441;--gold:#d9a441;--hl:rgba(217,164,65,.14);--zone:rgba(217,105,74,.22);--zone2:rgba(217,164,65,.25);--good:#8fbf6a;--bad:#d9694a;--btnink:#21170a;--nav:#1f1913;--rad:10px;--f-disp:Georgia,"Times New Roman",serif;--f-body:-apple-system,system-ui,sans-serif;color-scheme:dark}
+[data-skin="terminal"]{--bg:#050807;--panel:#0b110e;--ink:#c9f2d8;--muted:#5f8a70;--line:#173322;--grid:rgba(57,255,140,.07);--up:#39ff8c;--down:#ff5470;--accent:#39ff8c;--gold:#ffd166;--hl:rgba(57,255,140,.10);--zone:rgba(255,84,112,.2);--zone2:rgba(255,209,102,.2);--good:#39ff8c;--bad:#ff5470;--btnink:#03140a;--nav:#070b09;--rad:2px;--f-disp:ui-monospace,"SF Mono",Menlo,monospace;--f-body:ui-monospace,"SF Mono",Menlo,monospace;color-scheme:dark}
+[data-skin="ocean"]{--bg:#0b1724;--panel:#112233;--ink:#dcebf5;--muted:#7f9bb2;--line:#1d3349;--grid:rgba(220,235,245,.06);--up:#3cc9b4;--down:#f2766b;--accent:#5ab0ff;--gold:#f2c14e;--hl:rgba(90,176,255,.13);--zone:rgba(242,118,107,.22);--zone2:rgba(242,193,78,.22);--good:#3cc9b4;--bad:#f2766b;--btnink:#04121f;--nav:#0d1b2a;--rad:20px;color-scheme:dark}
+[data-skin="mono"]{--bg:#000;--panel:#0d0d0d;--ink:#fff;--muted:#8a8a8a;--line:#2a2a2a;--grid:rgba(255,255,255,.07);--up:#fff;--down:#ff3b30;--accent:#fff;--gold:#fff;--hl:rgba(255,255,255,.1);--zone:rgba(255,59,48,.22);--zone2:rgba(255,255,255,.16);--good:#fff;--bad:#ff3b30;--btnink:#000;--nav:#000;--rad:0px;--f-disp:"Helvetica Neue",Helvetica,Arial,sans-serif;color-scheme:dark}
+[data-skin="ruby"]{--bg:#170f16;--panel:#21151f;--ink:#f3e3ec;--muted:#a58a9a;--line:#3a2434;--grid:rgba(243,227,236,.06);--up:#6fd3a5;--down:#ff6b8b;--accent:#ff6b8b;--gold:#ffb86b;--hl:rgba(255,107,139,.12);--zone:rgba(255,107,139,.22);--zone2:rgba(255,184,107,.22);--good:#6fd3a5;--bad:#ff6b8b;--btnink:#2a0a14;--nav:#1b1219;--rad:24px;color-scheme:dark}
+[data-skin="paper"]{--bg:#f3efe6;--panel:#fbf9f4;--ink:#1f1b16;--muted:#6f675c;--line:#ddd5c6;--grid:rgba(31,27,22,.06);--up:#2f7d5b;--down:#b5452f;--accent:#1f1b16;--gold:#9a6b14;--hl:rgba(154,107,20,.12);--zone:rgba(181,69,47,.16);--zone2:rgba(154,107,20,.2);--good:#2f7d5b;--bad:#b5452f;--btnink:#fbf9f4;--nav:#ece6da;--rad:6px;--f-disp:Georgia,"Times New Roman",serif;--f-body:Georgia,"Times New Roman",serif;color-scheme:light}
+[data-skin="sky"]{--bg:#eef3f8;--panel:#fff;--ink:#14212e;--muted:#5d6f80;--line:#d3dde7;--grid:rgba(20,33,46,.06);--up:#13896b;--down:#d1453b;--accent:#2563eb;--gold:#b7791f;--hl:rgba(37,99,235,.1);--zone:rgba(209,69,59,.15);--zone2:rgba(183,121,31,.18);--good:#13896b;--bad:#d1453b;--btnink:#fff;--nav:#fff;--rad:18px;color-scheme:light}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:17px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif}
-body{display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);user-select:none;-webkit-user-select:none}
-main{flex:1;overflow-y:auto;padding:18px max(18px,env(safe-area-inset-left)) 24px max(18px,env(safe-area-inset-right))}
-section{display:flex;flex-direction:column;gap:14px;max-width:520px;margin:0 auto}
-h1{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:4px 0 0}
-.hero{display:flex;flex-direction:column;align-items:center;padding:22px 0 8px}
-.big{font-size:76px;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:16px/1.45 var(--f-body)}
+body{display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
+.top{display:flex;align-items:center;justify-content:space-between;padding:10px max(16px,env(safe-area-inset-left)) 6px max(16px,env(safe-area-inset-right))}
+.brand{font:800 20px var(--f-disp);letter-spacing:.02em}
+.brand span{color:var(--accent)}
+.iconbtn{min-width:44px;min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:20px}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px max(16px,env(safe-area-inset-left)) 28px max(16px,env(safe-area-inset-right))}
+.screen{display:flex;flex-direction:column;gap:14px;max-width:640px;margin:0 auto}
+.lbl{font:700 12px var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.big{font:800 46px/1 var(--f-disp);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .big.pos{color:var(--up)}.big.neg{color:var(--down)}
-.sub{color:var(--mute);font-size:15px;margin-top:8px}
-.trend{font-size:14px;color:var(--mute);margin-top:4px}
-.main{width:100%;min-height:76px;border:0;border-radius:22px;background:var(--gold);color:#1a1408;font-family:inherit;font-weight:700;font-size:21px;cursor:pointer}
-.main:active{transform:scale(.98)}
-.main.done{background:var(--card);color:var(--mute);border:1px solid var(--line)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
-.status{text-align:center;color:var(--mute);font-size:15px}
-.status b{color:var(--ink);font-weight:600}
-.rule{display:flex;gap:10px;align-items:center;font-size:16px}
-.rule i{font-style:normal;color:var(--gold);font-size:13px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-.q{font-size:16px}
+.small{font-size:13px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+.main{width:100%;min-height:62px;border:0;border-radius:var(--rad);background:var(--accent);color:var(--btnink);font-family:var(--f-body);font-weight:800;font-size:19px;cursor:pointer}
+.main:disabled{opacity:.4}
+.main.ghost{background:var(--panel);color:var(--ink);border:1px solid var(--line)}
+.zcard{border-left:5px solid var(--line)}
+.zcard.sell{border-left-color:var(--down)}.zcard.buy{border-left-color:var(--up)}
+.zhead{display:flex;align-items:center;gap:10px}
+.zid{font:800 15px var(--f-disp)}
+.dir{font-size:12px;font-weight:800;padding:4px 8px;border-radius:6px}
+.dir.sell{background:var(--zone);color:var(--down)}.dir.buy{background:rgba(95,191,152,.18);color:var(--up)}
+.zpx{margin-left:auto;font:700 16px var(--f-mono);font-variant-numeric:tabular-nums}
+.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
+.kv b{color:var(--muted);font-weight:600}
+.row{display:flex;gap:8px;flex-wrap:wrap}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{min-height:54px;border-radius:14px;border:1px solid var(--line);background:#222837;color:var(--ink);font-family:inherit;font-weight:600;font-size:17px;cursor:pointer}
-.btn:active{background:#2b3244}
-.btn.yes{border-color:#2f6b55}.btn.no{border-color:#7a3d33}
-.btn.small{min-height:44px;font-size:15px}
-nav{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);background:#151922;padding-bottom:env(safe-area-inset-bottom)}
-nav button{background:none;border:0;color:var(--mute);font-family:inherit;font-weight:600;font-size:14px;padding:14px 0 12px;min-height:58px;cursor:pointer}
-nav button[aria-selected="true"]{color:var(--gold)}
+.b{min-height:50px;border-radius:calc(var(--rad)*.75);border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--f-body);font-weight:700;font-size:16px;cursor:pointer;padding:0 14px}
+.b.yes{border-color:var(--good);color:var(--good)}.b.no{border-color:var(--bad);color:var(--bad)}
+.b.sm{min-height:40px;font-size:14px}
+.verdict{border-radius:calc(var(--rad)*.75);padding:12px 14px;font-weight:700}
+.verdict.go{background:rgba(95,191,152,.15);color:var(--up)}.verdict.stop{background:var(--zone);color:var(--down)}
+.q{font-size:17px;font-weight:600}
+.prog{display:flex;gap:4px}.prog i{flex:1;height:4px;border-radius:2px;background:var(--line)}.prog i.on{background:var(--accent)}
+nav.bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:var(--nav);padding-bottom:env(safe-area-inset-bottom)}
+nav.bar button{background:none;border:0;color:var(--muted);font-family:var(--f-body);font-weight:700;font-size:13px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}
+nav.bar button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+nav.bar button[aria-selected="true"]{color:var(--accent)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.chips button{flex:none;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);font-family:var(--f-body);font-weight:700;font-size:14px}
+.chips button[aria-selected="true"]{background:var(--accent);color:var(--btnink);border-color:var(--accent)}
 .list{display:flex;flex-direction:column;gap:8px}
-.day{font-size:13px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-top:10px}
-.item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-height:58px}
-.chip{font-size:13px;font-weight:700;padding:5px 9px;border-radius:8px;background:#2a2f3c;color:var(--gold);min-width:64px;text-align:center}
-.item .r{margin-left:auto;font-weight:700;font-variant-numeric:tabular-nums}
-.item .w{font-size:13px;color:var(--mute)}
-.pos{color:var(--up)}.neg{color:var(--down)}.zero{color:var(--mute)}
-.del{display:flex;gap:8px;margin-left:auto}
-.stat{display:flex;align-items:center;gap:10px;min-height:44px;border-bottom:1px solid var(--line)}
-.stat:last-child{border-bottom:0}
-.stat .k{flex:1}.stat .n{color:var(--mute);font-size:14px;width:58px;text-align:right}
-.stat .v{width:72px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
-.tag{font-size:12px;font-weight:700;padding:4px 8px;border-radius:7px;width:58px;text-align:center}
-.tag.full{background:#1f3d33;color:var(--up)}.tag.half{background:#3d3420;color:var(--gold)}.tag.avoid{background:#422621;color:var(--down)}.tag.wait{background:#252a35;color:var(--mute)}
-.insight{font-size:16px}
-.insight b{color:var(--gold);font-weight:600}
-.empty{color:var(--mute);text-align:center;padding:40px 0}
-.sheet{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;z-index:5}
-.panel{width:100%;background:#171b24;border-radius:22px 22px 0 0;padding:20px max(18px,env(safe-area-inset-left)) calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px;max-width:560px;margin:0 auto}
+.item{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:calc(var(--rad)*.75);padding:11px 13px;min-height:54px}
+.chip{font-size:12px;font-weight:800;padding:4px 8px;border-radius:7px;background:var(--bg);color:var(--accent);min-width:62px;text-align:center}
+.item .r{margin-left:auto;font-weight:800;font-variant-numeric:tabular-nums}
+.pos{color:var(--up)}.neg{color:var(--down)}.zero{color:var(--muted)}
+.stat{display:flex;align-items:center;gap:10px;min-height:42px;border-bottom:1px solid var(--line);font-size:15px}
+.stat:last-child{border-bottom:0}.stat .k{flex:1}.stat .n{color:var(--muted);font-size:13px;width:44px;text-align:right}.stat .v{width:62px;text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.tag{font-size:11px;font-weight:800;padding:4px 7px;border-radius:6px;width:52px;text-align:center}
+.tag.full{background:rgba(95,191,152,.18);color:var(--up)}.tag.half{background:var(--zone2);color:var(--gold)}.tag.avoid{background:var(--zone);color:var(--down)}.tag.wait{background:var(--bg);color:var(--muted)}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;z-index:20}
+.sp{width:100%;max-width:640px;margin:0 auto;background:var(--panel);border-radius:22px 22px 0 0;padding:18px max(16px,env(safe-area-inset-left)) calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px;max-height:88vh;overflow-y:auto}
 .zones{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.zone{min-height:72px;border-radius:16px;border:2px solid var(--line);background:#20252f;color:var(--ink);font-family:inherit;font-weight:700;font-size:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer}
-.zone small{font-weight:500;font-size:12px;color:var(--mute)}
-.zone[aria-pressed="true"]{border-color:var(--gold);background:#2b2615}
-.rv{text-align:center;font-size:40px;font-weight:700;font-variant-numeric:tabular-nums}
-input[type=range]{width:100%;height:44px;-webkit-appearance:none;appearance:none;background:transparent}
-input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--mute) 0 11%,var(--down) 11% 22%,#3a4150 22% 33%,var(--up) 33%)}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:34px;height:34px;border-radius:50%;background:var(--ink);margin-top:-13px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
-input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:#3a4150}
-input[type=range]::-moz-range-thumb{width:34px;height:34px;border-radius:50%;background:var(--ink);border:0}
-.ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);margin-top:-6px;padding:0 6px}
-.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%);background:#2a3040;color:var(--ink);padding:12px 16px;border-radius:14px;font-size:15px;max-width:90%;text-align:center;z-index:6;box-shadow:0 6px 20px rgba(0,0,0,.4)}
-.samples{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;color:var(--mute)}
+.zone{min-height:66px;border-radius:calc(var(--rad)*.8);border:2px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--f-body);font-weight:800;font-size:17px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.zone small{font-weight:500;font-size:12px;color:var(--muted)}
+.zone[aria-pressed="true"]{border-color:var(--accent)}
+.rv{text-align:center;font:800 38px var(--f-disp);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:44px;accent-color:var(--accent)}
+.ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:-6px;padding:0 4px}
+.skins{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.skin{border-radius:14px;border:2px solid transparent;padding:12px;text-align:left;font-family:inherit;font-weight:800;font-size:15px;display:flex;flex-direction:column;gap:8px;min-height:92px}
+.skin[aria-pressed="true"]{outline:3px solid var(--accent);outline-offset:2px}
+.sw{display:flex;gap:5px}.sw i{width:18px;height:18px;border-radius:50%}
+.toast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 15px;border-radius:14px;font-size:15px;font-weight:600;max-width:90%;text-align:center;z-index:30}
+.acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:44px;font:700 16px var(--f-disp)}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";margin-left:auto;color:var(--muted);font-size:20px}
+.acc[open] summary::after{content:"–"}
 [hidden]{display:none!important}
-button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.dpane{display:flex;flex-direction:column;gap:16px}
+h2{font:800 22px/1.15 var(--f-disp);font-stretch:85%;margin:0;text-wrap:balance}
+h3{font:700 17px/1.2 var(--f-disp);font-stretch:90%;margin:0;text-wrap:balance}
+p{margin:0;max-width:68ch}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.chart{position:relative;width:100%;min-width:0}
+canvas{display:block}
+svg.sch{width:100%;max-width:680px;height:auto;display:block}
+.svl{font:600 13px var(--f-mono)}.svs{font:600 12px var(--f-mono);fill:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font:700 14px var(--f-body);padding:9px 16px;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.btn:hover:not(:disabled){border-color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:default}
+kbd{font:600 11px var(--f-mono);border:1px solid var(--line);border-radius:3px;padding:0 4px;margin-left:6px;color:var(--muted)}
+.fb{padding:10px 12px;border-radius:4px;border-left:4px solid var(--line);background:var(--bg);max-width:none}
+.fb.good{border-left-color:var(--good)}.fb.bad{border-left-color:var(--bad)}.fb.quiet{color:var(--muted)}
+.trend{font:600 12px var(--f-mono);color:var(--muted);margin-left:6px;text-transform:uppercase}
+.stats{display:flex;flex-wrap:wrap;gap:16px;font:500 13px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.stats b{color:var(--ink)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.opt{text-align:left;font:16px/1.3 var(--f-body);padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.opt small{color:var(--muted);font-size:13px}.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt.right{border-color:var(--good);box-shadow:inset 4px 0 0 var(--good)}.opt.wrong{border-color:var(--bad);box-shadow:inset 4px 0 0 var(--bad)}
+.boxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.box{border:1px solid var(--line);border-radius:4px;padding:10px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.box .tf{font:800 20px var(--f-disp);font-stretch:80%}.box .dir{font:600 12px var(--f-mono);text-transform:uppercase}
+.box[data-dir="1"] .dir{color:var(--up)}.box[data-dir="-1"] .dir{color:var(--down)}
+.box svg{width:100%;height:auto}
+#lvl-form{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+#lvl-form label{display:flex;flex-direction:column;font:600 12px var(--f-mono);color:var(--muted);gap:4px}
+select{font:15px var(--f-body);padding:7px 8px;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.chk{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--muted)}
+/* rulebook */
+.part{font:700 12px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);padding-top:14px}
+ol.check{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:4px;max-width:72ch}
+.warn{border-left:4px solid var(--bad);padding:8px 12px;background:var(--bg);border-radius:4px}
+
+.rules{display:flex;flex-direction:column;gap:14px}
+.rule{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 14px;padding-block:14px;border-top:1px solid var(--line)}
+.rule .n{font:800 30px/1 var(--f-disp);font-stretch:75%;color:var(--accent)}
+.rule>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.rule ul{margin:0;padding-left:18px;max-width:68ch}.rule li{margin:2px 0}
+.tag{font:600 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;font-size:15px;min-width:520px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 12px var(--f-mono);text-transform:uppercase;color:var(--muted);letter-spacing:.04em}
+.b{color:var(--up);font-weight:700}.s{color:var(--down);font-weight:700}
+.gap{border:1px dashed var(--gold);border-radius:var(--rad);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.gap h3{color:var(--gold)}
+@media (max-width:560px){.boxes{grid-template-columns:1fr}.rule{grid-template-columns:1fr}.rule .n{font-size:22px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
+<div class="top"><div class="brand">Levels<span>.</span></div><button class="iconbtn" id="skinBtn" type="button" aria-label="Change design">◐</button></div>
 <main>
-<section id="today">
-  <div class="hero"><div class="big" id="num">–</div><div class="sub">avg per trade · last 20</div><div class="trend" id="trend"></div></div>
-  <button class="main" id="logBtn" type="button">Log a zone</button>
-  <div class="status" id="status"></div>
+<section class="screen" id="s-today">
+  <div class="card hero"><div><div class="big" id="num">–</div><div class="small" id="numSub"></div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><span class="pill" id="dayPill"></span><span class="pill" id="sessPill"></span></div></div>
+  <div class="small" id="dayNote" hidden></div>
+  <div class="lbl">Today's gold zones · <span id="planDate"></span></div>
+  <div class="card"><div style="font-weight:700" id="planCond"></div><div class="small" id="planNote"></div></div>
+  <div class="list" id="zoneList"></div>
   <div class="card" id="ask" hidden></div>
-  <div class="card"><div class="rule"><i>Rule</i><span id="rule"></span></div></div>
-  <div class="samples" id="sampleBar" hidden><span>Showing sample week</span><button class="btn small" id="clearSamples" type="button">Clear samples</button></div>
+  <button class="main" id="logBtn" type="button">Log a trade</button>
+  <div class="card"><div class="lbl" style="margin:0">Rule of the day</div><div id="rule" style="font-weight:600"></div></div>
+  <div class="row" id="sampleBar" hidden style="justify-content:space-between;align-items:center"><span class="small">Showing a sample week</span><button class="b sm" id="clearSamples" type="button">Clear samples</button></div>
 </section>
-<section id="history" hidden><h1>History</h1><div class="list" id="hist"></div></section>
-<section id="numbers" hidden>
-  <h1>What works</h1>
-  <div class="card" id="insights"></div>
-  <h1>By zone</h1>
-  <div class="card" id="byZone"></div>
-  <h1>Confirmation</h1>
-  <div class="card" id="byWait"></div>
-  <h1>Session</h1>
-  <div class="card" id="bySess"></div>
-  <div class="row2"><button class="btn" id="backup" type="button">Save a backup</button><button class="btn" id="restoreBtn" type="button">Restore</button></div>
-  <input type="file" id="restore" accept="application/json,.json" hidden>
+<section class="screen" id="s-learn" hidden>
+  <div class="lbl">How levels work, and why</div>
+  
+  <p>This is the whole course from the lecture recordings and PDFs, in the order you'd actually take a trade. Every chart you open comes down to one question: <b>which point is confirmed, and what would break it?</b></p>
+
+  <div class="panel">
+    <h3>Pre-trade checklist</h3>
+    <ol class="check">
+      <li>Monday: D1, then H4, then H1. Mark the <b>last 1-2-3</b> on each and write down the direction.</li>
+      <li>Which multi-timeframe condition is it? That tells you which timeframe's levels you trade (part 9).</li>
+      <li>Is price at a level right now? The level price is sitting at sets today's bias, not your opinion.</li>
+      <li>Level tapped. Drop to the confirmation timeframe and wait for its CHoCH (normal or 5-wave, whichever comes first).</li>
+      <li>Wait for a green or red confirmation candle on one of the new CHoCH levels. Engulfing beats everything else.</li>
+      <li>Is the stop 25 pips or less on gold? If not, skip it or refine on M1.</li>
+      <li>Is it London or New York session? If not, use half size.</li>
+      <li>Target is the last confirmed high (for buys) or low (for sells), or an opposing zone if one sits before it. Book 80–90% there, and move the rest to break even.</li>
+      <li>Two trades a day at most. One win and one loss means you're done.</li>
+    </ol>
+  </div>
+
+  <div class="rules">
+    <div class="part">Read the chart</div>
+    <div class="rule"><div class="n">1</div><div><h3>Impulse, correction and the 2-candle retracement</h3>
+      <p>In a bullish market the buying waves are impulse and the selling waves are correction. Bearish is the mirror. You never trade the correction. A correction only counts when:</p>
+      <ul><li>two counter-colour candles print back to back, and</li><li>the second one's <b>body closes beyond the first one's wick</b>: below its low in a bull leg, above its high in a bear leg.</li></ul>
+      <p>A wick through doesn't count. Closing past the first body but not its wick doesn't count. Only the <b>first</b> valid retracement in a leg counts.</p>
+      <div class="chart"><canvas id="rb-cv" aria-label="Two-candle retracement confirms the high, a close above it confirms the low"></canvas></div></div></div>
+    <div class="rule"><div class="n">2</div><div><h3>Levels 1, 2, 3</h3>
+      <p><b>Bullish:</b> the retracement confirms the high. That's <b>level 1</b>. When one candle closes above it, the lowest point between that high and the close becomes the confirmed low, <b>level 2</b>. The newest high, not yet broken, is <b>level 3</b>, the <i>tentative</i> high. <b>Bearish</b> is the mirror: low first (two green candles), then the high confirms when a candle closes below.</p>
+      <p>Level 2 has a name. In a bull it's the <b>last support in the market (LSM)</b>, and in a bear it's the <b>last resistance (LRM)</b>. Each time structure moves on, the support moves up with it. That's what support and resistance really are in this method.</p>
+      <p><b>Patience rule:</b> once a high is confirmed, ignore new red pairs until price closes above it. Rarely, a single candle confirms both a high and a low.</p></div></div>
+    <div class="rule"><div class="n">3</div><div><h3>Engulfing retracement (mainly D1)</h3>
+      <p>On the daily chart, waiting for two candles can cost you days, so one candle can count as the retracement if both checks pass:</p>
+      <ul><li>it's a genuinely big-bodied engulfing candle compared with the candles around it (wicks don't matter, the body does), and</li><li>its body closes beyond the previous candle's low (bull structure) or high (bear structure).</li></ul>
+      <p>A small candle engulfing another small candle doesn't count. The course calls these low-probability on minor pairs, so treat them as a backup method, not the main one.</p></div></div>
+    <div class="rule"><div class="n">4</div><div><h3>Change of character (CHoCH)</h3>
+      <p>The trend flips when <b>two candles close beyond level 2</b>, the LSM or LRM. Colour doesn't matter: red-red or red-green both count. The trend changes on the close of the second candle.</p>
+      <p><b>Fake-out:</b> one candle closes beyond it and the very next candle closes back inside. That's not a shift. A BOS needs one close. A CHoCH needs two.</p>
+      <p>After a CHoCH, start marking structure again from the double top or double bottom.</p></div></div>
+    <div class="rule"><div class="n">5</div><div><h3>The three CHoCH levels</h3>
+      <p>The last 1-2-3 before the shift turns into your three entry levels. After a bearish CHoCH:</p>
+      <ul><li><b>A+ / QML:</b> level 1, the older high that got broken. Smallest stop, best reward. It only becomes active once the CHoCH is confirmed.</li><li><b>SBR:</b> level 2, the broken support, now resistance.</li><li><b>Double top:</b> level 3. It plays least often.</li></ul>
+      <p>Draw zones from the wick: top wick for a high, bottom wick for a low, or the body if there's no wick. Bullish is the mirror: QML, RBS, double bottom. A level is spent once it has played, and it's <b>invalid once two candles close through it</b>. The course says to trade every level, not only A+, because sometimes only the SBR plays.</p>
+      <svg class="sch" id="rb-lv" role="img" aria-label="Levels after a bearish shift"></svg></div></div>
+    <div class="rule"><div class="n">6</div><div><h3>5-wave shift (ISS): the early CHoCH</h3>
+      <p>A normal CHoCH can take weeks on higher timeframes. The shortcut: inside the <b>last impulse, from level 2 to level 3</b>, on the <b>same timeframe</b>, if price builds <b>5 waves against the trend</b> (using the same 2CR and 1-close rules), structure has shifted early.</p>
+      <p>Trade from <b>level 3</b> and <b>level 4</b> of those five waves. Level 4 is the A+. Use it when price is ranging between level 2 and level 3. Whichever comes first, normal CHoCH or 5 waves, is your CHoCH.</p>
+      <svg class="sch" id="rb-iss" role="img" aria-label="Five-wave internal structure shift"></svg></div></div>
+    <div class="rule"><div class="n">7</div><div><h3>Dual CHoCH (rare, H1/H4/D1 only)</h3>
+      <p>Bullish, then bearish, then bullish again. After a bearish CHoCH, price reverses from an exact zone and <b>two candles close beyond the double top</b>. Your three sell levels flip into buy levels, and the reversal point becomes a <b>4th level</b>. It happens a few times a year at most, so don't go looking for it.</p>
+      <svg class="sch" id="rb-dc" role="img" aria-label="Dual change of character"></svg></div></div>
+
+    <div class="part">Where to trade</div>
+    <div class="rule"><div class="n">8</div><div><h3>Trend-joining levels (TGL)</h3>
+      <p>In a running trend, the last 1-2-3 gives you two with-trend entries. <b>TGL1</b> is the wick of level 1, and <b>TGL2</b> is the wick of level 2 (the LSM/LRM), which is the A+. Use <b>TGL2 in normal conditions</b>. Use <b>TGL1 when the market is strongly trending or volatile</b> and may not come back to TGL2. If price closes beyond TGL2, that's a CHoCH, and you switch to part 5. The course rates TGLs at roughly 7–8 out of 10 levels playing.</p>
+      <svg class="sch" id="rb-tgl" role="img" aria-label="Trend-joining levels"></svg></div></div>
+    <div class="rule"><div class="n">9</div><div><h3>Multi-timeframe: the three conditions</h3>
+      <p>Do it on Monday for the week. Start on D1, then H4, then H1, marking the <b>last 1-2-3</b> on each. D1's direction is the trend.</p>
+      <div class="scroll"><table><thead><tr><th>Condition</th><th>D1 / H4 / H1</th><th>Trade levels of</th><th>Confirm on</th></tr></thead><tbody>
+        <tr><td>1. All aligned</td><td><span class="b">Bull</span> / <span class="b">Bull</span> / <span class="b">Bull</span></td><td>H1 (closest to price)</td><td>M1 CHoCH</td></tr>
+        <tr><td>2. H1 against D1 and H4</td><td><span class="b">Bull</span> / <span class="b">Bull</span> / <span class="s">Bear</span></td><td>H4</td><td>M5 CHoCH</td></tr>
+        <tr><td>3. H4 against D1</td><td><span class="b">Bull</span> / <span class="s">Bear</span> / <span class="s">Bear</span></td><td>D1</td><td>H1 CHoCH, then M1 CHoCH</td></tr>
+      </tbody></table></div>
+      <p>Mirror for sells. <b>Bias</b> on any given day comes from the level price is sitting at: at a sell level you look to sell, at a buy level you look to buy. Counter-trend reactions from lower levels are smaller, so expect less from them.</p></div></div>
+    <div class="rule"><div class="n">10</div><div><h3>Confluence (optional, about 20% of the method)</h3>
+      <ul><li><b>Demand/supply:</b> the opposite-colour candle right before an impulse. For demand, mark the red candle from open to low. For supply, mark the green candle from open to high. Best on H1–D1. Only about 4–5 in 10 play, so it's strongest when it overlaps a TGL2.</li><li><b>FVG:</b> a 3-candle gap. Use the first one to the left of price. Never trade it on its own.</li><li><b>Fibonacci:</b> pull it across the last 1-2-3. A level that sits inside the 0.5–0.618 golden zone gets a little more trust.</li><li><b>Liquidity and inducement:</b> equal highs or lows (several wicks at one price) are a pool of stops. Inducement is a range, then support and resistance forming, then a fake move that sweeps those stops just before price taps your level. Trade a sweep only with an M1 CHoCH. Entering on the first candle after the sweep means a 30–50 pip stop. A level that has already played becomes liquidity, not an entry.</li><li>Order blocks, breaker blocks and POIs are supply and demand under different names. You don't need them.</li><li><b>Gold:</b> expect a pullback after roughly every $10 move, and reactions at round numbers in multiples of 5.</li></ul></div></div>
+
+    <div class="part">When to pull the trigger</div>
+    <div class="rule"><div class="n">11</div><div><h3>Confirmation map</h3>
+      <div class="scroll"><table><thead><tr><th>Level timeframe</th><th>Wait for</th><th>Typical move after</th></tr></thead><tbody>
+        <tr><td>M15 (scalp)</td><td>M1 CHoCH (safe), or an M1 candle (risky)</td><td>50–150 pips</td></tr>
+        <tr><td>H1</td><td>M1 CHoCH</td><td>~200 pips</td></tr>
+        <tr><td>H4</td><td>M5 CHoCH</td><td>~500 pips</td></tr>
+        <tr><td>D1</td><td>H1 CHoCH, then M1 CHoCH</td><td>500–1000+ pips (swing)</td></tr>
+      </tbody></table></div>
+      <p>After the lower-timeframe CHoCH, mark its three levels and wait for a <b>green candle (buy) or red candle (sell)</b> on one of them. Bullish/bearish engulfing is the best confirmation, then morning/evening star, then hanging man. A level on its own is a 50/50, and the course says confirmation lifts that to about 80/20. <b>Tap-and-go level:</b> an M15 or H1 buy or sell zone with an FVG inside it. Price often reacts straight off the tap. You can enter on the first M1 candle with a 20–25 pip stop (risky), or wait for the M1 CHoCH (safe). If the reaction is too fast to catch, take the retest, the sweep, or the FVG. Never mark levels on M1 or M5. Those timeframes are only for confirmation.</p></div></div>
+    <div class="rule"><div class="n">12</div><div><h3>When and how to trade</h3>
+      <p>The course gives times in IST, so convert them to your zone. Don't look at charts before <b>10:00</b>. Do your analysis 10:00–11:30. Trade London <b>11:30–14:00</b>. From 14:00–17:00, take <b>no new entries</b> (an open trade can stay open). Trade New York <b>17:00–20:30</b>, with no new entries after about 20:00. After 20:30, close anything that isn't at least 100 pips in profit, because overnight spreads widen and can take out your stop. If a setup comes outside the windows, use half size.</p>
+      <ul><li>Only trade at your desk, never from your phone on the go. Don't leave pending orders sitting while you're away.</li><li>Pairs: the majors plus GBPJPY. Avoid exotics. Avoid broker deposit "bonuses".</li><li>If price is stuck in a range between levels, do nothing until it closes out of the range.</li><li>Learn on H1 and H4. The instructor traded H1 and above for about two and a half years before going down to M15 and M5. He also lost about $10,000 in one news spike trading 8 lots at an A+, because size kills you faster than direction.</li></ul></div></div>
+
+    <div class="part">Manage the trade</div>
+    <div class="rule"><div class="n">13</div><div><h3>Stop, target, exits</h3>
+      <ul><li><b>Stop:</b> below the confirmation candle or the refined zone, plus spread. On gold that's 20–25 pips, 30–35 at the very most. If the stop would be bigger, wait for an M1 CHoCH for a tighter entry, or skip the trade.</li><li><b>Target:</b> for a buy, the <b>last confirmed high</b> on the trade's timeframe. For a sell, the <b>last confirmed low</b>. If an opposing zone (supply, or a sell level) sits before that, take the first one. The simple version is 1:2. On gold, expect a pullback after roughly every $10 move.</li><li><b>Exit:</b> book 80–90% at the target and move the rest to break even.</li><li><b>Risk-free move:</b> at 1:1, close 50% of the position. If the stop is then hit, you lose nothing.</li><li><b>Size by conviction:</b> full size on an A+, half size on SBR/RBS, the double top/bottom, or TGL1.</li><li>The course prefers one 100-pip trade over five 20-pip trades: "5 trades, 5 different psychologies."</li></ul></div></div>
+    <div class="rule"><div class="n">14</div><div><h3>Risk and lot size</h3>
+      <p><b>Two trades a day, maximum:</b> one in London and one in New York.</p>
+      <ul><li>If the first trade wins, the second risks only 30–40% of that profit.</li><li>If the first trade loses, the second trade uses half size.</li><li>One win and one loss means you stop for the day. Two losses means you stop for the day. You never try to get back to break even.</li></ul>
+      <p>The course's gold lot sizes are 0.02 for a $100 account, 0.05 for $500 and 0.10 for $1,000. With a 25-pip stop, that's about 5%, 2.5% and 2.5% of the account per trade. The general formula is lot = account × risk % ÷ (stop pips × pip value). For gold on the calculator, the course says to choose EURUSD.</p>
+      <p class="warn"><b>The course also says</b> 5–10% per trade counts as "low risk", and that smaller accounts should risk more. <b>Don't do this.</b> At 5% risk, ten losses in a row (which will happen) cut your account by about 40%. Use 0.5–1% while you're on demo and in your first live months.</p></div></div>
+  <div class="part">Context</div>
+    <div class="rule"><div class="n">15</div><div><h3>News (USD drives every major pair and gold)</h3>
+      <div class="scroll"><table><thead><tr><th>Release</th><th>When</th><th>Good for USD (bad for gold)</th></tr></thead><tbody>
+        <tr><td>FOMC rate decision</td><td>Scheduled</td><td>Rate hike or hold. Cuts are USD-negative.</td></tr>
+        <tr><td>CPI (look at YoY)</td><td>Monthly</td><td>Inflation near the healthy 3–4%. Too low or too high is negative.</td></tr>
+        <tr><td>NFP</td><td>First Friday</td><td>Actual above forecast (more jobs)</td></tr>
+        <tr><td>Unemployment claims</td><td>Every Thursday</td><td>Actual below forecast (fewer claims)</td></tr>
+        <tr><td>GDP</td><td>Quarterly</td><td>Higher than expected</td></tr>
+      </tbody></table></div>
+      <p>Use the forexfactory.com calendar and focus on red-folder (high-impact) events. News moves price for 2 to 6 hours, then structure takes over again.</p></div></div>
+    <div class="rule" id="psych-rule"><div class="n">16</div><div><h3>Psychology</h3>
+      <div id="psych-body" style="display:flex;flex-direction:column;gap:8px"><p>The course's psychology lecture comes down to this. <b>Fear</b> comes in two kinds: "will the strategy work?" and fear of losses. The cure is <b>patience</b> (no trade until price reaches your level), <b>discipline</b> (show up for both sessions, because missed sessions skew your results) and <b>consistency</b>. Judge the method over <b>100 trades</b>, not 10. A run of 6 losses inside 100 trades is normal.</p>
+      <ul><li>Decide your daily target before the session, and size it in pips. For example, $100 from 50 pips means 0.20 lot. Then stop when you hit it.</li><li>Overtrading to win back a $20–30 loss is what wrecked the instructor's early accounts. After two or three trades, log off. If watching charts has become a habit, delete the app each night.</li><li>"It's not how often you're right. It's how much you make when you're right and how much you lose when you're wrong."</li><li>Withdraw part of your profit and leave the rest in the account to compound.</li><li><b>Going full time:</b> only when one month of trading profit equals six months of salary, and that has held for six months in a row.</li><li>Learn on currency pairs, not just gold. The course says gold teaches only about half of how structure works. Backtest from 2024 onward.</li></ul></div></div></div>
+  </div>
+
+  <div class="gap"><h3>Parts of the course to ignore</h3>
+    <ul style="margin:0;padding-left:18px"><li><b>5–10% risk per trade</b>, and "$500 a week using 0.20 lot". See part 14.</li><li><b>"75–85% win rate on A+."</b> That's the instructor's claim. Your own 100-trade log is the only number that counts.</li><li><b>Withdrawal tips</b>: keeping bank withdrawals under $500 so the bank doesn't notice, and cash-for-USDT through local dealers. Splitting transfers to avoid bank scrutiny can be illegal in itself. Withdraw through official channels and pay the tax.</li><li>The course is taught on gold with Indian session times. Convert the times to your own time zone, and expect pips to mean different distances on other pairs.</li></ul></div>
+
+</section>
+<section class="screen" id="s-drill" hidden>
+  <div class="chips" role="tablist">
+    <button class="dtab" data-tab="ret" type="button">2-Candle</button><button class="dtab" data-tab="live" type="button">Live Read</button><button class="dtab" data-tab="box" type="button">Three Box</button><button class="dtab" data-tab="lvl" type="button">Levels</button><button class="dtab" data-tab="plan" type="button">Trade Plan</button>
+  </div>
+  <section class="dpane" id="ret" hidden>
+  <div><h2>Is it a valid retracement?</h2><p>Fast reps on the rule everything else depends on. Look at the closes, not the wicks.</p></div>
+  <div class="panel">
+    <p id="ret-q"></p>
+    <div class="chart"><canvas id="ret-cv"></canvas></div>
+    <div class="row" id="ret-btns"><button class="btn" data-v="1" type="button">Valid</button><button class="btn" data-v="0" type="button">Not valid</button></div>
+    <p class="fb" id="ret-fb" hidden></p>
+    <div class="row"><button class="btn pri" id="ret-next" type="button">Next pair</button></div>
+  </div>
+  <div class="stats">Score <b id="sc-ret"></b></div>
+</section>
+<section class="dpane" id="live" hidden>
+  <div><h2>Live read</h2><p>A new candle prints. Say what it just did. This is backtesting compressed: the same rules, called candle by candle, graded instantly.</p></div>
+  <div class="panel">
+    <div class="stats" id="live-stats"></div>
+    <div class="chart"><canvas id="live-cv"></canvas></div>
+    <div class="row" id="live-btns">
+      <button class="btn" data-v="N" type="button">Nothing new<kbd>1</kbd></button>
+      <button class="btn" data-v="H" type="button">High confirmed<kbd>2</kbd></button>
+      <button class="btn" data-v="L" type="button">Low confirmed<kbd>3</kbd></button>
+      <button class="btn" data-v="C" type="button">CHoCH<kbd>4</kbd></button>
+    </div>
+    <p class="fb" id="live-fb" hidden></p>
+    <div class="row"><button class="btn" id="live-skip" type="button">Skip quiet candles<kbd>S</kbd></button><button class="btn pri" id="live-new" type="button">New chart</button>
+      <label class="chk"><input type="checkbox" id="live-hard"> Hard mode: hide my H and L lines</label></div>
+    <p class="sub" id="live-sum"></p>
+  </div>
+  <div class="stats">All-time accuracy <b id="sc-live"></b></div>
+</section>
+<section class="dpane" id="box" hidden>
+  <div><h2>Three box alignment</h2><p>Read the three boxes. Pick which timeframe's levels you trade and how you confirm.</p></div>
+  <div class="panel">
+    <div class="boxes">
+      <div class="box" id="bx-d1"><div class="tf">D1</div><svg viewBox="0 0 140 60"></svg><div class="dir"></div></div>
+      <div class="box" id="bx-h4"><div class="tf">H4</div><svg viewBox="0 0 140 60"></svg><div class="dir"></div></div>
+      <div class="box" id="bx-h1"><div class="tf">H1</div><svg viewBox="0 0 140 60"></svg><div class="dir"></div></div>
+    </div>
+    <div class="opts" id="box-opts"></div>
+    <p class="fb" id="box-fb" hidden></p>
+    <div class="row"><button class="btn pri" id="box-next" type="button">Next scenario</button></div>
+  </div>
+  <div class="stats">Score <b id="sc-box"></b></div>
+</section>
+<section class="dpane" id="lvl" hidden>
+  <div><h2>Levels and shifts</h2><p>Name the zones after a shift, then call what the next move means.</p></div>
+  <div class="panel">
+    <p id="lvl-q"></p>
+    <svg class="sch" id="lvl-svg" role="img" aria-label="Structure shift schematic"></svg>
+    <div id="lvl-form"></div>
+    <p class="fb" id="lvl-fb" hidden></p>
+    <div id="lvl-p2" hidden style="display:flex;flex-direction:column;gap:10px"><p id="lvl-q2"></p><div class="opts" id="lvl-opts"></div><p class="fb" id="lvl-fb2" hidden></p></div>
+    <div class="row"><button class="btn pri" id="lvl-next" type="button">Next shift</button></div>
+  </div>
+  <div class="stats">Score <b id="sc-lvl"></b></div>
+</section>
+<section class="dpane" id="plan" hidden>
+  <div><h2>Trade plan</h2><p>The execution rules from the lectures: confirmation, stops, sessions, exits. Quick calls, graded with the reason.</p></div>
+  <div class="panel">
+    <p id="plan-q"></p>
+    <div class="opts" id="plan-opts"></div>
+    <p class="fb" id="plan-fb" hidden></p>
+    <div class="row"><button class="btn pri" id="plan-next" type="button">Next question</button></div>
+  </div>
+  <div class="stats">Score <b id="sc-plan"></b></div>
+</section>
+
+  <button class="b sm" id="reset" type="button" style="align-self:flex-start">Reset drill scores</button>
+</section>
+<section class="screen" id="s-journal" hidden>
+  <div class="chips" id="jChips"><button type="button" data-j="num" aria-selected="true">What works</button><button type="button" data-j="hist" aria-selected="false">History</button></div>
+  <div id="j-num" style="display:flex;flex-direction:column;gap:12px">
+    <div class="card" id="insights"></div>
+    <div class="lbl">By zone</div><div class="card" id="byZone"></div>
+    <div class="lbl">Confirmation</div><div class="card" id="byWait"></div>
+    <div class="lbl">Session</div><div class="card" id="bySess"></div>
+    <div class="row2"><button class="b" id="backup" type="button">Save a backup</button><button class="b" id="restoreBtn" type="button">Restore</button></div>
+    <input type="file" id="restore" accept="application/json,.json" hidden>
+  </div>
+  <div id="j-hist" class="list" hidden><div class="list" id="hist"></div></div>
 </section>
 </main>
-<nav>
-  <button type="button" data-s="today" aria-selected="true">Today</button>
-  <button type="button" data-s="history">History</button>
-  <button type="button" data-s="numbers">Numbers</button>
+<nav class="bar">
+  <button type="button" data-s="today" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18 9 12l4 3 7-9"/><path d="M4 21h16"/></svg>Today</button>
+  <button type="button" data-s="learn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg>Learn</button>
+  <button type="button" data-s="drill"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>Drill</button>
+  <button type="button" data-s="journal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Journal</button>
 </nav>
-
-<div class="sheet" id="sheet" hidden>
-  <div class="panel">
-    <div class="zones" id="zones"></div>
-    <div class="rv" id="rv">0R</div>
-    <input type="range" id="slider" min="0" max="8" step="1" value="2" aria-label="Result">
-    <div class="ticks"><span>Skip</span><span>−1</span><span>0</span><span>+½</span><span>+1</span><span>+2</span><span>+3</span><span>+4</span><span>+5</span></div>
-    <button class="main" id="save" type="button" disabled>Save</button>
-  </div>
-</div>
+<div class="sheet" id="logSheet" hidden><div class="sp"><div class="q" id="logTitle">Log a trade</div><div class="zones" id="zones"></div><div class="rv" id="rv">0R</div><input type="range" id="slider" min="0" max="8" step="1" value="2" aria-label="Result"><div class="ticks"><span>Skip</span><span>−1</span><span>0</span><span>+½</span><span>+1</span><span>+2</span><span>+3</span><span>+4</span><span>+5</span></div><button class="main" id="save" type="button" disabled>Save</button></div></div>
+<div class="sheet" id="ckSheet" hidden><div class="sp" id="ckBody"></div></div>
+<div class="sheet" id="skinSheet" hidden><div class="sp"><div class="q">Pick a design</div><div class="skins" id="skinGrid"></div><button class="main" type="button" onclick="document.getElementById('skinSheet').hidden=true">Done</button></div></div>
 <div class="toast" id="toast" hidden></div>
+<script>// ---- structure engine: pure, no DOM ----
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const ri=(a,b)=>Math.floor(rnd(a,b+1));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function gauss(){let u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+const cp=o=>JSON.parse(JSON.stringify(o));
 
-<script>
+function genSeries(n,dir){
+  const cs=[];let p=100;let d=dir||(Math.random()<.5?1:-1);
+  const push=dr=>{const o=p;let c=o+dr+gauss()*0.22;if(Math.abs(c-o)<0.06)c=o+(dr>=0?0.08:-0.08);
+    const h=Math.max(o,c)+Math.abs(gauss())*0.28,l=Math.min(o,c)-Math.abs(gauss())*0.28;cs.push({o,h,l,c});p=c;};
+  while(cs.length<n){
+    const imp=ri(4,8);for(let k=0;k<imp;k++)push(d*rnd(0.35,1.15)*(Math.random()<.12?-0.5:1));
+    if(cs.length>12&&Math.random()<0.2){const deep=ri(7,11);for(let k=0;k<deep;k++)push(-d*rnd(0.5,1.25));d=-d;continue;}
+    const cor=ri(2,5);for(let k=0;k<cor;k++)push(-d*rnd(0.25,0.9));
+  }
+  return cs.slice(0,n);
+}
+
+function analyze(cs,startDir){
+  const S={trend:startDir===-1?'bear':'bull',ch:null,cl:null,wait:false,run:null,pull:null,pend:0,prevCh:null,prevCl:null};
+  const ev=[],snap=[],shifts=[];
+  const red=k=>cs[k].c<cs[k].o,green=k=>cs[k].c>cs[k].o;
+  const lowest=(a,b)=>{let r={p:Infinity,i:a};for(let k=a;k<=b;k++)if(cs[k].l<r.p)r={p:cs[k].l,i:k};return r;};
+  const highest=(a,b)=>{let r={p:-Infinity,i:a};for(let k=a;k<=b;k++)if(cs[k].h>r.p)r={p:cs[k].h,i:k};return r;};
+  for(let i=0;i<cs.length;i++){
+    const x=cs[i];let e={t:null};
+    if(!S.run){S.run=S.trend==='bull'?{p:x.h,i}:{p:x.l,i};ev.push(e);snap.push(cp(S));continue;}
+    if(S.trend==='bull'){
+      let flipped=false,pend=false;
+      if(S.cl&&x.c<S.cl.p){S.pend++;
+        if(S.pend>=2){const dt=S.wait?S.ch:S.run,ap=S.wait?S.prevCh:S.ch;
+          const sh={i,dir:'bear',ext:cp(dt),ap:ap?cp(ap):null,flip:cp(S.cl)};shifts.push(sh);
+          Object.assign(S,{trend:'bear',ch:cp(dt),cl:null,wait:false,run:lowest(dt.i,i),pull:null,pend:0,prevCh:null,prevCl:null});
+          e={t:'C',sh};flipped=true;
+        }else{pend=true;e={t:'P',lvl:cp(S.cl)};}
+      }else S.pend=0;
+      if(!flipped){
+        const pair=i>0&&red(i-1)&&red(i)&&x.c<cs[i-1].l;
+        if(!S.wait){
+          if(x.h>S.run.p)S.run={p:x.h,i};
+          if(pair&&S.run.i<=i-1){S.prevCh=S.ch;S.ch=cp(S.run);S.wait=true;S.pull=lowest(S.run.i,i);e={t:'H',lvl:cp(S.ch),alsoP:pend};}
+        }else{
+          if(x.l<S.pull.p)S.pull={p:x.l,i};
+          if(x.c>S.ch.p){S.prevCl=S.cl;S.cl=cp(S.pull);S.wait=false;S.run={p:x.h,i};S.pend=0;e={t:'L',lvl:cp(S.cl),brk:cp(S.ch)};}
+          else if(pair&&!pend)e={t:null,ignored:true};
+        }
+      }
+    }else{
+      let flipped=false,pend=false;
+      if(S.ch&&x.c>S.ch.p){S.pend++;
+        if(S.pend>=2){const db=S.wait?S.cl:S.run,ap=S.wait?S.prevCl:S.cl;
+          const sh={i,dir:'bull',ext:cp(db),ap:ap?cp(ap):null,flip:cp(S.ch)};shifts.push(sh);
+          Object.assign(S,{trend:'bull',cl:cp(db),ch:null,wait:false,run:highest(db.i,i),pull:null,pend:0,prevCh:null,prevCl:null});
+          e={t:'C',sh};flipped=true;
+        }else{pend=true;e={t:'P',lvl:cp(S.ch)};}
+      }else S.pend=0;
+      if(!flipped){
+        const pair=i>0&&green(i-1)&&green(i)&&x.c>cs[i-1].h;
+        if(!S.wait){
+          if(x.l<S.run.p)S.run={p:x.l,i};
+          if(pair&&S.run.i<=i-1){S.prevCl=S.cl;S.cl=cp(S.run);S.wait=true;S.pull=highest(S.run.i,i);e={t:'L',lvl:cp(S.cl),alsoP:pend};}
+        }else{
+          if(x.h>S.pull.p)S.pull={p:x.h,i};
+          if(x.c<S.cl.p){S.prevCh=S.ch;S.ch=cp(S.pull);S.wait=false;S.run={p:x.l,i};S.pend=0;e={t:'H',lvl:cp(S.ch),brk:cp(S.cl)};}
+          else if(pair&&!pend)e={t:null,ignored:true};
+        }
+      }
+    }
+    ev.push(e);snap.push(cp(S));
+  }
+  return {ev,snap,shifts};
+}
+
+
+// ---- UI ----
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const store={get(k,d){try{const v=localStorage.getItem('st_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('st_'+k,JSON.stringify(v))}catch(e){}}};
+
+// ---------- candle chart ----------
+function drawChart(cv,cs,o={}){
+  const from=o.from??0,to=o.to??cs.length; const view=cs.slice(from,to);
+  const W=cv.parentElement.clientWidth, H=o.height||320, dpr=window.devicePixelRatio||1;
+  cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';
+  const g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,W,H);
+  const padR=o.padR??64, padT=26, padB=26, slots=Math.max(o.slots||view.length,view.length);
+  let lo=Infinity,hi=-Infinity;view.forEach(c=>{lo=Math.min(lo,c.l);hi=Math.max(hi,c.h)});
+  (o.lines||[]).forEach(L=>{if(L.p<lo)lo=L.p;if(L.p>hi)hi=L.p});
+  const r=(hi-lo)||1;lo-=r*.06;hi+=r*.06;
+  const cw=(W-padR-8)/slots, X=i=>8+(i-from)*cw+cw/2, Y=p=>padT+(hi-p)/(hi-lo)*(H-padT-padB);
+  g.strokeStyle=tok('--grid');g.lineWidth=1;
+  for(let k=0;k<=4;k++){const y=padT+k*(H-padT-padB)/4;g.beginPath();g.moveTo(0,y+.5);g.lineTo(W-padR,y+.5);g.stroke();}
+  (o.zones||[]).forEach(z=>{g.fillStyle=z.color;g.globalAlpha=.16;const y1=Y(z.p1),y2=Y(z.p2);g.fillRect(X(z.i0)-cw/2,Math.min(y1,y2),W-padR-X(z.i0)+cw/2,Math.abs(y2-y1)||2);g.globalAlpha=1;});
+  (o.hl||[]).forEach(i=>{if(i<from||i>=to)return;g.fillStyle=tok('--hl');g.fillRect(X(i)-cw/2,padT-14,cw,H-padT-padB+18);});
+  const bw=Math.max(2,Math.min(14,cw*.62));
+  view.forEach((c,k)=>{const i=k+from,x=X(i),up=c.c>=c.o;const col=up?tok('--up'):tok('--down');
+    g.strokeStyle=col;g.fillStyle=col;g.lineWidth=1.2;g.beginPath();g.moveTo(x,Y(c.h));g.lineTo(x,Y(c.l));g.stroke();
+    const y1=Y(Math.max(c.o,c.c)),y2=Y(Math.min(c.o,c.c));g.fillRect(x-bw/2,y1,bw,Math.max(1.5,y2-y1));});
+  g.font='600 11px "JetBrains Mono",ui-monospace,monospace';
+  (o.lines||[]).forEach(L=>{const y=Math.round(Y(L.p))+.5,x0=L.i0!=null?X(Math.max(L.i0,from))-cw/2:0,x1=L.i1!=null?X(L.i1)+cw/2:W-padR;
+    g.strokeStyle=L.color;g.lineWidth=1.4;g.setLineDash(L.dash?[5,4]:[]);g.beginPath();g.moveTo(x0,y);g.lineTo(x1,y);g.stroke();g.setLineDash([]);
+    if(L.label){g.fillStyle=L.color;g.textAlign='left';g.textBaseline='middle';g.fillText(L.label,(L.i1!=null?x1:W-padR)+5,y);} });
+  (o.tags||[]).forEach(t=>{if(t.i<from||t.i>=to)return;const c=cs[t.i],x=X(t.i);g.fillStyle=t.color||tok('--ink');g.textAlign='center';
+    if(t.pos==='below'){g.textBaseline='top';g.fillText(t.text,x,Y(c.l)+6);}else{g.textBaseline='bottom';g.fillText(t.text,x,Y(c.h)-6);} });
+  return {X,Y};
+}
+
+// ---------- schematic (course-style zigzag) ----------
+function schematic(svg,pts,levels,opts={}){
+  // pts: [[x,y]...] in 0..100 space (y up), levels: [{y,label,color}]
+  const W=600,H=opts.h||300,px=x=>20+x/100*(W-150),py=y=>H-20-y/100*(H-40);
+  let s='';
+  levels.forEach(l=>{const x0=px(l.x0??0);s+=`<rect x="${x0}" y="${py(l.y)-9}" width="${px(100)-x0+8}" height="18" fill="${l.fill||'var(--zone)'}" opacity=".9" rx="2"/>`;
+    if(l.label)s+=`<text x="${px(100)+14}" y="${py(l.y)+4}" class="svl" fill="${l.color||'var(--ink)'}">${l.label}</text>`;});
+  for(let k=1;k<pts.length;k++){const [a,b]=[pts[k-1],pts[k]];const col=b[1]>a[1]?'var(--up)':'var(--down)';
+    s+=`<line x1="${px(a[0])}" y1="${py(a[1])}" x2="${px(b[0])}" y2="${py(b[1])}" stroke="${col}" stroke-width="2.4" stroke-linecap="round"/>`;}
+  (opts.marks||[]).forEach(m=>{s+=`<circle cx="${px(m.x)}" cy="${py(m.y)}" r="9" fill="none" stroke="var(--gold)" stroke-width="2"/>`;
+    if(m.t)s+=`<text x="${px(m.x)}" y="${py(m.y)+(m.below?26:-16)}" text-anchor="middle" class="svs">${m.t}</text>`;});
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML=s;
+}
+
+// ---------- tabs ----------
+function showTab(id){$$('.dtab').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===id));$$('.dpane').forEach(p=>p.hidden=p.id!==id);store.set('dtab',id);redrawAll();}
+$$('.dtab').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+
+// ---------- score chips ----------
+function bump(key,ok){const s=store.get('sc_'+key,{ok:0,n:0});s.n++;if(ok)s.ok++;store.set('sc_'+key,s);paintScores();}
+function paintScores(){['ret','live','box','lvl','plan'].forEach(k=>{const s=store.get('sc_'+k,{ok:0,n:0});const el=$('#sc-'+k);if(el)el.textContent=s.n?`${Math.round(s.ok/s.n*100)}% of ${s.n}`:'no attempts yet';});}
+
+// ================= RULEBOOK DIAGRAMS =================
+const RB_CANDLES=(()=>{const seq=[[100,101.2],[101.2,102.6],[102.6,102.3],[102.3,103.9],[103.9,105.2],[105.2,104.3],[104.3,103.2],[103.2,102.6],[102.6,103.3],[103.3,104.6],[104.6,105.9],[105.9,107.1]];
+  return seq.map(([o,c],k)=>({o,c,h:Math.max(o,c)+(k===4?0.35:0.18),l:Math.min(o,c)-(k===7?0.25:0.18)}));})();
+function drawRulebook(){
+  const cv=$('#rb-cv');if(!cv||cv.offsetParent===null)return;
+  const c=RB_CANDLES;
+  drawChart(cv,c,{height:300,padR:120,hl:[5,6],
+    lines:[{p:c[4].h,i0:4,label:'Confirmed high',color:tok('--accent'),dash:true},{p:c[7].l,i0:7,label:'Confirmed low',color:tok('--gold'),dash:true},{p:c[5].l,i0:5,i1:6,color:tok('--muted'),dash:true}],
+    tags:[{i:6,text:'2nd close < 1st low',pos:'below',color:tok('--muted')},{i:10,text:'BOS',pos:'above',color:tok('--ink')}]});
+  schematic($('#rb-lv'),[[0,8],[22,58],[34,32],[56,86],[76,6]],[{y:86,x0:56,label:'Double top'},{y:58,x0:22,label:'QML (lvl 1)'},{y:32,x0:34,label:'SBR (lvl 2)'}],{marks:[{x:69,y:24,t:'2 closes below = CHoCH',below:true}]});
+  schematic($('#rb-iss'),[[0,8],[16,52],[28,34],[50,92],[58,70],[64,80],[72,58],[78,70],[88,44]],[{y:92,x0:50,label:'Level 3'},{y:70,x0:78,label:'Level 4 = A+'},{y:34,x0:28,label:'Level 2 (LSM)'}],{marks:[{x:88,y:44,t:'5th wave = shift',below:true}]});
+  schematic($('#rb-tgl'),[[0,8],[18,50],[30,32],[56,90],[72,56],[100,98]],[{y:50,x0:18,label:'TGL1 (lvl 1)'},{y:32,x0:30,label:'TGL2 = A+'}],{marks:[{x:56,y:90,t:'level 3'}]});
+  schematic($('#rb-dc'),[[0,10],[18,56],[30,36],[50,86],[68,8],[100,98]],[{y:86,x0:50,label:'Double top'},{y:56,x0:18,label:'A+'},{y:36,x0:30,label:'SBR'},{y:8,x0:68,label:'4th level',fill:'var(--zone2)'}],{marks:[{x:68,y:8,t:'reversal from exact zone',below:true},{x:91,y:86,t:'2 closes above'}]});
+}
+
+// ================= DRILL 1: RETRACEMENT =================
+const R={};
+function newRet(){
+  const bull=Math.random()<.5, kind=pick(['valid','valid','body','wick','color','gap']);
+  // build in bull space, mirror later
+  const cs=[];let p=100;for(let k=0;k<6;k++){const o=p,c=o+rnd(.6,1.3);cs.push({o,c,h:c+rnd(.05,.3),l:o-rnd(.05,.3)});p=c;}
+  const top=p;const r1o=top+rnd(-.05,.05),r1c=r1o-rnd(.5,1),r1={o:r1o,c:r1c,h:r1o+rnd(.15,.4),l:r1c-rnd(.15,.35)};cs.push(r1);
+  let r2,why,ok=false,hl=[6,7];const W=bull?{b:'below',lo:'low',hi:'high'}:{b:'above',lo:'high',hi:'low'};
+  if(kind==='valid'){const c=r1.l-rnd(.15,.5);r2={o:r1.c,c,h:r1.c+rnd(.05,.2),l:c-rnd(.05,.25)};ok=true;why=`Both candles are counter-colour, back to back, and the second one's body closes ${W.b} the first one's wick. Valid: the ${W.hi} is now confirmed.`;}
+  if(kind==='body'){const c=r1.l+(r1.c-r1.l)*rnd(.25,.7);r2={o:r1.c,c,h:r1.c+rnd(.05,.2),l:r1.l-rnd(.15,.35)};why=`The second candle closed ${W.b} the first candle's body, but not ${W.b} its wick. The rule is a close ${W.b} the wick (the ${W.lo}). Not valid.`;}
+  if(kind==='wick'){const o=r1.c+rnd(.1,.3),c=Math.max(r1.c-rnd(.02,.08),r1.l+.12);r2={o,c,h:o+rnd(.05,.2),l:r1.l-rnd(.3,.6)};why=`Only the wick went past the first candle's ${W.lo}. Wicks don't count, closes do. Not valid.`;}
+  if(kind==='color'){const o=r1.l-rnd(.3,.6),c=o+rnd(.15,.35);r2={o,c,h:c+rnd(.05,.2),l:o-rnd(.05,.2)};why='The second candle is the wrong colour. A retracement needs two consecutive counter-colour closes. Not valid.';}
+  if(kind==='gap'){const go=r1.c,gc=go+rnd(.15,.35);cs.push({o:go,c:gc,h:gc+.12,l:go-.1});const c=r1.l-rnd(.15,.45);r2={o:gc,c,h:gc+.1,l:c-.15};hl=[6,7,8];why='There is a trend-colour candle between them, so they are not consecutive. Not valid.';}
+  cs.push(r2);for(let k=0;k<(kind==='gap'?1:2);k++)cs.push(null);
+  const real=cs.map(c=>c&&(bull?c:{o:200-c.o,c:200-c.c,h:200-c.l,l:200-c.h}));
+  Object.assign(R,{cs:real,bull,ok,why,hl,answered:false,r1i:6});
+  $('#ret-q').textContent=bull?'Bullish leg. Is the highlighted pair a valid 2-candle retracement?':'Bearish leg. Is the highlighted pair a valid 2-candle retracement?';
+  $('#ret-fb').hidden=true;$$('#ret-btns button').forEach(b=>b.disabled=false);drawRet();
+}
+function drawRet(){const cv=$('#ret-cv');if(!R.cs||cv.offsetParent===null)return;const cs=R.cs.filter(Boolean);
+  const lines=R.answered?[{p:R.bull?cs[R.r1i].l:cs[R.r1i].h,i0:R.r1i,color:tok('--accent'),dash:true,label:R.bull?'1st low':'1st high'}]:[];
+  drawChart(cv,cs,{height:300,slots:cs.length+2,hl:R.hl,lines});}
+function ansRet(v){if(R.answered)return;R.answered=true;const right=v===R.ok;bump('ret',right);
+  $('#ret-fb').hidden=false;$('#ret-fb').className='fb '+(right?'good':'bad');$('#ret-fb').innerHTML=`<b>${right?'Correct.':'Not quite.'}</b> ${R.why}`;
+  $$('#ret-btns button').forEach(b=>b.disabled=true);drawRet();}
+
+// ================= DRILL 2: LIVE READ =================
+const L={};
+const EV_NAME={H:'High confirmed',L:'Low confirmed',C:'CHoCH',N:'Nothing new'};
+function newLive(){const d=Math.random()<.5?1:-1;const cs=genSeries(90,d);const a=analyze(cs,d);Object.assign(L,{cs,a,cur:22,log:[],hits:0,calls:0,events:0,caught:0,false:0,done:false});
+  $('#live-fb').hidden=true;$('#live-sum').textContent='';setLiveBtns(true);drawLive();paintLiveStats();}
+function trueAns(e){return e.t==='H'||e.t==='L'||e.t==='C'?e.t:'N';}
+function explain(i){const e=L.a.ev[i],s=L.a.snap[i-1],f=v=>v.toFixed(2),tr=L.a.snap[i-1].trend;
+  if(e.t==='C')return `Second consecutive close ${e.sh.dir==='bear'?'below the confirmed low':'above the confirmed high'} (${f(e.sh.flip.p)}). Structure shifts <b>${e.sh.dir}ish</b>. Mark the ${e.sh.dir==='bear'?'double top':'double bottom'}, the A+/QML and the ${e.sh.dir==='bear'?'SBR':'RBS'}.`;
+  if(e.t==='H'&&tr==='bull')return `Two consecutive red closes, the second below the first one's low. The swing high at ${f(e.lvl.p)} is confirmed. Now wait for a close above it.${e.alsoP?' (This candle also closed below the confirmed low once: warning only.)':''}`;
+  if(e.t==='L'&&tr==='bull')return `Candle closed above the confirmed high (${f(e.brk.p)}): BOS. The pullback low at ${f(e.lvl.p)} is now the confirmed low.`;
+  if(e.t==='L'&&tr==='bear')return `Two consecutive green closes, the second above the first one's high. The swing low at ${f(e.lvl.p)} is confirmed. Now wait for a close below it.${e.alsoP?' (This candle also closed above the confirmed high once: warning only.)':''}`;
+  if(e.t==='H'&&tr==='bear')return `Candle closed below the confirmed low (${f(e.brk.p)}): BOS. The pullback high at ${f(e.lvl.p)} is now the confirmed high.`;
+  if(e.t==='P')return `One close beyond the ${tr==='bull'?'confirmed low':'confirmed high'} (${f(e.lvl.p)}). One close is a warning. A shift needs two.`;
+  if(e.ignored)return `That pair would count as a retracement, but the ${tr==='bull'?'high':'low'} is already confirmed and unbroken. Don't look for a new one until it breaks.`;
+  return 'No valid retracement pair and no close beyond a confirmed level.';}
+function liveLevels(i){const s=L.a.snap[i-1];const out=[];if(!s)return out;
+  if(s.ch)out.push({p:s.ch.p,i0:s.ch.i,label:'H',color:tok('--accent'),dash:true});
+  if(s.cl)out.push({p:s.cl.p,i0:s.cl.i,label:'L',color:tok('--gold'),dash:true});return out;}
+function drawLive(){const cv=$('#live-cv');if(!L.cs||cv.offsetParent===null)return;const i=L.cur,from=Math.max(0,i-55);
+  const tags=[];L.log.forEach(r=>{const e=L.a.ev[r.i];if(e.t==='H')tags.push({i:r.i,text:'H✓',pos:'above',color:tok('--accent')});if(e.t==='L')tags.push({i:r.i,text:'L✓',pos:'below',color:tok('--gold')});if(e.t==='C')tags.push({i:r.i,text:'CHoCH',pos:L.a.ev[r.i].sh.dir==='bear'?'below':'above',color:tok('--down')});
+    if(!r.ok)tags.push({i:r.i,text:'✕',pos:(e.t==='H'||e.t==='C'&&e.sh.dir==='bull')?'below':'above',color:tok('--down')});});
+  const hard=$('#live-hard').checked;
+  drawChart(cv,L.cs,{from,to:i+1,slots:58,height:340,hl:[i],lines:hard?[]:liveLevels(L.done?i+1:i),tags});}
+function setLiveBtns(on){$$('#live-btns button').forEach(b=>b.disabled=!on);}
+function ansLive(v){if(L.done||L.wait)return;const i=L.cur,t=trueAns(L.a.ev[i]),ok=v===t;L.log.push({i,ok});L.calls++;if(ok)L.hits++;
+  if(t!=='N'){L.events++;if(ok)L.caught++;}else if(!ok)L.false++;bump('live',ok);
+  const tr=L.a.snap[i].trend;
+  if(!ok||t!=='N'){ $('#live-fb').hidden=false;$('#live-fb').className='fb '+(ok?'good':'bad');
+    $('#live-fb').innerHTML=`<b>${ok?'Correct':'Answer: '+EV_NAME[t]}.</b> ${explain(i)} <span class="trend">Trend now: ${tr}</span>`;}
+  else {$('#live-fb').hidden=false;$('#live-fb').className='fb quiet';$('#live-fb').innerHTML=`Nothing new. ${L.a.ev[i].t==='P'||L.a.ev[i].ignored?explain(i):''} <span class="trend">Trend: ${tr}</span>`;}
+  paintLiveStats();
+  if(L.cur>=L.cs.length-1){L.done=true;setLiveBtns(false);$('#live-sum').textContent=`Round done. Events caught ${L.caught}/${L.events}, false calls ${L.false}.`;drawLive();return;}
+  L.cur++;drawLive();}
+function paintLiveStats(){$('#live-stats').innerHTML=`<span>Candle ${L.cur-21}/${L.cs.length-22}</span><span>Events caught <b>${L.caught}/${L.events}</b></span><span>False calls <b>${L.false}</b></span>`;}
+function skipQuiet(){ // advance a few quiet candles, never past an event
+  if(L.done)return;const target=ri(3,8);let n=0;while(L.cur<L.cs.length-1&&n<target&&trueAns(L.a.ev[L.cur])==='N'&&!L.a.ev[L.cur].t){L.log.push({i:L.cur,ok:true});L.cur++;n++;}
+  $('#live-fb').hidden=false;$('#live-fb').className='fb quiet';$('#live-fb').textContent=n?`Skipped ${n} quiet candle${n===1?'':'s'}.`:'Something needs reading on this candle. Make the call.';paintLiveStats();drawLive();}
+
+// ================= DRILL 3: THREE BOX =================
+const B={};
+const BOX_OPTS=[
+ {k:'h1buy',t:'Buy from H1 levels',s:'Confirm with an M1 CHoCH'},
+ {k:'h1sell',t:'Sell from H1 levels',s:'Confirm with an M1 CHoCH'},
+ {k:'h4buy',t:'Buy from H4 levels',s:'Confirm with an M5 CHoCH'},
+ {k:'h4sell',t:'Sell from H4 levels',s:'Confirm with an M5 CHoCH'},
+ {k:'d1buy',t:'Buy from D1 levels',s:'Confirm with an H1 CHoCH, then M1'},
+ {k:'d1sell',t:'Sell from D1 levels',s:'Confirm with an H1 CHoCH, then M1'}];
+function newBox(){const d1=pick([1,-1]),type=pick(['all','h1opp','h4opp','h4opp_h1']);let h4=d1,h1=d1,ans,why;
+  const up=d1===1,v=up?'buy':'sell',D=up?'bullish':'bearish';
+  if(type==='all'){ans='h1'+v;why=`Condition 1: all three are ${D}. Trade the H1 levels, because they're closest to price, and confirm with an M1 CHoCH. Expect around 200 pips on gold.`;}
+  if(type==='h1opp'){h1=-d1;ans='h4'+v;why=`Condition 2: D1 and H4 agree (${D}) and H1 is only a pullback. Trade the H4 levels in the ${D} direction and confirm with an M5 CHoCH.`;}
+  if(type==='h4opp'){h4=-d1;h1=-d1;ans='d1'+v;why=`Condition 3: H4 has turned against D1. Wait for price to reach a D1 level, then take an H1 CHoCH, then an M1 CHoCH for the entry. This is where swing trades come from.`;}
+  if(type==='h4opp_h1'){h4=-d1;h1=d1;ans='d1'+v;why=`H4 is against D1, so this is still condition 3, whatever H1 is doing. Trade D1 levels in the ${D} direction with an H1 CHoCH, then M1. H1 agreeing with D1 doesn't move you down to H1 levels.`;}
+  Object.assign(B,{d1,h4,h1,ans,why,answered:false});
+  [['d1',d1],['h4',h4],['h1',h1]].forEach(([k,v])=>{$('#bx-'+k+' .dir').textContent=v===1?'Bullish':'Bearish';$('#bx-'+k).dataset.dir=v;
+    const pts=v===1?[[0,10],[25,45],[40,30],[65,70],[78,55],[100,92]]:[[0,90],[25,55],[40,70],[65,30],[78,45],[100,8]];
+    $('#bx-'+k+' svg').innerHTML=`<polyline points="${pts.map(p=>`${p[0]*1.4},${(100-p[1])*.6}`).join(' ')}" fill="none" stroke="${v===1?'var(--up)':'var(--down)'}" stroke-width="2.5" stroke-linejoin="round"/>`;});
+  $('#box-fb').hidden=true;$$('#box-opts button').forEach(b=>{b.disabled=false;b.classList.remove('right','wrong');});}
+function ansBox(k){if(B.answered)return;B.answered=true;const ok=k===B.ans;bump('box',ok);
+  $$('#box-opts button').forEach(b=>{b.disabled=true;if(b.dataset.k===B.ans)b.classList.add('right');else if(b.dataset.k===k)b.classList.add('wrong');});
+  $('#box-fb').hidden=false;$('#box-fb').className='fb '+(ok?'good':'bad');$('#box-fb').innerHTML=`<b>${ok?'Correct.':'Not quite.'}</b> ${B.why}`;}
+
+// ================= DRILL 4: LEVELS =================
+const V={};
+const LV_NAMES=['Double top','A+ / QML','SBR'];
+function newLvl(){const bear=Math.random()<.5;
+  const a=rnd(50,62),b=rnd(26,36),t=rnd(80,90);
+  let pts=[[0,rnd(4,12)],[20,a],[33,b],[54,t],[74,rnd(4,14)]];
+  const lv=[{n:'Double top',y:t,x0:54},{n:'A+ / QML',y:a,x0:20},{n:'SBR',y:b,x0:33}];
+  const order=[0,1,2].sort(()=>Math.random()-.5),letters=['X','Y','Z'];
+  const mapY=y=>bear?y:100-y;
+  V.lv=lv.map(l=>({...l,y:mapY(l.y),n:bear?l.n:l.n.replace('Double top','Double bottom').replace('SBR','RBS')}));
+  V.pts=pts.map(p=>[p[0],mapY(p[1])]);V.bear=bear;V.letters={};order.forEach((oi,k)=>V.letters[letters[k]]=oi);
+  V.part=1;V.answered=false;V.scen=pick(['dual','hold','one']);
+  drawLvl();
+  $('#lvl-q').textContent=`${bear?'Bullish':'Bearish'} structure just shifted ${bear?'bearish':'bullish'} with two closes beyond the last confirmed ${bear?'low':'high'}. Name each zone.`;
+  const names=V.lv.map(l=>l.n);
+  $('#lvl-form').innerHTML=letters.map(L=>`<label>Zone ${L} <select id="lv-${L}"><option value="">choose</option>${names.map((n,i)=>`<option value="${i}">${n}</option>`).join('')}</select></label>`).join('')+'<button class="btn" id="lv-check" type="button">Check</button>';
+  $('#lv-check').onclick=checkLvl;$('#lvl-fb').hidden=true;$('#lvl-p2').hidden=true;}
+function drawLvl(extra){const svg=$('#lvl-svg');const levels=Object.entries(V.letters).map(([L,i])=>({y:V.lv[i].y,x0:V.lv[i].x0,label:V.answered?`${L}  ${V.lv[i].n}`:`Zone ${L}`}));
+  if(extra&&extra.lvl4)levels.push({y:extra.lvl4,x0:extra.x4,label:'4th level',fill:'var(--zone2)'});
+  schematic(svg,extra?extra.pts:V.pts,levels,{marks:extra?extra.marks:[]});}
+function checkLvl(){let all=true;const res=[];Object.entries(V.letters).forEach(([L,i])=>{const v=$('#lv-'+L).value;const ok=v!==''&&+v===i;if(!ok)all=false;res.push(`Zone ${L} is the <b>${V.lv[i].n}</b>`);});
+  bump('lvl',all);V.answered=true;drawLvl();
+  const why=V.bear?'The double top is the last high before the shift. A+ / QML is the earlier high that was broken (the left shoulder). SBR is the low that got broken: old support, now resistance.':'The double bottom is the last low before the shift. A+ / QML is the earlier low that was broken (the left shoulder). RBS is the high that got broken: old resistance, now support.';
+  $('#lvl-fb').hidden=false;$('#lvl-fb').className='fb '+(all?'good':'bad');$('#lvl-fb').innerHTML=`<b>${all?'All three right.':'Not quite.'}</b> ${res.join('. ')}. ${why}`;
+  $('#lv-check').disabled=true;setTimeout(part2,250);}
+function part2(){const b=V.bear,m=y=>b?y:100-y,rdt=m(V.lv[0].y),rsb=m(V.lv[2].y);let pts=[...V.pts],extra={pts,marks:[]},q,ans,why;
+  const opts=[{k:'dual',t:`Dual CHoCH: structure is back ${b?'bullish':'bearish'}`},{k:'hold',t:`Shift holds: still ${b?'bearish':'bullish'}, the ${b?'SBR':'RBS'} is doing its job`},{k:'one',t:'No change yet: one close is not a shift'}];
+  if(V.scen==='dual'){const r4=rnd(0,4);pts.push([84,m(r4)],[100,m(rdt+8)]);extra.lvl4=m(r4);extra.x4=84;extra.marks=[{x:96,y:m(rdt),t:'2 closes'}];
+    q=`Price ${b?'drops':'rallies'} into a zone, reverses hard, and two candles close ${b?'above the double top':'below the double bottom'}. What now?`;ans='dual';why=`Two closes beyond the ${b?'double top':'double bottom'} after a reversal from an exact zone is the dual CHoCH. Structure flips back ${b?'bullish':'bearish'}, and that reversal ${b?'low':'high'} becomes the new 4th level.`;}
+  if(V.scen==='hold'){pts.push([86,m(rsb-1)],[100,m(rnd(0,3))]);extra.marks=[{x:86,y:m(rsb),t:'2 rejection closes'}];
+    q=`Price pulls back into the ${b?'SBR':'RBS'}, prints two ${b?'red':'green'} closes there and rolls over. What now?`;ans='hold';why=`Nothing has closed beyond the ${b?'double top':'double bottom'}. The broken ${b?'low':'high'} is acting as ${b?'resistance':'support'}, which is exactly what the ${b?'SBR':'RBS'} is for. The shift holds.`;}
+  if(V.scen==='one'){pts.push([86,m(rdt+5)],[93,m(rdt-6)],[100,m(rdt-12)]);extra.marks=[{x:86,y:m(rdt+5),t:'1 close beyond'}];
+    q=`Price ${b?'rallies':'drops'}, one candle closes ${b?'above the double top':'below the double bottom'}, and the next closes back inside. What now?`;ans='one';why='A shift needs a minimum of two closes. One close beyond is a warning, nothing more.';}
+  V.p2={ans,why};drawLvl(extra);
+  $('#lvl-p2').hidden=false;$('#lvl-q2').textContent=q;$('#lvl-opts').innerHTML=opts.sort(()=>Math.random()-.5).map(o=>`<button class="opt" data-k="${o.k}" type="button">${o.t}</button>`).join('');
+  $$('#lvl-opts button').forEach(x=>x.onclick=()=>ansP2(x.dataset.k));$('#lvl-fb2').hidden=true;}
+function ansP2(k){const ok=k===V.p2.ans;bump('lvl',ok);$$('#lvl-opts button').forEach(b=>{b.disabled=true;if(b.dataset.k===V.p2.ans)b.classList.add('right');else if(b.dataset.k===k)b.classList.add('wrong');});
+  $('#lvl-fb2').hidden=false;$('#lvl-fb2').className='fb '+(ok?'good':'bad');$('#lvl-fb2').innerHTML=`<b>${ok?'Correct.':'Not quite.'}</b> ${V.p2.why}`;}
+
+// ================= DRILL 5: TRADE PLAN =================
+const P={};
+function planQ(){const g=pick(['conf','conf','stop','choch','sess','mgmt','inv','tgl','bias','day','tp']);
+  if(g==='day'){const v=pick(['wl','lw','ll']);const d={wl:'Your London trade wins. Your New York trade loses.',lw:'Your London trade loses.',ll:'Both of today\'s trades lose.'};
+    const opts=v==='lw'?['Take the NY setup at half size','Take the NY setup at double size to recover','Take the NY setup at normal size']:['Stop for the day','One more trade to get back to break even'];
+    const ans=opts[0];return {q:d[v]+' What now?',opts,ans,why:v==='lw'?'After a loss, the second trade uses half size. If it wins, the reward-to-risk covers the loss. If it loses, the day is over.':'Two trades a day, maximum. Once you have one win and one loss, or two losses, you stop. Trying to claw back to break even is exactly how the instructor says beginners blow accounts.'};}
+  if(g==='tp'){const b=pick([true,false]);const opts=b?['The last confirmed high','The A+ of the next CHoCH','A fixed 300 pips']:['The last confirmed low','The double top','A fixed 300 pips'];
+    return {q:`You ${b?'buy':'sell'} from H1 TGL2. Where's the final target?`,opts,ans:opts[0],why:`The course's target for a ${b?'buy':'sell'} is the last confirmed ${b?'high':'low'} on the same timeframe, which is where price last reversed. If an opposing zone sits before it, take that first. Book 80–90% at the target and move the rest to break even.`};}
+  if(g==='conf'){const tf=pick(['M15','H1','H4','D1']);const m={M15:'M1 CHoCH (or an M1 candle if you accept more risk)',H1:'M1 CHoCH',H4:'M5 CHoCH',D1:'H1 CHoCH, then M1 CHoCH'};
+    const opts=['M1 CHoCH','M5 CHoCH','H1 CHoCH, then M1 CHoCH','Enter on the tap'];const ans=tf==='M15'||tf==='H1'?'M1 CHoCH':tf==='H4'?'M5 CHoCH':'H1 CHoCH, then M1 CHoCH';
+    return {q:`Price taps an ${tf} level. What do you wait for before entering?`,opts,ans,why:`${tf} levels confirm with: ${m[tf]}. The confirmation timeframe has to be in proportion to the level's timeframe. One minute of confirmation means nothing against a 1,440-minute daily candle. After the CHoCH, wait for a confirmation candle on one of its three levels.`};}
+  if(g==='stop'){const x=pick([18,20,22,25,35,40,45]);const ok=x<=25;const opts=['Take it','Wait for an M1 CHoCH for a tighter entry, or skip'];
+    return {q:`Gold. Your confirmation candle puts the stop ${x} pips away, spread included. Take the trade as it is?`,opts,ans:ok?opts[0]:opts[1],why:ok?`${x} pips is inside the course's 20–25 pip range for gold.`:`${x} pips is over the limit. The course caps it at 25, or 30–35 at the very most, and says a big-stop trade is a losing trade. Refine on M1 or let it go.`};}
+  if(g==='choch'){const v=pick(['rr','rg','fake']);const d={rr:'two red candles both close below it',rg:'a red candle closes below it, then a green candle also closes below it',fake:'one red candle closes below it, and the very next candle closes back above it'};
+    const opts=['Bearish CHoCH','Fake-out: still bullish','Not enough information'];const ans=v==='fake'?opts[1]:opts[0];
+    return {q:`Bullish structure. At the last support in the market, ${d[v]}. What is it?`,opts,ans,why:v==='fake'?'One close below followed by a close straight back inside is a fake-out. A CHoCH needs two closes beyond the level.':"Two closes beyond the LSM is a CHoCH. Colour doesn't matter. The trend flips on the close of the second candle."};}
+  if(g==='sess'){const t=pick(['13:00','18:30','10:00','22:00']);const inS=t==='13:00'||t==='18:30';const opts=['Normal lot size','Half lot size'];
+    return {q:`A valid setup forms at ${t} (course time, IST). What size do you trade?`,opts,ans:inS?opts[0]:opts[1],why:inS?'That time is inside the London (12:30–14:30) or New York (17:30–20:30) window, so use normal size.':'That time is outside both trading windows. With less volume, levels behave worse, so the course halves the size.'};}
+  if(g==='mgmt'){const v=pick(['1r','tp']);if(v==='1r'){const opts=['Close 50%, so the trade is risk-free','Move the stop to the entry and hold everything','Close it all'];
+      return {q:'Your trade is now at 1:1 (profit equals the original risk). What does the course do?',opts,ans:opts[0],why:'Closing half at 1:1 banks enough that if the stop is hit, the trade loses nothing. Holding the other half lets the target play out.'};}
+    const opts=['Book 80–90%, rest to break even','Hold everything for a bigger move','Close all and re-enter on the pullback'];
+    return {q:'Price reaches the first opposing zone, your target. What now?',opts,ans:opts[0],why:'The target is the first area where the market is likely to reverse. Bank most of the position there and leave a free runner at break even.'};}
+  if(g==='inv'){const opts=['The level is invalid. Stop looking at it',"It's still valid until a third close","Buy more, it's cheaper now"];
+    return {q:'Two H1 candles close straight through your H1 buy zone. What now?',opts,ans:opts[0],why:"A level stays valid until two candles close through it on its own timeframe. After that it's dead. Each level also plays only once."};}
+  if(g==='tgl'){const v=pick(['normal','strong']);const opts=['TGL1 (level 1)','TGL2 (level 2, the A+)'];
+    return {q:v==='normal'?'Bullish trend, normal volatility. Which trend-joining level do you prefer for the buy?':'Gold is trending hard and very volatile. Which trend-joining level do you prefer for the buy?',opts,ans:v==='normal'?opts[1]:opts[0],why:v==='normal'?'In normal conditions TGL2 (the LSM) is the A+: smaller stop, better reward.':'In a strong, volatile trend price may never come back down to TGL2, so the course takes TGL1.'};}
+  const at=pick(['sell','buy']);const opts=['Look for sells','Look for buys','Stay out'];
+  return {q:`D1 is bullish. Today price is sitting at an H4 ${at} level. What's today's bias?`,opts,ans:at==='sell'?opts[0]:opts[1],why:'Bias comes from the level price is at, not from your view of the trend. The weekly analysis tells you which levels matter, and the level that gets tapped tells you the direction. Expect smaller moves when that direction is against D1.'};}
+function newPlan(){Object.assign(P,planQ(),{answered:false});$('#plan-q').textContent=P.q;
+  $('#plan-opts').innerHTML=P.opts.map((o,i)=>`<button class="opt" data-i="${i}" type="button">${o}</button>`).join('');
+  $$('#plan-opts button').forEach(b=>b.onclick=()=>ansPlan(P.opts[+b.dataset.i]));$('#plan-fb').hidden=true;}
+function ansPlan(v){if(P.answered)return;P.answered=true;const ok=v===P.ans;bump('plan',ok);
+  $$('#plan-opts button').forEach(b=>{b.disabled=true;const t=P.opts[+b.dataset.i];if(t===P.ans)b.classList.add('right');else if(t===v)b.classList.add('wrong');});
+  $('#plan-fb').hidden=false;$('#plan-fb').className='fb '+(ok?'good':'bad');$('#plan-fb').innerHTML=`<b>${ok?'Correct.':'Not quite.'}</b> ${P.why}`;}
+
+// ================= wiring =================
+function redrawAll(){drawRulebook();drawRet();drawLive();}
+$$('#ret-btns button').forEach(b=>b.onclick=()=>ansRet(b.dataset.v==='1'));$('#ret-next').onclick=newRet;
+$$('#live-btns button').forEach(b=>b.onclick=()=>ansLive(b.dataset.v));$('#live-new').onclick=newLive;$('#live-skip').onclick=skipQuiet;$('#live-hard').onchange=drawLive;
+$('#box-opts').innerHTML=BOX_OPTS.map(o=>`<button class="opt" data-k="${o.k}" type="button"><b>${o.t}</b><small>${o.s}</small></button>`).join('');
+$$('#box-opts button').forEach(b=>b.onclick=()=>ansBox(b.dataset.k));$('#box-next').onclick=newBox;$('#lvl-next').onclick=newLvl;
+$('#reset').onclick=()=>{['ret','live','box','lvl','plan'].forEach(k=>store.set('sc_'+k,{ok:0,n:0}));paintScores();};
+document.addEventListener('keydown',e=>{if($('#live').hidden||$('#s-drill').hidden||e.target.tagName==='SELECT')return;const m={'1':'N',' ':'N','2':'H','3':'L','4':'C'}[e.key];if(m){e.preventDefault();ansLive(m);}if(e.key==='s')skipQuiet();});
+let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(redrawAll,120)});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',redrawAll);new MutationObserver(redrawAll).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','data-skin']});
+newRet();newLive();newBox();newLvl();newPlan();$('#plan-next').onclick=newPlan;paintScores();
+const t0=store.get('dtab','ret');showTab(['ret','live','box','lvl','plan'].includes(t0)?t0:'ret');
+if(document.fonts)document.fonts.ready.then(redrawAll);
+
+// ================= LEVELS APP: Today, Journal, skins, nav =================
+const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const KEY='levels.v1';
-const ZONES={A:{n:'A+',s:'QML · TGL2'},S:{n:'SBR/RBS',s:'flipped level'},D:{n:'Double',s:'top / bottom'},T:{n:'TGL1',s:'strong trend'}};
+const ZT={A:{n:'A+',s:'QML · TGL2'},S:{n:'SBR/RBS',s:'flipped level'},D:{n:'Double',s:'top / bottom'},T:{n:'TGL1',s:'strong trend'}};
 const STOPS=[null,-1,0,0.5,1,2,3,4,5];
-const RULES=['No level, no trade.','Two closes make a CHoCH. One is a warning.','Wait for the candle on the CHoCH level.','Stop over 25 pips? Skip it.','Two trades a day. Then stop.','Win + loss = done for today.','Counter-trend = half size.','Book 80–90% at target. Rest to break even.','Off-session = half size.','A level dies after two closes through it.','Judge it on 100 trades, not 10.','A+ first. Smallest stop, best reward.','Close 50% at 1:1. Then it is free.','Range between levels? Wait.'];
-const LESSON={
- A:{w:'A+ paid. Small stop, big reward.',l:'A+ loses too. Same size next time.',b:'Break even. The plan protected you.',s:'No CHoCH, no trade. Good skip.'},
- S:{w:'SBR/RBS worked. Still half size.',l:'Second-best level. Half size only.',b:'Break even. Fine.',s:'Skipped a B level. Fine.'},
- D:{w:'Rare win. Double plays least.',l:'Double plays least. Half or skip.',b:'Break even. Fine.',s:'Good skip. Double plays least.'},
- T:{w:'TGL1 held. Only in strong trends.',l:'TGL1 is for strong trends only.',b:'Break even. Fine.',s:'Skipped TGL1. Fine.'}};
-let data=load();
-function load(){try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&Array.isArray(v.e))return v;}catch(e){}return null;}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){toast('Could not save on this phone.');}}
-const $=s=>document.querySelector(s);
-const dayKey=ts=>{const d=new Date(ts);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+const RULES=['No level, no trade.','Two closes make a CHoCH. One is a warning.','Wait for the candle on the CHoCH level.','Stop over 25 pips? Skip it.','Two trades a day. Then stop.','Win + loss = done for today.','Counter-trend = half size.','Book 80–90% at target. Rest to break even.','Off-session = half size.','A level dies after two closes through it.','Judge it on 100 trades, not 10.','A+ first. Smallest stop, best reward.','Close 50% at 1:1. Then it is free.','Range between levels? Wait.','Bias = the level price is sitting at.','Confirm on a smaller timeframe. Never trade it.'];
+const LESSON={A:{w:'A+ paid. Small stop, big reward.',l:'A+ loses too. Same size next time.',b:'Break even. The plan protected you.',s:'No CHoCH, no trade. Good skip.'},S:{w:'SBR/RBS worked. Still half size.',l:'Second-best level. Half size only.',b:'Break even. Fine.',s:'Skipped a B level. Fine.'},D:{w:'Rare win. Double plays least.',l:'Double plays least. Half or skip.',b:'Break even. Fine.',s:'Good skip. Double plays least.'},T:{w:'TGL1 held. Only in strong trends.',l:'TGL1 is for strong trends only.',b:'Break even. Fine.',s:'Skipped TGL1. Fine.'}};
+/* Today's plan. zones.json next to this file replaces it when online. */
+const DEFAULT_PLAN={date:'2026-10-16',instrument:'XAUUSD',price:4153,condition:'Condition 3: D1 bull, H4 + H1 bear',note:'Z3 is with the trend. Z1 and Z2 are counter-trend, half size.',zones:[
+ {id:'Z1',dir:'SELL',size:'half',tf:'H1',type:'A',label:'H1 QML + LRM overlap',lo:4193.4,hi:4207.5,why:'Two H1 sell levels stacked on one price.',confirm:'M1 CHoCH (2 closes or 5 waves)',candle:'Red candle on the M1 A+ or SBR',sl:'20–25 pips above that candle (max 30)',tp:'4081, the H1 confirmed low',kill:'2 H1 closes above 4207.5. Then watch Z2.'},
+ {id:'Z2',dir:'SELL',size:'half',tf:'H4',type:'A',label:'H4 A+ (last resistance)',lo:4217.7,hi:4227.5,why:'The H4 level that, if broken twice, flips H4 bullish.',confirm:'M5 CHoCH (normal or 5 waves)',candle:'Red candle on the M5 A+ or SBR',sl:'20–25 pips above that candle',tp:'4088, the H4 confirmed low',kill:'2 H4 closes above 4227.5. H4 turns bullish: stop selling.'},
+ {id:'Z3',dir:'BUY',size:'full',tf:'D1',type:'A',label:'D1 QML / A+',lo:4023.9,hi:4061.7,why:'With the D1 trend. Daily levels give the biggest moves.',confirm:'H1 CHoCH up, then M1 CHoCH up',candle:'Green candle on the M1 A+ or RBS',sl:'25–30 pips below that candle',tp:'TP1 4155, TP2 4195',kill:'2 D1 closes below 4024. Next D1 zone 3959–3999.'}]};
+let plan=LS.get('lv_plan',DEFAULT_PLAN);
+let data=LS.get(KEY,null);if(!data||!Array.isArray(data.e))data=null;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){toast('Could not save on this phone.')}};
+const dayKey=ts=>{const d=new Date(ts);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const today=()=>dayKey(Date.now());
 const fmtR=r=>r==null?'Skip':(r>0?'+':r<0?'−':'')+(Math.abs(r)%1?Math.abs(r).toFixed(1):Math.abs(r))+'R';
+const r1=x=>Math.round(x*10)/10;
 const cls=r=>r==null?'zero':r>0?'pos':r<0?'neg':'zero';
 function session(ts){const d=new Date(ts),m=d.getHours()*60+d.getMinutes();if(m>=660&&m<810)return'L';if(m>=990&&m<1170)return'N';return'O';}
+const SESS={L:'London',N:'New York',O:'Off-session'};
 const trades=()=>data.e.filter(x=>x.r!=null).sort((a,b)=>a.ts-b.ts);
 const avg=a=>a.length?a.reduce((s,x)=>s+x.r,0)/a.length:null;
+function sampleWeek(){const e=[],now=new Date();const mk=(dAgo,h,m,z,r,w)=>{const d=new Date(now);d.setDate(d.getDate()-dAgo);d.setHours(h,m,0,0);const o={id:'s'+e.length,ts:d.getTime(),z,r,sample:1};if(w!==undefined)o.w=w;e.push(o);};
+ mk(7,11,40,'A',2,true);mk(7,17,10,'S',-1,true);mk(6,12,5,'A',null,null);mk(6,17,30,'D',-1,false);mk(6,18,20,'A',1,true);mk(5,11,20,'T',0.5,true);mk(5,21,15,'S',-1,false);mk(4,12,30,'A',3,true);mk(3,11,10,'A',-1,true);mk(3,17,45,'A',2,true);mk(2,13,0,'D',null,null);mk(2,17,5,'S',1,true);mk(1,11,35,'A',-1,false);mk(1,17,20,'S',1);return e;}
+if(!data){data={e:sampleWeek()};save();}
+let tt;function toast(m){const t=q('#toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600);}
 
-/* ---------- sample week ---------- */
-function sampleWeek(){const e=[],now=new Date();const mk=(dAgo,h,m,z,r,w)=>{const d=new Date(now);d.setDate(d.getDate()-dAgo);d.setHours(h,m,0,0);e.push({id:'s'+e.length,ts:d.getTime(),z,r,w,sample:1});};
- mk(7,11,40,'A',2,true);mk(7,17,10,'S',-1,true);mk(6,12,5,'A',null,null);mk(6,17,30,'D',-1,false);mk(6,18,20,'A',1,true);
- mk(5,11,20,'T',0.5,true);mk(5,21,15,'S',-1,false);mk(4,12,30,'A',3,true);mk(3,11,10,'A',-1,true);mk(3,17,45,'A',2,true);
- mk(2,13,0,'D',null,null);mk(2,17,5,'S',1,true);mk(1,11,35,'A',-1,false);mk(1,17,20,'S',1,undefined);return e;}
-if(!data){data={e:sampleWeek(),hasSamples:true};save();}
+/* ---------- skins ---------- */
+const SKINS=[['night','Night'],['desk','Gold Desk'],['terminal','Terminal'],['ocean','Ocean'],['mono','Mono'],['ruby','Ruby'],['paper','Paper'],['sky','Sky']];
+function applySkin(k){document.documentElement.setAttribute('data-skin',k);LS.set('lv_skin',k);const c=getComputedStyle(document.documentElement).getPropertyValue('--nav').trim();const m=q('meta[name=theme-color]');if(m)m.setAttribute('content',c||'#12151c');}
+applySkin(LS.get('lv_skin','night'));
+function openSkins(){const box=q('#skinGrid');box.innerHTML=SKINS.map(([k,n])=>{const tmp=document.createElement('div');tmp.setAttribute('data-skin',k);document.body.appendChild(tmp);const cs=getComputedStyle(tmp);const v=x=>cs.getPropertyValue(x).trim();const html=`<button class="skin" type="button" data-k="${k}" aria-pressed="${LS.get('lv_skin','night')===k}" style="background:${v('--bg')};color:${v('--ink')};border-color:${v('--line')};border-radius:${v('--rad')};font-family:${v('--f-disp')}">${n}<span class="sw"><i style="background:${v('--accent')}"></i><i style="background:${v('--up')}"></i><i style="background:${v('--down')}"></i><i style="background:${v('--panel')};border:1px solid ${v('--line')}"></i></span></button>`;tmp.remove();return html;}).join('');
+ qa('#skinGrid .skin').forEach(b=>b.onclick=()=>{applySkin(b.dataset.k);qa('#skinGrid .skin').forEach(x=>x.setAttribute('aria-pressed',x===b));});q('#skinSheet').hidden=false;}
+q('#skinBtn').onclick=openSkins;
+
+/* ---------- nav ---------- */
+function go(s){qa('nav.bar button').forEach(b=>b.setAttribute('aria-selected',b.dataset.s===s));qa('.screen').forEach(x=>x.hidden=x.id!=='s-'+s);q('main').scrollTop=0;LS.set('lv_screen',s);if(s==='learn'||s==='drill')setTimeout(()=>{try{redrawAll()}catch(e){}},30);}
+qa('nav.bar button').forEach(b=>b.onclick=()=>go(b.dataset.s));
+qa('.sheet').forEach(sh=>sh.addEventListener('click',e=>{if(e.target===sh)sh.hidden=true;}));
 
 /* ---------- today ---------- */
 function renderToday(){
- const t=trades(),last=t.slice(-20),prev=t.slice(-40,-20),a=avg(last),p=avg(prev);
- const num=$('#num');num.textContent=a==null?'–':fmtR(Math.round(a*10)/10);num.className='big '+(a==null?'':a>0?'pos':a<0?'neg':'');
- $('#trend').textContent=a!=null&&p!=null?(a>=p?'up from ':'down from ')+fmtR(Math.round(p*10)/10):(t.length?t.length+' trades so far':'Log your first zone');
- const td=data.e.filter(x=>dayKey(x.ts)===today()&&x.r!=null);const n=td.length,lastR=n?td[td.length-1].r:null;
- const done=n>=2;const b=$('#logBtn');b.classList.toggle('done',done);b.textContent=done?'Done for today · log a skip':'Log a zone';
- let st;if(done)st='<b>2 of 2 trades.</b> Close the charts.';else if(n===1&&lastR<0)st='<b>1 of 2.</b> Next one: half size.';else if(n===1&&lastR>0)st='<b>1 of 2.</b> Next one risks 30–40% of that win.';else if(n===1)st='<b>1 of 2</b> trades today.';else st='0 of 2 trades today';
- const s=session(Date.now());st+=' · '+(s==='L'?'London open':s==='N'?'New York open':'Off-session: half size');$('#status').innerHTML=st;
- const d=new Date(),i=(d.getFullYear()*372+d.getMonth()*31+d.getDate())%RULES.length;$('#rule').textContent=RULES[i];
- const q=data.e.filter(x=>x.r!=null&&x.w===undefined&&dayKey(x.ts)<today()).sort((a,b)=>a.ts-b.ts)[0];const ask=$('#ask');
- if(q){ask.hidden=false;const dd=new Date(q.ts);ask.innerHTML=`<div class="q">${dd.toLocaleDateString(undefined,{weekday:'short'})} · ${ZONES[q.z].n} · <span class="${cls(q.r)}">${fmtR(q.r)}</span><br>Did you wait for the CHoCH + candle?</div><div class="row2"><button class="btn yes" data-a="1" type="button">Yes</button><button class="btn no" data-a="0" type="button">No</button></div>`;
-  ask.querySelectorAll('button').forEach(bt=>bt.onclick=()=>{q.w=bt.dataset.a==='1';save();renderAll();toast(q.w?'Logged. Waiting is the edge.':'Logged. Entries without the CHoCH get tracked.');});}
- else ask.hidden=true;
- $('#sampleBar').hidden=!data.e.some(x=>x.sample);
+ const t=trades(),last=t.slice(-20),a=avg(last);const n=q('#num');n.textContent=a==null?'–':fmtR(r1(a));n.className='big '+(a==null?'':a>0?'pos':a<0?'neg':'');
+ q('#numSub').textContent=t.length?`avg per trade · last ${Math.min(20,t.length)}`:'log your first trade';
+ const td=data.e.filter(x=>dayKey(x.ts)===today()&&x.r!=null);const s=session(Date.now());
+ q('#dayPill').innerHTML=`${td.length}/2 trades`;q('#sessPill').textContent=s==='O'?'Off-session · half size':SESS[s]+' open';
+ const lr=td.length?td[td.length-1].r:null;let st='';if(td.length>=2)st='Two trades done. Close the charts.';else if(td.length===1&&lr<0)st='Last one lost. Next one: half size.';else if(td.length===1&&lr>0)st='Last one won. Next one risks 30–40% of it.';
+ q('#dayNote').textContent=st;q('#dayNote').hidden=!st;
+ const old=plan.date!==today();q('#planDate').textContent=new Date(plan.date+'T12:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})+(old?' · old plan':'');
+ q('#planCond').textContent=plan.condition;q('#planNote').textContent=plan.note||'';
+ q('#zoneList').innerHTML=plan.zones.map((z,i)=>{const d=z.dir==='BUY'?'buy':'sell';return `<details class="card zcard ${d}" data-i="${i}"><summary class="zhead" style="list-style:none;cursor:pointer"><span class="zid">${z.id}</span><span class="dir ${d}">${z.dir} · ${z.size}</span><span class="small">${z.tf}</span><span class="zpx">${z.lo}–${z.hi}</span></summary>
+  <div class="small">${z.label}. ${z.why}</div>
+  <ol class="steps"><li>Price taps ${z.lo}–${z.hi} in London or New York.</li><li>Wait for ${z.confirm}.</li><li>${z.candle} = entry.</li><li>Stop ${z.sl}.</li><li>Target ${z.tp}. Close 50% at 1:1.</li></ol>
+  <div class="kv"><b>Dead if</b><span>${z.kill}</span></div>
+  <div class="row2"><button class="b" data-act="check" data-i="${i}" type="button">Check entry</button><button class="b" data-act="log" data-i="${i}" type="button">Log result</button></div></details>`;}).join('');
+ qa('#zoneList [data-act]').forEach(b=>b.onclick=e=>{e.preventDefault();const z=plan.zones[+b.dataset.i];b.dataset.act==='check'?startCheck(z):openLog(z);});
+ const fq=data.e.filter(x=>x.r!=null&&x.w===undefined&&dayKey(x.ts)<today()).sort((a,b)=>a.ts-b.ts)[0];const ask=q('#ask');
+ if(fq){ask.hidden=false;ask.innerHTML=`<div class="q">${new Date(fq.ts).toLocaleDateString(undefined,{weekday:'short'})} · ${ZT[fq.z].n} · <span class="${cls(fq.r)}">${fmtR(fq.r)}</span></div><div>Did you wait for the CHoCH + candle?</div><div class="row2"><button class="b yes" data-a="1" type="button">Yes</button><button class="b no" data-a="0" type="button">No</button></div>`;
+  ask.querySelectorAll('button').forEach(bt=>bt.onclick=()=>{fq.w=bt.dataset.a==='1';save();renderAll();toast(fq.w?'Waiting is the edge.':'Early entries get tracked.');});}else ask.hidden=true;
+ const d=new Date(),i=(d.getFullYear()*372+d.getMonth()*31+d.getDate())%RULES.length;q('#rule').textContent=RULES[i];
+ q('#sampleBar').hidden=!data.e.some(x=>x.sample);
 }
-/* ---------- history ---------- */
-function renderHistory(){const h=$('#hist');const e=[...data.e].sort((a,b)=>b.ts-a.ts);if(!e.length){h.innerHTML='<div class="empty">Nothing logged yet</div>';return;}
- let out='',cur='';for(const x of e){const k=dayKey(x.ts);if(k!==cur){cur=k;out+=`<div class="day">${new Date(x.ts).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</div>`;}
-  const w=x.r==null?'no trade':x.w===true?'waited':x.w===false?'no CHoCH':'';
-  out+=`<div class="item" data-id="${x.id}"><span class="chip">${ZONES[x.z].n}</span><span class="w">${new Date(x.ts).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${w?' · '+w:''}</span><span class="r ${cls(x.r)}">${fmtR(x.r)}</span></div>`;}
- h.innerHTML=out;
- h.querySelectorAll('.item').forEach(it=>it.onclick=()=>{if(it.querySelector('.del'))return;const r=it.querySelector('.r');r.hidden=true;const d=document.createElement('div');d.className='del';d.innerHTML='<button class="btn small no" type="button">Delete</button><button class="btn small" type="button">Keep</button>';it.appendChild(d);
-  const [del,keep]=d.querySelectorAll('button');del.onclick=ev=>{ev.stopPropagation();data.e=data.e.filter(x=>x.id!==it.dataset.id);save();renderAll();};keep.onclick=ev=>{ev.stopPropagation();renderHistory();};});}
-/* ---------- numbers ---------- */
-function verdict(arr){if(arr.length<5)return['wait','5+ needed'];const a=avg(arr);if(a>=0.5)return['full','Full size'];if(a>=0)return['half','Half size'];return['avoid','Avoid'];}
-function row(label,arr,showTag){const a=avg(arr);const v=verdict(arr);return `<div class="stat"><span class="k">${label}</span><span class="n">${arr.length} tr</span><span class="v ${a==null?'zero':a>0?'pos':a<0?'neg':'zero'}">${a==null?'–':fmtR(Math.round(a*10)/10)}</span>${showTag?`<span class="tag ${v[0]}">${v[0]==='wait'?arr.length+'/5':v[1].split(' ')[0]}</span>`:''}</div>`;}
-function renderNumbers(){const t=trades();
- $('#byZone').innerHTML=Object.keys(ZONES).map(k=>row(ZONES[k].n,t.filter(x=>x.z===k),true)).join('');
- const yes=t.filter(x=>x.w===true),no=t.filter(x=>x.w===false);$('#byWait').innerHTML=row('Waited for CHoCH',yes)+row('Entered early',no);
- $('#bySess').innerHTML=row('London',t.filter(x=>session(x.ts)==='L'))+row('New York',t.filter(x=>session(x.ts)==='N'))+row('Off-session',t.filter(x=>session(x.ts)==='O'));
- const ins=[];const zs=Object.keys(ZONES).map(k=>({k,a:avg(t.filter(x=>x.z===k)),n:t.filter(x=>x.z===k).length})).filter(z=>z.n>=3).sort((a,b)=>b.a-a.a);
- if(zs.length){ins.push(`Best zone: <b>${ZONES[zs[0].k].n}</b> at ${fmtR(Math.round(zs[0].a*10)/10)} a trade.`);if(zs.length>1&&zs[zs.length-1].a<0)ins.push(`Weakest: <b>${ZONES[zs[zs.length-1].k].n}</b> at ${fmtR(Math.round(zs[zs.length-1].a*10)/10)}.`);}
- if(yes.length&&no.length)ins.push(`Waiting: <b>${fmtR(Math.round(avg(yes)*10)/10)}</b> vs early ${fmtR(Math.round(avg(no)*10)/10)}.`);
- const off=t.filter(x=>session(x.ts)==='O');if(off.length>=2)ins.push(`Off-session: <b>${fmtR(Math.round(avg(off)*10)/10)}</b> a trade.`);
- const sk=data.e.filter(x=>x.r==null).length;if(sk)ins.push(`Zones skipped: <b>${sk}</b>. Skips are wins too.`);
- const tot=t.reduce((s,x)=>s+x.r,0);ins.unshift(`Total: <b>${fmtR(Math.round(tot*10)/10)}</b> over ${t.length} trades.`);
- $('#insights').innerHTML=t.length?ins.map(s=>`<div class="insight">${s}</div>`).join(''):'<div class="insight">Log 5 trades to see what works.</div>';}
-function renderAll(){renderToday();renderHistory();renderNumbers();}
-
-/* ---------- log sheet ---------- */
-let pick=null;
-$('#zones').innerHTML=Object.entries(ZONES).map(([k,z])=>`<button class="zone" type="button" data-z="${k}" aria-pressed="false">${z.n}<small>${z.s}</small></button>`).join('');
-function setR(){const r=STOPS[+$('#slider').value];$('#rv').textContent=fmtR(r);$('#rv').className='rv '+cls(r);}
-$('#slider').oninput=setR;
-document.querySelectorAll('.zone').forEach(b=>b.onclick=()=>{pick=b.dataset.z;document.querySelectorAll('.zone').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#save').disabled=false;});
-$('#logBtn').onclick=()=>{pick=null;document.querySelectorAll('.zone').forEach(x=>x.setAttribute('aria-pressed','false'));$('#save').disabled=true;
- const done=trades().filter(x=>dayKey(x.ts)===today()).length>=2;$('#slider').value=done?0:2;setR();$('#sheet').hidden=false;};
-$('#sheet').onclick=e=>{if(e.target.id==='sheet')$('#sheet').hidden=true;};
-$('#save').onclick=()=>{if(!pick)return;const r=STOPS[+$('#slider').value];const ent={id:Date.now().toString(36),ts:Date.now(),z:pick,r};if(r==null)ent.w=null;data.e.push(ent);save();$('#sheet').hidden=true;
- const L=LESSON[pick];toast(r==null?L.s:r>0?L.w:r<0?L.l:L.b);renderAll();};
-/* ---------- nav ---------- */
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));['today','history','numbers'].forEach(s=>$('#'+s).hidden=s!==b.dataset.s);$('main').scrollTop=0;});
-/* ---------- backup ---------- */
-$('#backup').onclick=()=>{const blob=new Blob([JSON.stringify({app:'levels',v:1,saved:new Date().toISOString(),e:data.e},null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='levels-backup-'+today()+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);toast('Backup saved.');};
-$('#restoreBtn').onclick=()=>$('#restore').click();
-$('#restore').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(!Array.isArray(j.e))throw 0;data={e:j.e};save();renderAll();toast('Restored '+j.e.length+' entries.');}catch(err){toast('That file is not a Levels backup.');}e.target.value='';};
-$('#clearSamples').onclick=()=>{data.e=data.e.filter(x=>!x.sample);save();renderAll();toast('Samples cleared.');};
-let tt;function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600);}
-renderAll();
-if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+/* ---------- entry check (when NOT to trade) ---------- */
+let CK=null;
+function startCheck(z){const tdN=data.e.filter(x=>dayKey(x.ts)===today()&&x.r!=null).length;
+ CK={z,i:0,half:z.size==='half',steps:[
+  {q:'Trades today: '+tdN+' of 2. Room for one more?',auto:tdN<2,stop:'Two trades done. No more today.'},
+  {q:`Did price tap ${z.lo}–${z.hi}?`,stop:'No tap, no trade. Wait at the level.'},
+  {q:'Is it London or New York right now?',soft:'Off-session: trade it at half size.'},
+  {q:`${z.confirm} printed?`,stop:'No CHoCH, no trade. One close is only a warning.'},
+  {q:`${z.candle}?`,stop:'Wait for the candle on the CHoCH level.'},
+  {q:'Stop 25 pips or less?',stop:'Stop too big. Refine on M1 or skip.'},
+  {q:'Any red-folder news in the next 30 min?',inv:1,stop:'News soon. No fresh entry.'}]};
+ q('#ckSheet').hidden=false;stepCheck();}
+function stepCheck(){const s=CK.steps[CK.i];const box=q('#ckBody');
+ if(s&&s.auto!==undefined){if(!s.auto)return endCheck(false,s.stop);CK.i++;return stepCheck();}
+ if(!s)return endCheck(true);
+ box.innerHTML=`<div class="prog">${CK.steps.map((_,k)=>`<i class="${k<=CK.i?'on':''}"></i>`).join('')}</div><div class="small">${CK.z.id} · ${CK.z.dir} ${CK.z.lo}–${CK.z.hi}</div><div class="q">${s.q}</div><div class="row2"><button class="b yes" type="button" id="ckY">Yes</button><button class="b no" type="button" id="ckN">No</button></div>`;
+ q('#ckY').onclick=()=>{if(s.inv)return endCheck(false,s.stop);CK.i++;stepCheck();};
+ q('#ckN').onclick=()=>{if(s.inv){CK.i++;return stepCheck();}if(s.soft){CK.half=true;toast(s.soft);CK.i++;return stepCheck();}endCheck(false,s.stop);};}
+function endCheck(ok,why){const z=CK.z;q('#ckBody').innerHTML=ok?`<div class="verdict go">GO on demo · ${CK.half?'half':'full'} size</div><div class="kv"><b>Entry</b><span>Close of the confirmation candle</span><b>Stop</b><span>${z.sl}</span><b>Target</b><span>${z.tp}</span><b>At 1:1</b><span>Close 50%. Then it is free.</span></div><button class="main" type="button" id="ckLog">Log the result later</button>`:`<div class="verdict stop">No trade</div><div class="q">${why}</div><div class="small">Skipping is part of the edge.</div><button class="main ghost" type="button" id="ckLog">Log as skipped</button>`;
+ q('#ckLog').onclick=()=>{q('#ckSheet').hidden=true;if(ok)toast('Saved in your head. Log it when it closes.');else{addEntry(z.type||'A',null,z.id);}};}
+/* ---------- log ---------- */
+let zPick=null,pickZ=null;
+q('#zones').innerHTML=Object.entries(ZT).map(([k,z])=>`<button class="zone" type="button" data-z="${k}" aria-pressed="false">${z.n}<small>${z.s}</small></button>`).join('');
+function setR(){const r=STOPS[+q('#slider').value];q('#rv').textContent=fmtR(r);q('#rv').className='rv '+cls(r);}
+q('#slider').oninput=setR;
+qa(".zone").forEach(b=>b.onclick=()=>{zPick=b.dataset.z;qa('.zone').forEach(x=>x.setAttribute('aria-pressed',x===b));q('#save').disabled=false;});
+function openLog(z){pickZ=z?z.id:null;zPick=z?z.type:null;qa('.zone').forEach(x=>x.setAttribute('aria-pressed',x.dataset.z===zPick));q("#save").disabled=!zPick;q('#logTitle').textContent=z?`${z.id} · ${z.dir} ${z.lo}–${z.hi}`:'Log a trade';
+ const done=data.e.filter(x=>dayKey(x.ts)===today()&&x.r!=null).length>=2;q('#slider').value=done?0:2;setR();q('#logSheet').hidden=false;}
+q('#logBtn').onclick=()=>openLog(null);
+function addEntry(z,r,zid){const ent={id:Date.now().toString(36),ts:Date.now(),z,r};if(zid)ent.zid=zid;if(r==null)ent.w=null;data.e.push(ent);save();const L=LESSON[z];toast(r==null?L.s:r>0?L.w:r<0?L.l:L.b);renderAll();}
+q("#save").onclick=()=>{if(!zPick)return;q("#logSheet").hidden=true;addEntry(zPick,STOPS[+q('#slider').value],pickZ);};
+/* ---------- journal ---------- */
+function verdict(arr){if(arr.length<5)return'wait';const a=avg(arr);return a>=0.5?'full':a>=0?'half':'avoid';}
+function srow(label,arr,tag){const a=avg(arr),v=verdict(arr);return `<div class="stat"><span class="k">${label}</span><span class="n">${arr.length} tr</span><span class="v ${a==null?'zero':a>0?'pos':a<0?'neg':'zero'}">${a==null?'–':fmtR(r1(a))}</span>${tag?`<span class="tag ${v}">${v==='wait'?arr.length+'/5':{full:'Full',half:'Half',avoid:'Avoid'}[v]}</span>`:''}</div>`;}
+function renderJournal(){const t=trades();
+ q('#byZone').innerHTML=Object.keys(ZT).map(k=>srow(ZT[k].n,t.filter(x=>x.z===k),1)).join('');
+ const yes=t.filter(x=>x.w===true),no=t.filter(x=>x.w===false);q('#byWait').innerHTML=srow('Waited for CHoCH',yes)+srow('Entered early',no);
+ q('#bySess').innerHTML=['L','N','O'].map(s=>srow(SESS[s],t.filter(x=>session(x.ts)===s))).join('');
+ const ins=[];const tot=t.reduce((s,x)=>s+x.r,0);ins.push(`Total <b class="${cls(tot)}">${fmtR(r1(tot))}</b> over ${t.length} trades.`);
+ const wr=t.length?Math.round(t.filter(x=>x.r>0).length/t.length*100):0;if(t.length)ins.push(`Win rate <b>${wr}%</b>.`);
+ const zs=Object.keys(ZT).map(k=>({k,a:avg(t.filter(x=>x.z===k)),n:t.filter(x=>x.z===k).length})).filter(z=>z.n>=3).sort((a,b)=>b.a-a.a);
+ if(zs.length)ins.push(`Best zone <b>${ZT[zs[0].k].n}</b> at ${fmtR(r1(zs[0].a))}.`);
+ if(yes.length&&no.length)ins.push(`Waiting <b class="pos">${fmtR(r1(avg(yes)))}</b> vs early <b class="${cls(avg(no))}">${fmtR(r1(avg(no)))}</b>.`);
+ const sk=data.e.filter(x=>x.r==null).length;if(sk)ins.push(`Skips <b>${sk}</b>. Skips are wins too.`);
+ q('#insights').innerHTML=t.length?ins.map(s=>`<div>${s}</div>`).join(''):'<div>Log 5 trades to see what works.</div>';
+ const h=q('#hist');const e=[...data.e].sort((a,b)=>b.ts-a.ts);let out='',cur='';
+ for(const x of e){const k=dayKey(x.ts);if(k!==cur){cur=k;out+=`<div class="lbl">${new Date(x.ts).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</div>`;}
+  const w=x.r==null?'no trade':x.w===true?'waited':x.w===false?'no CHoCH':'';out+=`<div class="item" data-id="${x.id}"><span class="chip">${ZT[x.z].n}</span><span class="small">${new Date(x.ts).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${x.zid?' · '+x.zid:''}${w?' · '+w:''}</span><span class="r ${cls(x.r)}">${fmtR(x.r)}</span></div>`;}
+ h.innerHTML=out||'<div class="small">Nothing logged yet.</div>';
+ h.querySelectorAll('.item').forEach(it=>it.onclick=()=>{if(it.querySelector('.row'))return;it.querySelector('.r').hidden=true;const d=document.createElement('div');d.className='row';d.style.marginLeft='auto';d.innerHTML='<button class="b sm no" type="button">Delete</button><button class="b sm" type="button">Keep</button>';it.appendChild(d);const [del,keep]=d.querySelectorAll('button');del.onclick=ev=>{ev.stopPropagation();data.e=data.e.filter(x=>x.id!==it.dataset.id);save();renderAll();};keep.onclick=ev=>{ev.stopPropagation();renderJournal();};});}
+qa('#jChips button').forEach(b=>b.onclick=()=>{qa('#jChips button').forEach(x=>x.setAttribute('aria-selected',x===b));q('#j-num').hidden=b.dataset.j!=='num';q('#j-hist').hidden=b.dataset.j!=='hist';});
+q('#backup').onclick=()=>{const blob=new Blob([JSON.stringify({app:'levels',v:2,saved:new Date().toISOString(),e:data.e,skin:LS.get('lv_skin','night')},null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='levels-backup-'+today()+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);toast('Backup saved.');};
+q('#restoreBtn').onclick=()=>q('#restore').click();
+q('#restore').onchange=async ev=>{const f=ev.target.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(!Array.isArray(j.e))throw 0;data={e:j.e};save();renderAll();toast('Restored '+j.e.length+' entries.');}catch(err){toast('That file is not a Levels backup.');}ev.target.value='';};
+q('#clearSamples').onclick=()=>{data.e=data.e.filter(x=>!x.sample);save();renderAll();toast('Samples cleared.');};
+function renderAll(){renderToday();renderJournal();}
+/* ---------- today's plan from zones.json ---------- */
+async function pullPlan(){try{const r=await fetch('zones.json',{cache:'no-store'});if(!r.ok)return;const j=await r.json();if(j&&Array.isArray(j.zones)){plan=j;LS.set('lv_plan',j);renderToday();}}catch(e){}}
+renderAll();go(LS.get('lv_screen','today'));if(location.protocol.startsWith('http'))pullPlan();
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
 </html>
