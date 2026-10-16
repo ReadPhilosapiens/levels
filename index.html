@@ -441,7 +441,119 @@ html[data-skin="neon"] body{background:linear-gradient(180deg,#07000f,#140032)}
 <div class="sheet" id="ckSheet" hidden><div class="sp" id="ckBody"></div></div>
 <div class="sheet" id="skinSheet" hidden><div class="sp"><div class="q">Pick a design</div><div class="skins" id="skinGrid"></div><button class="main" type="button" onclick="document.getElementById('skinSheet').hidden=true">Done</button></div></div>
 <div class="toast" id="toast" hidden></div>
-<script>// ---- structure engine: pure, no DOM ----
+<script>// ---- 100 written case studies for the Trade Plan drill. [question, right, wrong, wrong, why] ----
+const CASES=[
+// Structure basics (1-15)
+["Bullish leg. A red candle closes, but its body stays inside the last green candle's wick. Is that a retracement?","No. The body must close beyond the first candle's wick","Yes, any red candle is a retracement","Yes, if it is bigger than the green candle","A 2-candle retracement needs the second body to close beyond the first candle's wick. Inside the wick is just noise."],
+["Two red candles pull back in an uptrend and the second closes below the first one's low wick. What did that just confirm?","The high before the pullback","A bearish CHoCH","A new low","A retracement confirms the swing it came from. The pullback confirms the high. Structure has not changed."],
+["Price makes a new high but it has not retraced yet. Can you mark it as a confirmed high?","No, it is only tentative until a retracement","Yes, the highest point is the high","Yes, after one hour","A high is confirmed by the retracement after it. Until then it is a level 3, tentative high."],
+["Uptrend. One candle body closes above the confirmed high. Is it a break of structure?","Yes, one close is enough for a BOS","No, it needs two closes","Only if it is a green candle","A BOS in the trend's direction needs one close beyond the confirmed point. Two closes are for a CHoCH against the trend."],
+["Uptrend. A wick pokes above the confirmed high but the body closes below. BOS?","No. Wicks do not count, only closes","Yes, price traded above","Yes, if it was a big wick","Structure runs on candle closes. A wick above is a liquidity grab, not a break."],
+["In the 1-2-3 level count, what is level 2?","The LSM / LRM: the last support or resistance the trend must hold","The tentative high","The first candle of the trend","Level 1 is the confirmed point, level 2 is the LSM/LRM that protects the trend, level 3 is tentative."],
+["Uptrend makes a new confirmed high. What happens to the LSM?","It moves up to the low that created the new high","It stays at the old low forever","It disappears until a CHoCH","Every new confirmed high promotes the low behind it to the new last support (LSM)."],
+["Price is between the confirmed high and the LSM in an uptrend and going sideways. What's your bias?","Still bullish until two closes below the LSM","Bearish because it stopped rising","Neutral, no trend","Bias holds until the LSM breaks with two closes. Sideways inside the range does not change it."],
+["Downtrend. Which level must break with two closes to flip it bullish?","The LRM, the last resistance","The latest low","Any high","In a downtrend the LRM (last resistance in the market) is level 2. Two closes above it make a bullish CHoCH."],
+["Uptrend. A big green candle closes above the high, then price dumps straight back below. Still a BOS?","Yes, the close made the BOS. Now watch the LSM","No, it reversed so it never counted","It is a CHoCH","The BOS is done on the close. A fast reversal is a warning, but only two closes below the LSM change trend."],
+["You count waves in a bullish trend and lose track. What's the first thing to find?","The last confirmed high and the low that made it","The biggest candle on screen","The round number","Everything is anchored to the last confirmed point and its LSM. Rebuild from there."],
+["Two candles retrace, but the move before was only three tiny candles. Do you mark it?","Yes, on the timeframe you are reading, the rule is the rule","No, it is too small","Only on D1","The 2-candle rule doesn't care about size. Size is handled by which timeframe you read."],
+["On H1 structure is bullish, on M1 it is bearish. Which is wrong?","Neither. Each timeframe has its own structure","M1 is wrong","H1 is wrong","Timeframes disagree all the time. The strategy uses that: higher for levels, lower for confirmation."],
+["Engulfing retracement on D1 means?","One D1 candle fully engulfs the last, confirming the swing on its own","Two red D1 candles","A gap on D1","On D1 the course accepts a single engulfing candle as the retracement because D1 candles are so large."],
+["Downtrend. A candle closes below the confirmed low. What is it called?","BOS, the downtrend continues","CHoCH","Fake-out","A close beyond the confirmed point in the trend's direction is a BOS."],
+// CHoCH & fakeouts (16-30)
+["Bullish H1. One red candle closes below the LSM, the next closes back above. What is it?","Fake-out. Trend still bullish","Bearish CHoCH","BOS","One close then straight back is a fake-out. A CHoCH needs two closes beyond level 2."],
+["Bullish H1. A red candle closes below the LSM, then a small green candle also closes below it. What is it?","Bearish CHoCH. Colour doesn't matter","Fake-out, the second candle was green","Nothing yet","Two closes beyond the LSM, any colour, make the CHoCH."],
+["After a bearish CHoCH, which level is the QML / A+?","Level 1: the high that made the last move","The LSM that broke","The low of the CHoCH candle","CHoCH levels: QML/A+ is level 1, SBR is level 2, double top is level 3."],
+["After a bearish CHoCH, what is the SBR?","The broken support, now acting as resistance","The highest high","The lowest low","SBR = support becomes resistance. It is level 2 of the CHoCH levels."],
+["Which CHoCH level does the course rate best?","A+ / QML","SBR / RBS","Double top / bottom","A+ gives the smallest stop and best reward. Double plays least."],
+["After a bullish CHoCH on M1, price drifts back to the RBS. What do you need now?","A confirmation candle on that level","Nothing, buy instantly","Another CHoCH on H4","Entry comes from a confirmation candle on one of the three CHoCH levels, not from the touch."],
+["5-wave ISS early CHoCH: which levels do you trade?","Levels 3 and 4","Level 1 only","None, it is not valid","With the 5-wave early CHoCH the course trades levels 3 and 4 since price often never returns to level 1."],
+["What does a dual CHoCH add?","A 4th level to trade","Double position size","A guaranteed win","A dual CHoCH stacks two CHoCHs and gives a fourth level to work with."],
+["M1 shows a CHoCH but it happened outside your H1 zone. Trade it?","No. No level, no trade","Yes, a CHoCH is a CHoCH","Yes, at half size","Confirmation only counts at your higher-timeframe level. A random M1 CHoCH is noise."],
+["Bearish structure. Two green candles close above the LRM, but the second is a doji. CHoCH?","Yes, two closes are two closes","No, doji doesn't count","Only if volume is high","Close location is what counts. A doji that closes beyond the level is a valid second close."],
+["Price closes once beyond level 2, then sits there for 20 candles without a second close. Status?","Warning, but no CHoCH until the second close","CHoCH confirmed","Fake-out confirmed","The rule needs two closes. Until then it is a warning only."],
+["You see a CHoCH on M5 at an H4 level. You were looking for M1. What does the course say?","M5 is the correct confirmation for H4","Ignore it and wait for M1","Wait for an H1 CHoCH","H4 levels confirm on M5. H1 levels confirm on M1."],
+["A double bottom forms after a bullish CHoCH. Which level number is it?","Level 3","Level 1","Level 2","QML/A+ = 1, RBS = 2, double bottom = 3."],
+["Price breaks the A+ of your CHoCH with two closes. What now?","The CHoCH is dead. Stand aside","Add to the trade","Move stop to break even and hold","Two closes through the CHoCH level kill it. The setup no longer exists."],
+["One-candle CHoCH: a single huge red candle closes far below the LSM. Enough?","No, you still need a second close","Yes, size counts","Yes, if it is over 100 pips","The rule is two closes. One big candle is still one close."],
+// Zones & TGL (31-42)
+["What is TGL2?","The A+ trend guard level","A take-profit level","The second session","TGL2 is the A+ guard level of the trend. It's the higher quality one."],
+["When does the course use TGL1?","Only in strong trends","Always first","Never","TGL1 is for strong trends. In normal markets prefer A+ / TGL2."],
+["Two H1 sell levels overlap at the same price. Better or worse zone?","Better: stacked levels add confluence","Worse: too crowded","No difference","Overlap means more reasons for price to react at one place."],
+["Your H1 zone gets two H1 closes above it. What happens?","The zone is dead. Look to the next zone","Sell harder","Keep it for tomorrow","A level dies after two closes through it."],
+["Price tapped your zone yesterday and reacted. Today it is back. First touch or not?","Not. Second touches are weaker","Yes, every day resets","It is stronger now","First touch of a fresh level is the best. Each touch uses up orders there."],
+["You have a D1 buy zone and an H1 sell zone above it. Price is between. What do you do?","Wait. Range between levels means wait","Buy now","Sell now","No level, no trade. Let price come to one of them."],
+["Where is bias read from?","The level price is sitting at","Your last trade","The news","Bias = the level price is sitting at, read through structure on that timeframe."],
+["H4 zone is 300 pips wide. Your stop?","Not the zone. Refine on M5 for a candle-based stop","300 pips beyond the zone","No stop","Zones locate the trade, the confirmation candle sets the stop. Wide zones need refinement."],
+["Zone label says 'QML + LRM'. What does that mean?","The QML of a CHoCH sits on the trend's last resistance","Two random lines","The take profit","Two strong level types sharing the same price makes it a stronger zone."],
+["Price breaks your sell zone with one H1 close and comes back in. Zone status?","Still alive. One close is a warning","Dead","Turned into a buy zone","It takes two closes to kill a level."],
+["Daily zone vs H1 zone, both valid, opposite directions. Which matters more?","The daily, but respect the condition for size","The H1, it is closer","Neither","Higher timeframe carries more weight. The MTF condition tells you size and confirmation."],
+["Course says: 'No level, no trade.' A perfect M1 CHoCH appears mid-range. Trade?","No","Yes","Half size","No exceptions: without a higher-timeframe level the CHoCH has no reason to hold."],
+// Multi-timeframe conditions (43-55)
+["D1, H4, H1 all bullish. Which levels and confirmation?","H1 levels, M1 CHoCH","D1 levels, H1 CHoCH","H4 levels, M5 CHoCH","Condition 1, aligned: trade H1 levels confirmed with an M1 CHoCH."],
+["D1 and H4 bullish, H1 bearish. Which levels?","H4 levels with M5 CHoCH","H1 levels with M1 CHoCH","Don't trade","Condition 2: H1 opposite, so trade H4 levels confirmed on M5."],
+["D1 bullish, H4 and H1 bearish. Which setup?","D1 levels, H1 CHoCH then M1","H1 levels, M1 CHoCH","H4 levels, M5 CHoCH","Condition 3: H4 opposite D1, so go to D1 levels and confirm with H1 then M1."],
+["Condition 3 (D1 bull, H4/H1 bear). You want to sell an H1 level. Size?","Half: it is counter the D1 trend","Full","Double","Counter-trend trades are half size."],
+["Condition 3. The D1 buy zone confirms with H1 then M1 CHoCH. Size?","Full: it is with the D1 trend","Half","Quarter","With-trend on the highest timeframe gets full size."],
+["Why not confirm a D1 level with an M1 CHoCH alone?","M1 is too small against a daily candle","M1 is fine","M1 is too slow","The confirmation timeframe must be in proportion. D1 needs H1 first."],
+["All aligned bearish. Price taps an H1 sell level in London. Confirmation?","M1 bearish CHoCH, then a candle on its level","H1 CHoCH","Enter on touch","Aligned = H1 levels + M1 CHoCH."],
+["H4 flips bullish via CHoCH while D1 is bullish. H1 still bearish. Condition now?","Condition 2: H4 levels, M5 CHoCH","Condition 3","Condition 1","D1 and H4 agree, H1 is opposite = condition 2."],
+["Which timeframe sets the take-profit for an H4 trade?","H4, its last confirmed high/low","M5","Weekly","TP is the last confirmed point on the same timeframe as the level."],
+["H1 bearish but price taps a D1 buy QML. What's the first thing you wait for?","An H1 bullish CHoCH","An M1 CHoCH","Nothing","D1 levels need H1 CHoCH first, then M1 for entry."],
+["You can't tell the H4 trend. What do you do?","Rebuild H4 structure from the last confirmed point before trading","Guess bullish","Trade M1 only","If you can't read the condition you can't pick levels or size. Do structure first."],
+["Condition 1 aligned bullish. Price taps an H4 buy level, not an H1 level. Allowed?","Yes, higher-timeframe levels are valid, confirm on M5","No, only H1","Only on Fridays","Higher levels still work. Match the confirmation to the level's timeframe."],
+["Your H1 sell setup is counter to D1 and H4. Is it worth the trade?","Only at half size with full confirmation","Yes, full size","Always skip","Counter-trend is allowed at half size with strict confirmation."],
+// Entry & stop (56-68)
+["M1 bullish CHoCH done. Price comes back to the A+. A green candle closes on it. Next?","Enter, stop below that candle (20–25 pips)","Wait for another CHoCH","Enter with no stop","That is the confirmation candle. Entry on its close, stop beyond it."],
+["Your stop comes out at 32 pips. What does the course say?","Over 25: refine on M1 or skip. 35 is the absolute max","Fine, take it","Widen to 50 to be safe","20–25 pips normal, 30–35 absolute max, and big-stop trades tend to lose."],
+["Gold moves $2.50. How many pips is that?","25 pips","2.5 pips","250 pips","On gold a pip is $0.10, so $2.50 = 25 pips."],
+["Your stop is 20 pips. Spread is 3 pips. Where does it go?","Beyond the candle plus spread","Exactly at the wick","Inside the candle","Include spread so you are not stopped by the spread alone."],
+["You enter before the confirmation candle closes because it 'looks green'. Problem?","Yes. Candles can flip before the close","No, saves pips","Only if news is out","Wait for the close. That's the rule that keeps you out of fakes."],
+["Price taps the zone, no CHoCH comes, and it runs away. What did you do right?","Skipped. No CHoCH, no trade","Missed money, should have entered","Should have chased","Skipping without confirmation is a correct trade. Missed moves are free."],
+["Price runs from your zone without you. Chase it?","No. Wait for the next level","Yes, market order","Yes, half size","Chasing gives a big stop and bad R. Next zone."],
+["The confirmation candle closes on the SBR, not the A+. Valid?","Yes, any of the 3 CHoCH levels","No, only A+","Only on Mondays","Entries come from a candle on any of the three CHoCH levels. A+ is just best."],
+["You want a tighter stop. Legit way?","Refine on a lower timeframe CHoCH","Just put it closer","Remove the stop","Refinement means finding confirmation lower down, not guessing."],
+["Your entry candle is huge, stop would be 60 pips. Action?","Skip or refine on M1","Take it, it is strong","Double lot","Stop over the max = skip or refine."],
+["After entry, price goes 15 pips against you. Move the stop further?","Never widen the stop","Yes, give it room","Close and re-enter","Stops only move toward profit."],
+["Limit order at the zone before any confirmation. Allowed by the plan?","No. Confirmation first","Yes always","Only on D1","The plan is confirmation entries, never blind limits at zones."],
+["Confirmation candle closes but news is in 5 minutes. Enter?","No, avoid entries into red-folder news","Yes","Double size","FOMC, CPI, NFP and claims can blow through any stop."],
+// TP & management (69-78)
+["Price reaches 1:1. What does the plan say?","Close 50%, the trade is now free","Close everything","Add more","Close half at 1:1. The rest runs risk-free."],
+["Price hits your target. Book how much?","80–90%, rest to break even","100% always","10%","Book most at target, leave a runner at break even."],
+["Buy from H1 A+. Final target?","The last confirmed H1 high","Random 300 pips","The next round number only","TP = last confirmed point on the level's timeframe."],
+["There's an H4 sell zone before your H1 TP. What do you do?","Take profit at that zone first","Ignore it","Move TP further","Opposing zones before your TP are where to bank."],
+["Trade is at +0.8R and reverses. You didn't hit 1:1. Outcome?","Accept the stop or the plan's exit. No moving targets","Close at 0.8 always","Widen stop","Follow the plan. Learn in the journal, not mid-trade."],
+["Runner at break even gets stopped. Was it a loss?","No, it was a free trade on the remainder","Yes, a full loss","Yes, half loss","After booking at target, the runner can only make money or return zero."],
+["Planned 1:3, you closed at 1:0.5 out of fear. Journal it how?","Note the feeling and the rule broken","Don't log it","Log it as a win only","The feelings field exists for exactly this. Patterns show up over 20+ trades."],
+["Price stalls 5 pips before TP for an hour. What do you do?","Stick to the plan: target or managed exit per rules","Close now always","Add more","Use the 80–90% rule at your target, not impulses."],
+["Your sell hits TP at the H1 low and then breaks below. Regret?","No. TP was the plan. Runner covers the rest","Should never TP","Should have held 100%","That's why you keep 10–20% at break even."],
+["Short at H1 zone. Price breaks the zone with two H1 closes while you're in. What now?","Stop gets hit anyway. Don't re-enter that side","Average down","Hold forever","The zone is dead. Respect the stop."],
+// Sessions, news, risk, day rules (79-92)
+["13:00 PKT in London session. Size?","Normal size (in session)","Half","No trade","London 11:00–13:30 PKT is a full-size window."],
+["21:30 PKT, outside sessions. Setup appears. Size?","Half size","Full size","Double","Off-session = half size."],
+["What time is New York session in PKT?","16:30–19:30","09:00–11:00","22:00–01:00","NY session is 16:30–19:30 PKT."],
+["First Friday of the month at 17:30 PKT. Concern?","NFP news. Stay out around it","None","Better volatility, size up","NFP lands on the first Friday. Don't hold through it."],
+["Thursday afternoon NY. News to check?","Unemployment claims","FOMC","None on Thursdays","Weekly claims come out on Thursday."],
+["Risk per trade the course suggests is 5–10%. What should you use?","0.5–1%","5–10%","20%","5–10% can wipe an account in a short losing streak. Use 0.5–1%."],
+["Ten losses in a row at 1% risk. Rough damage?","About 10%","About 50%","100%","Small risk keeps you alive through normal streaks."],
+["Ten losses in a row at 10% risk. Rough damage?","About 65%","10%","20%","Compounding losses at 10% take most of the account. That's why 0.5–1%."],
+["First trade of the day wins. Second loses. Third setup appears. Take it?","No. Win + loss = done","Yes","Yes at double","Two trades a day max, and a win plus loss ends the day."],
+["First trade loses. Second setup appears. Size?","Half","Double to recover","Normal","After a loss, the second trade is half size."],
+["Two losses today. A perfect setup appears. Take it?","No, the day is over","Yes, it is perfect","Half size","Two losses ends the day. No exceptions."],
+["You feel angry after a stop and want back in. That's called?","Revenge trading: walk away","Momentum","Confidence","Tag it as Revenge in the log and stop for the day."],
+["You have FOMO because price is running. Correct move?","Do nothing until the next level","Market buy","Double size","FOMO entries have no level and a bad stop."],
+["Judging the strategy after 10 trades. Right?","No, judge it after 100","Yes","After 3","Small samples lie. Judge on 100 trades."],
+// Bias & reading (93-100)
+["D1 bullish, price at an H1 sell level in condition 3. Bias?","Short-term bearish at that level, but D1 bull","Only bullish","Only bearish","Bias is read at the level. Condition sets size and confirmation."],
+["Price is at no level, inside a range. What's the bias?","None. Wait for a level","Bullish","Bearish","Bias = the level price is sitting at. No level, no bias."],
+["You marked zones but price gapped through them overnight. Valid?","Re-check closes. Two closes through = dead","Always valid","Re-draw anywhere","The two-close rule still decides."],
+["Paper result: 12 trades, +4R. Best move?","Keep logging to 100 with the same rules","Go live with 10% risk","Change the strategy","Too small a sample. Keep rules fixed and collect data."],
+["Your journal shows A+ +1.1R avg, Double −0.8R over 15 trades. Adjust?","Full on A+, skip or half Double","Trade only Double","No change","The journal tells you where to risk more and what to avoid."],
+["Calm trades avg +0.9R, emotional trades −0.6R. Lesson?","Your edge is in calm execution. Skip when emotional","Emotions don't matter","Trade more emotional","That gap is why the log asks how you felt."],
+["You doubt the setup but take it 'just to see'. Classify it.","A plan break: log it with Hesitant","A good trade","A test, don't log","Every trade gets logged. Hesitation is data."],
+["Final check before entry: what are the 5 questions?","Level? CHoCH? Candle? Stop ≤25? Session/news OK?","Gut? Colour? Mood? Time? Price?","None needed","That's the Check entry flow. If any is no, skip."]
+];
+
+// ---- structure engine: pure, no DOM ----
 const rnd=(a,b)=>a+Math.random()*(b-a);
 const ri=(a,b)=>Math.floor(rnd(a,b+1));
 const pick=a=>a[Math.floor(Math.random()*a.length)];
@@ -741,7 +853,8 @@ function planQ(){const g=pick(['conf','conf','stop','choch','sess','mgmt','inv',
     return {q:v==='normal'?'Bullish trend, normal volatility. Which trend-joining level do you prefer for the buy?':'Gold is trending hard and very volatile. Which trend-joining level do you prefer for the buy?',opts,ans:v==='normal'?opts[1]:opts[0],why:v==='normal'?'In normal conditions TGL2 (the LSM) is the A+: smaller stop, better reward.':'In a strong, volatile trend price may never come back down to TGL2, so the course takes TGL1.'};}
   const at=pick(['sell','buy']);const opts=['Look for sells','Look for buys','Stay out'];
   return {q:`D1 is bullish. Today price is sitting at an H4 ${at} level. What's today's bias?`,opts,ans:at==='sell'?opts[0]:opts[1],why:'Bias comes from the level price is at, not from your view of the trend. The weekly analysis tells you which levels matter, and the level that gets tapped tells you the direction. Expect smaller moves when that direction is against D1.'};}
-function newPlan(){Object.assign(P,planQ(),{answered:false});$('#plan-q').textContent=P.q;
+function nextCase(){let d=store.get('caseDeck',null);if(!Array.isArray(d)||!d.length){d=[...CASES.keys()].sort(()=>Math.random()-.5);}const i=d.shift();store.set('caseDeck',d);const c=CASES[i];const opts=c.slice(1,4).sort(()=>Math.random()-.5);return {q:c[0],opts,ans:c[1],why:c[4],tag:'Case '+(i+1)+' of '+CASES.length};}
+function newPlan(){Object.assign(P,{tag:''},(typeof CASES!=='undefined'&&Math.random()<.7)?nextCase():planQ(),{answered:false});$('#plan-q').innerHTML=(P.tag?'<small style="display:block;opacity:.6;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px">'+P.tag+'</small>':'')+P.q.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   $('#plan-opts').innerHTML=P.opts.map((o,i)=>`<button class="opt" data-i="${i}" type="button">${o}</button>`).join('');
   $$('#plan-opts button').forEach(b=>b.onclick=()=>ansPlan(P.opts[+b.dataset.i]));$('#plan-fb').hidden=true;}
 function ansPlan(v){if(P.answered)return;P.answered=true;const ok=v===P.ans;bump('plan',ok);
