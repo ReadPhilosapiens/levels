@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Levels">
+<meta name="theme-color" content="#12151c">
+<meta name="color-scheme" content="dark">
+<title>Levels</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEuklEQVR4nO3dv20UQRTH8TUiJEJCIiBFgswFOHAnbsAFEBA6cAE04E4ucAHOsEQDFEABBCfQavd+4/nzZt4b3/eTGe7WSPP1m73lbn3x/sOnBTjljfc/AHERByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgD0tv2Q1x9bj8Gunj81fR0gzhw9OP79frL27uDz7/DzkX771thcmyyWPNNpHFyEEeTRBZrXok0xsEJab3MMooeGQrnHGY242HSINbYVirtTz/Xf3IMxf0UlW3F36aM5V8Ws79gIY4amyFxcgfZ9zHdRkMcrRJLPl0NG8TR19R9EMesBmRHHFM6ltG7D+KoUfcyxOrFy7qJrn0Qx/T69UEck0m8bDZHHOO0L+Hgl83EUaN6JVqW8MXnmvdBHKPVLWHOs8yv1hNHsfHXtVzKWIijh9u7Q3qpZrlsavBf9mfl6eE6/YDLm0Pmg9ePbPmO+YcqxeToKL1mOavuWMZCHEWKxkb7AX3LWIijt+rFcy9jIY581WOjfXOpOKwJ4hihtI/qYmwRR5b2s438PiJsKEfEEUucMhauc+QwfJHSvl8MK2NhcgzWuLQjy1iI40Xm1zYGL3AL4pjG+KqII8V8bFQ/y2XeEIePosX22omIQ+o0Nkqf7niOQhyh+Z69EsdpvceG4UH6IQ5niT7c0yGOE8aMDXW045fuZSxcPt8L9b8bvpgcxc6kjIU4NoK8kSII4ihzPmNjIY61weeh8REHpGluUrv+se7xE8zY2JtjcmxW7unhmjPHAeaI4yTDPhgbJ00QR2LlmB9dTRBHWnsfjA0lehxWnzZGhdBx5K96dR+MjYTQcRRhfpiLG0fFYpc+hbGRFjeOOswPQ0HjaFnjzOcyNl4UMY4Br06RI2IcCZc3B5P7rDE2coSLw/BdesyPRrHiyL83Y0sfjI1MseJI2C8Y86O3QHFUrGJFH4yNfFHiqL7ZL/OjnyifW0ksXs7yW609Y2MtxOSY605Z58Ngcrz7+rHxCI/fvqi/urp/NjlOjqLvNYU/P3+3PN1/cliVUfF4pDnH0fizvlfdB2Ht+U8OhWV25xmH+dj4j/3IhFsc6TLaV4v1bhdxW7Fa18zjkJHiE0e/DWWDhW/hEEfvDaXogNSTEOuD1J2W6ur+eVMkTeQYHcewDWWDGioEOiFl/aIZGofhlXIMMC4Orw0F1UJsK4yNmAbFwdiY0Yg4Bl/YgBXnbYUyIuseBxvKvPrGwYYyNbdthTLiM7h8rt7Fmn5PeeN7XzGAz+TgkwRT6BVH44eUEEGXOPjs4eswelthbEzEPg7GxqvR64PUJxNhbMyl17ZSfa8VxNHxnCP/5m6IqfsJaZxfoYtSUW7egoBCvBMMMREHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQ/gLQFY0WdvpmTwAAAABJRU5ErkJggg==">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEuklEQVR4nO3dv20UQRTH8TUiJEJCIiBFgswFOHAnbsAFEBA6cAE04E4ucAHOsEQDFEABBCfQavd+4/nzZt4b3/eTGe7WSPP1m73lbn3x/sOnBTjljfc/AHERByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgD0tv2Q1x9bj8Gunj81fR0gzhw9OP79frL27uDz7/DzkX771thcmyyWPNNpHFyEEeTRBZrXok0xsEJab3MMooeGQrnHGY242HSINbYVirtTz/Xf3IMxf0UlW3F36aM5V8Ws79gIY4amyFxcgfZ9zHdRkMcrRJLPl0NG8TR19R9EMesBmRHHFM6ltG7D+KoUfcyxOrFy7qJrn0Qx/T69UEck0m8bDZHHOO0L+Hgl83EUaN6JVqW8MXnmvdBHKPVLWHOs8yv1hNHsfHXtVzKWIijh9u7Q3qpZrlsavBf9mfl6eE6/YDLm0Pmg9ePbPmO+YcqxeToKL1mOavuWMZCHEWKxkb7AX3LWIijt+rFcy9jIY581WOjfXOpOKwJ4hihtI/qYmwRR5b2s438PiJsKEfEEUucMhauc+QwfJHSvl8MK2NhcgzWuLQjy1iI40Xm1zYGL3AL4pjG+KqII8V8bFQ/y2XeEIePosX22omIQ+o0Nkqf7niOQhyh+Z69EsdpvceG4UH6IQ5niT7c0yGOE8aMDXW045fuZSxcPt8L9b8bvpgcxc6kjIU4NoK8kSII4ihzPmNjIY61weeh8REHpGluUrv+se7xE8zY2JtjcmxW7unhmjPHAeaI4yTDPhgbJ00QR2LlmB9dTRBHWnsfjA0lehxWnzZGhdBx5K96dR+MjYTQcRRhfpiLG0fFYpc+hbGRFjeOOswPQ0HjaFnjzOcyNl4UMY4Br06RI2IcCZc3B5P7rDE2coSLw/BdesyPRrHiyL83Y0sfjI1MseJI2C8Y86O3QHFUrGJFH4yNfFHiqL7ZL/OjnyifW0ksXs7yW609Y2MtxOSY605Z58Ngcrz7+rHxCI/fvqi/urp/NjlOjqLvNYU/P3+3PN1/cliVUfF4pDnH0fizvlfdB2Ht+U8OhWV25xmH+dj4j/3IhFsc6TLaV4v1bhdxW7Fa18zjkJHiE0e/DWWDhW/hEEfvDaXogNSTEOuD1J2W6ur+eVMkTeQYHcewDWWDGioEOiFl/aIZGofhlXIMMC4Orw0F1UJsK4yNmAbFwdiY0Yg4Bl/YgBXnbYUyIuseBxvKvPrGwYYyNbdthTLiM7h8rt7Fmn5PeeN7XzGAz+TgkwRT6BVH44eUEEGXOPjs4eswelthbEzEPg7GxqvR64PUJxNhbMyl17ZSfa8VxNHxnCP/5m6IqfsJaZxfoYtSUW7egoBCvBMMMREHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQ/gLQFY0WdvpmTwAAAABJRU5ErkJggg==">
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%20%22Levels%22%2C%20%22short_name%22%3A%20%22Levels%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22background_color%22%3A%20%22%2312151c%22%2C%20%22theme_color%22%3A%20%22%2312151c%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEuklEQVR4nO3dv20UQRTH8TUiJEJCIiBFgswFOHAnbsAFEBA6cAE04E4ucAHOsEQDFEABBCfQavd%2B4/nzZt4b3/eTGe7WSPP1m73lbn3x/sOnBTjljfc/AHERByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgD0tv2Q1x9bj8Gunj81fR0gzhw9OP79frL27uDz7/DzkX771thcmyyWPNNpHFyEEeTRBZrXok0xsEJab3MMooeGQrnHGY242HSINbYVirtTz/Xf3IMxf0UlW3F36aM5V8Ws79gIY4amyFxcgfZ9zHdRkMcrRJLPl0NG8TR19R9EMesBmRHHFM6ltG7D%2BKoUfcyxOrFy7qJrn0Qx/T69UEck0m8bDZHHOO0L%2BHgl83EUaN6JVqW8MXnmvdBHKPVLWHOs8yv1hNHsfHXtVzKWIijh9u7Q3qpZrlsavBf9mfl6eE6/YDLm0Pmg9ePbPmO%2BYcqxeToKL1mOavuWMZCHEWKxkb7AX3LWIijt%2BrFcy9jIY581WOjfXOpOKwJ4hihtI/qYmwRR5b2s438PiJsKEfEEUucMhauc%2BQwfJHSvl8MK2NhcgzWuLQjy1iI40Xm1zYGL3AL4pjG%2BKqII8V8bFQ/y2XeEIePosX22omIQ%2Bo0Nkqf7niOQhyh%2BZ69EsdpvceG4UH6IQ5niT7c0yGOE8aMDXW045fuZSxcPt8L9b8bvpgcxc6kjIU4NoK8kSII4ihzPmNjIY61weeh8REHpGluUrv%2Bse7xE8zY2JtjcmxW7unhmjPHAeaI4yTDPhgbJ00QR2LlmB9dTRBHWnsfjA0lehxWnzZGhdBx5K96dR%2BMjYTQcRRhfpiLG0fFYpc%2BhbGRFjeOOswPQ0HjaFnjzOcyNl4UMY4Br06RI2IcCZc3B5P7rDE2coSLw/BdesyPRrHiyL83Y0sfjI1MseJI2C8Y86O3QHFUrGJFH4yNfFHiqL7ZL/OjnyifW0ksXs7yW609Y2MtxOSY605Z58Ngcrz7%2BrHxCI/fvqi/urp/NjlOjqLvNYU/P3%2B3PN1/cliVUfF4pDnH0fizvlfdB2Ht%2BU8OhWV25xmH%2Bdj4j/3IhFsc6TLaV4v1bhdxW7Fa18zjkJHiE0e/DWWDhW/hEEfvDaXogNSTEOuD1J2W6ur%2BeVMkTeQYHcewDWWDGioEOiFl/aIZGofhlXIMMC4Orw0F1UJsK4yNmAbFwdiY0Yg4Bl/YgBXnbYUyIuseBxvKvPrGwYYyNbdthTLiM7h8rt7Fmn5PeeN7XzGAz%2BTgkwRT6BVH44eUEEGXOPjs4eswelthbEzEPg7GxqvR64PUJxNhbMyl17ZSfa8VxNHxnCP/5m6IqfsJaZxfoYtSUW7egoBCvBMMMREHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQ/gLQFY0WdvpmTwAAAABJRU5ErkJggg%3D%3D%22%2C%20%22sizes%22%3A%20%22180x180%22%2C%20%22type%22%3A%20%22image/png%22%7D%5D%7D">
+<style>
+:root{--bg:#12151c;--card:#1a1f29;--line:#272e3b;--ink:#e8e4da;--mute:#8b93a3;--gold:#e2b65c;--up:#5fbf98;--down:#e0745f;--r:16px;color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:17px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif}
+body{display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);user-select:none;-webkit-user-select:none}
+main{flex:1;overflow-y:auto;padding:18px max(18px,env(safe-area-inset-left)) 24px max(18px,env(safe-area-inset-right))}
+section{display:flex;flex-direction:column;gap:14px;max-width:520px;margin:0 auto}
+h1{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:4px 0 0}
+.hero{display:flex;flex-direction:column;align-items:center;padding:22px 0 8px}
+.big{font-size:76px;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.big.pos{color:var(--up)}.big.neg{color:var(--down)}
+.sub{color:var(--mute);font-size:15px;margin-top:8px}
+.trend{font-size:14px;color:var(--mute);margin-top:4px}
+.main{width:100%;min-height:76px;border:0;border-radius:22px;background:var(--gold);color:#1a1408;font-family:inherit;font-weight:700;font-size:21px;cursor:pointer}
+.main:active{transform:scale(.98)}
+.main.done{background:var(--card);color:var(--mute);border:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.status{text-align:center;color:var(--mute);font-size:15px}
+.status b{color:var(--ink);font-weight:600}
+.rule{display:flex;gap:10px;align-items:center;font-size:16px}
+.rule i{font-style:normal;color:var(--gold);font-size:13px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.q{font-size:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{min-height:54px;border-radius:14px;border:1px solid var(--line);background:#222837;color:var(--ink);font-family:inherit;font-weight:600;font-size:17px;cursor:pointer}
+.btn:active{background:#2b3244}
+.btn.yes{border-color:#2f6b55}.btn.no{border-color:#7a3d33}
+.btn.small{min-height:44px;font-size:15px}
+nav{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);background:#151922;padding-bottom:env(safe-area-inset-bottom)}
+nav button{background:none;border:0;color:var(--mute);font-family:inherit;font-weight:600;font-size:14px;padding:14px 0 12px;min-height:58px;cursor:pointer}
+nav button[aria-selected="true"]{color:var(--gold)}
+.list{display:flex;flex-direction:column;gap:8px}
+.day{font-size:13px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-top:10px}
+.item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-height:58px}
+.chip{font-size:13px;font-weight:700;padding:5px 9px;border-radius:8px;background:#2a2f3c;color:var(--gold);min-width:64px;text-align:center}
+.item .r{margin-left:auto;font-weight:700;font-variant-numeric:tabular-nums}
+.item .w{font-size:13px;color:var(--mute)}
+.pos{color:var(--up)}.neg{color:var(--down)}.zero{color:var(--mute)}
+.del{display:flex;gap:8px;margin-left:auto}
+.stat{display:flex;align-items:center;gap:10px;min-height:44px;border-bottom:1px solid var(--line)}
+.stat:last-child{border-bottom:0}
+.stat .k{flex:1}.stat .n{color:var(--mute);font-size:14px;width:58px;text-align:right}
+.stat .v{width:72px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.tag{font-size:12px;font-weight:700;padding:4px 8px;border-radius:7px;width:58px;text-align:center}
+.tag.full{background:#1f3d33;color:var(--up)}.tag.half{background:#3d3420;color:var(--gold)}.tag.avoid{background:#422621;color:var(--down)}.tag.wait{background:#252a35;color:var(--mute)}
+.insight{font-size:16px}
+.insight b{color:var(--gold);font-weight:600}
+.empty{color:var(--mute);text-align:center;padding:40px 0}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;z-index:5}
+.panel{width:100%;background:#171b24;border-radius:22px 22px 0 0;padding:20px max(18px,env(safe-area-inset-left)) calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px;max-width:560px;margin:0 auto}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zone{min-height:72px;border-radius:16px;border:2px solid var(--line);background:#20252f;color:var(--ink);font-family:inherit;font-weight:700;font-size:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer}
+.zone small{font-weight:500;font-size:12px;color:var(--mute)}
+.zone[aria-pressed="true"]{border-color:var(--gold);background:#2b2615}
+.rv{text-align:center;font-size:40px;font-weight:700;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:44px;-webkit-appearance:none;appearance:none;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--mute) 0 11%,var(--down) 11% 22%,#3a4150 22% 33%,var(--up) 33%)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:34px;height:34px;border-radius:50%;background:var(--ink);margin-top:-13px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:#3a4150}
+input[type=range]::-moz-range-thumb{width:34px;height:34px;border-radius:50%;background:var(--ink);border:0}
+.ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);margin-top:-6px;padding:0 6px}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%);background:#2a3040;color:var(--ink);padding:12px 16px;border-radius:14px;font-size:15px;max-width:90%;text-align:center;z-index:6;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.samples{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;color:var(--mute)}
+[hidden]{display:none!important}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<section id="today">
+  <div class="hero"><div class="big" id="num">–</div><div class="sub">avg per trade · last 20</div><div class="trend" id="trend"></div></div>
+  <button class="main" id="logBtn" type="button">Log a zone</button>
+  <div class="status" id="status"></div>
+  <div class="card" id="ask" hidden></div>
+  <div class="card"><div class="rule"><i>Rule</i><span id="rule"></span></div></div>
+  <div class="samples" id="sampleBar" hidden><span>Showing sample week</span><button class="btn small" id="clearSamples" type="button">Clear samples</button></div>
+</section>
+<section id="history" hidden><h1>History</h1><div class="list" id="hist"></div></section>
+<section id="numbers" hidden>
+  <h1>What works</h1>
+  <div class="card" id="insights"></div>
+  <h1>By zone</h1>
+  <div class="card" id="byZone"></div>
+  <h1>Confirmation</h1>
+  <div class="card" id="byWait"></div>
+  <h1>Session</h1>
+  <div class="card" id="bySess"></div>
+  <div class="row2"><button class="btn" id="backup" type="button">Save a backup</button><button class="btn" id="restoreBtn" type="button">Restore</button></div>
+  <input type="file" id="restore" accept="application/json,.json" hidden>
+</section>
+</main>
+<nav>
+  <button type="button" data-s="today" aria-selected="true">Today</button>
+  <button type="button" data-s="history">History</button>
+  <button type="button" data-s="numbers">Numbers</button>
+</nav>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel">
+    <div class="zones" id="zones"></div>
+    <div class="rv" id="rv">0R</div>
+    <input type="range" id="slider" min="0" max="8" step="1" value="2" aria-label="Result">
+    <div class="ticks"><span>Skip</span><span>−1</span><span>0</span><span>+½</span><span>+1</span><span>+2</span><span>+3</span><span>+4</span><span>+5</span></div>
+    <button class="main" id="save" type="button" disabled>Save</button>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const KEY='levels.v1';
+const ZONES={A:{n:'A+',s:'QML · TGL2'},S:{n:'SBR/RBS',s:'flipped level'},D:{n:'Double',s:'top / bottom'},T:{n:'TGL1',s:'strong trend'}};
+const STOPS=[null,-1,0,0.5,1,2,3,4,5];
+const RULES=['No level, no trade.','Two closes make a CHoCH. One is a warning.','Wait for the candle on the CHoCH level.','Stop over 25 pips? Skip it.','Two trades a day. Then stop.','Win + loss = done for today.','Counter-trend = half size.','Book 80–90% at target. Rest to break even.','Off-session = half size.','A level dies after two closes through it.','Judge it on 100 trades, not 10.','A+ first. Smallest stop, best reward.','Close 50% at 1:1. Then it is free.','Range between levels? Wait.'];
+const LESSON={
+ A:{w:'A+ paid. Small stop, big reward.',l:'A+ loses too. Same size next time.',b:'Break even. The plan protected you.',s:'No CHoCH, no trade. Good skip.'},
+ S:{w:'SBR/RBS worked. Still half size.',l:'Second-best level. Half size only.',b:'Break even. Fine.',s:'Skipped a B level. Fine.'},
+ D:{w:'Rare win. Double plays least.',l:'Double plays least. Half or skip.',b:'Break even. Fine.',s:'Good skip. Double plays least.'},
+ T:{w:'TGL1 held. Only in strong trends.',l:'TGL1 is for strong trends only.',b:'Break even. Fine.',s:'Skipped TGL1. Fine.'}};
+let data=load();
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&Array.isArray(v.e))return v;}catch(e){}return null;}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){toast('Could not save on this phone.');}}
+const $=s=>document.querySelector(s);
+const dayKey=ts=>{const d=new Date(ts);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+const today=()=>dayKey(Date.now());
+const fmtR=r=>r==null?'Skip':(r>0?'+':r<0?'−':'')+(Math.abs(r)%1?Math.abs(r).toFixed(1):Math.abs(r))+'R';
+const cls=r=>r==null?'zero':r>0?'pos':r<0?'neg':'zero';
+function session(ts){const d=new Date(ts),m=d.getHours()*60+d.getMinutes();if(m>=660&&m<810)return'L';if(m>=990&&m<1170)return'N';return'O';}
+const trades=()=>data.e.filter(x=>x.r!=null).sort((a,b)=>a.ts-b.ts);
+const avg=a=>a.length?a.reduce((s,x)=>s+x.r,0)/a.length:null;
+
+/* ---------- sample week ---------- */
+function sampleWeek(){const e=[],now=new Date();const mk=(dAgo,h,m,z,r,w)=>{const d=new Date(now);d.setDate(d.getDate()-dAgo);d.setHours(h,m,0,0);e.push({id:'s'+e.length,ts:d.getTime(),z,r,w,sample:1});};
+ mk(7,11,40,'A',2,true);mk(7,17,10,'S',-1,true);mk(6,12,5,'A',null,null);mk(6,17,30,'D',-1,false);mk(6,18,20,'A',1,true);
+ mk(5,11,20,'T',0.5,true);mk(5,21,15,'S',-1,false);mk(4,12,30,'A',3,true);mk(3,11,10,'A',-1,true);mk(3,17,45,'A',2,true);
+ mk(2,13,0,'D',null,null);mk(2,17,5,'S',1,true);mk(1,11,35,'A',-1,false);mk(1,17,20,'S',1,undefined);return e;}
+if(!data){data={e:sampleWeek(),hasSamples:true};save();}
+
+/* ---------- today ---------- */
+function renderToday(){
+ const t=trades(),last=t.slice(-20),prev=t.slice(-40,-20),a=avg(last),p=avg(prev);
+ const num=$('#num');num.textContent=a==null?'–':fmtR(Math.round(a*10)/10);num.className='big '+(a==null?'':a>0?'pos':a<0?'neg':'');
+ $('#trend').textContent=a!=null&&p!=null?(a>=p?'up from ':'down from ')+fmtR(Math.round(p*10)/10):(t.length?t.length+' trades so far':'Log your first zone');
+ const td=data.e.filter(x=>dayKey(x.ts)===today()&&x.r!=null);const n=td.length,lastR=n?td[td.length-1].r:null;
+ const done=n>=2;const b=$('#logBtn');b.classList.toggle('done',done);b.textContent=done?'Done for today · log a skip':'Log a zone';
+ let st;if(done)st='<b>2 of 2 trades.</b> Close the charts.';else if(n===1&&lastR<0)st='<b>1 of 2.</b> Next one: half size.';else if(n===1&&lastR>0)st='<b>1 of 2.</b> Next one risks 30–40% of that win.';else if(n===1)st='<b>1 of 2</b> trades today.';else st='0 of 2 trades today';
+ const s=session(Date.now());st+=' · '+(s==='L'?'London open':s==='N'?'New York open':'Off-session: half size');$('#status').innerHTML=st;
+ const d=new Date(),i=(d.getFullYear()*372+d.getMonth()*31+d.getDate())%RULES.length;$('#rule').textContent=RULES[i];
+ const q=data.e.filter(x=>x.r!=null&&x.w===undefined&&dayKey(x.ts)<today()).sort((a,b)=>a.ts-b.ts)[0];const ask=$('#ask');
+ if(q){ask.hidden=false;const dd=new Date(q.ts);ask.innerHTML=`<div class="q">${dd.toLocaleDateString(undefined,{weekday:'short'})} · ${ZONES[q.z].n} · <span class="${cls(q.r)}">${fmtR(q.r)}</span><br>Did you wait for the CHoCH + candle?</div><div class="row2"><button class="btn yes" data-a="1" type="button">Yes</button><button class="btn no" data-a="0" type="button">No</button></div>`;
+  ask.querySelectorAll('button').forEach(bt=>bt.onclick=()=>{q.w=bt.dataset.a==='1';save();renderAll();toast(q.w?'Logged. Waiting is the edge.':'Logged. Entries without the CHoCH get tracked.');});}
+ else ask.hidden=true;
+ $('#sampleBar').hidden=!data.e.some(x=>x.sample);
+}
+/* ---------- history ---------- */
+function renderHistory(){const h=$('#hist');const e=[...data.e].sort((a,b)=>b.ts-a.ts);if(!e.length){h.innerHTML='<div class="empty">Nothing logged yet</div>';return;}
+ let out='',cur='';for(const x of e){const k=dayKey(x.ts);if(k!==cur){cur=k;out+=`<div class="day">${new Date(x.ts).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</div>`;}
+  const w=x.r==null?'no trade':x.w===true?'waited':x.w===false?'no CHoCH':'';
+  out+=`<div class="item" data-id="${x.id}"><span class="chip">${ZONES[x.z].n}</span><span class="w">${new Date(x.ts).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${w?' · '+w:''}</span><span class="r ${cls(x.r)}">${fmtR(x.r)}</span></div>`;}
+ h.innerHTML=out;
+ h.querySelectorAll('.item').forEach(it=>it.onclick=()=>{if(it.querySelector('.del'))return;const r=it.querySelector('.r');r.hidden=true;const d=document.createElement('div');d.className='del';d.innerHTML='<button class="btn small no" type="button">Delete</button><button class="btn small" type="button">Keep</button>';it.appendChild(d);
+  const [del,keep]=d.querySelectorAll('button');del.onclick=ev=>{ev.stopPropagation();data.e=data.e.filter(x=>x.id!==it.dataset.id);save();renderAll();};keep.onclick=ev=>{ev.stopPropagation();renderHistory();};});}
+/* ---------- numbers ---------- */
+function verdict(arr){if(arr.length<5)return['wait','5+ needed'];const a=avg(arr);if(a>=0.5)return['full','Full size'];if(a>=0)return['half','Half size'];return['avoid','Avoid'];}
+function row(label,arr,showTag){const a=avg(arr);const v=verdict(arr);return `<div class="stat"><span class="k">${label}</span><span class="n">${arr.length} tr</span><span class="v ${a==null?'zero':a>0?'pos':a<0?'neg':'zero'}">${a==null?'–':fmtR(Math.round(a*10)/10)}</span>${showTag?`<span class="tag ${v[0]}">${v[0]==='wait'?arr.length+'/5':v[1].split(' ')[0]}</span>`:''}</div>`;}
+function renderNumbers(){const t=trades();
+ $('#byZone').innerHTML=Object.keys(ZONES).map(k=>row(ZONES[k].n,t.filter(x=>x.z===k),true)).join('');
+ const yes=t.filter(x=>x.w===true),no=t.filter(x=>x.w===false);$('#byWait').innerHTML=row('Waited for CHoCH',yes)+row('Entered early',no);
+ $('#bySess').innerHTML=row('London',t.filter(x=>session(x.ts)==='L'))+row('New York',t.filter(x=>session(x.ts)==='N'))+row('Off-session',t.filter(x=>session(x.ts)==='O'));
+ const ins=[];const zs=Object.keys(ZONES).map(k=>({k,a:avg(t.filter(x=>x.z===k)),n:t.filter(x=>x.z===k).length})).filter(z=>z.n>=3).sort((a,b)=>b.a-a.a);
+ if(zs.length){ins.push(`Best zone: <b>${ZONES[zs[0].k].n}</b> at ${fmtR(Math.round(zs[0].a*10)/10)} a trade.`);if(zs.length>1&&zs[zs.length-1].a<0)ins.push(`Weakest: <b>${ZONES[zs[zs.length-1].k].n}</b> at ${fmtR(Math.round(zs[zs.length-1].a*10)/10)}.`);}
+ if(yes.length&&no.length)ins.push(`Waiting: <b>${fmtR(Math.round(avg(yes)*10)/10)}</b> vs early ${fmtR(Math.round(avg(no)*10)/10)}.`);
+ const off=t.filter(x=>session(x.ts)==='O');if(off.length>=2)ins.push(`Off-session: <b>${fmtR(Math.round(avg(off)*10)/10)}</b> a trade.`);
+ const sk=data.e.filter(x=>x.r==null).length;if(sk)ins.push(`Zones skipped: <b>${sk}</b>. Skips are wins too.`);
+ const tot=t.reduce((s,x)=>s+x.r,0);ins.unshift(`Total: <b>${fmtR(Math.round(tot*10)/10)}</b> over ${t.length} trades.`);
+ $('#insights').innerHTML=t.length?ins.map(s=>`<div class="insight">${s}</div>`).join(''):'<div class="insight">Log 5 trades to see what works.</div>';}
+function renderAll(){renderToday();renderHistory();renderNumbers();}
+
+/* ---------- log sheet ---------- */
+let pick=null;
+$('#zones').innerHTML=Object.entries(ZONES).map(([k,z])=>`<button class="zone" type="button" data-z="${k}" aria-pressed="false">${z.n}<small>${z.s}</small></button>`).join('');
+function setR(){const r=STOPS[+$('#slider').value];$('#rv').textContent=fmtR(r);$('#rv').className='rv '+cls(r);}
+$('#slider').oninput=setR;
+document.querySelectorAll('.zone').forEach(b=>b.onclick=()=>{pick=b.dataset.z;document.querySelectorAll('.zone').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#save').disabled=false;});
+$('#logBtn').onclick=()=>{pick=null;document.querySelectorAll('.zone').forEach(x=>x.setAttribute('aria-pressed','false'));$('#save').disabled=true;
+ const done=trades().filter(x=>dayKey(x.ts)===today()).length>=2;$('#slider').value=done?0:2;setR();$('#sheet').hidden=false;};
+$('#sheet').onclick=e=>{if(e.target.id==='sheet')$('#sheet').hidden=true;};
+$('#save').onclick=()=>{if(!pick)return;const r=STOPS[+$('#slider').value];const ent={id:Date.now().toString(36),ts:Date.now(),z:pick,r};if(r==null)ent.w=null;data.e.push(ent);save();$('#sheet').hidden=true;
+ const L=LESSON[pick];toast(r==null?L.s:r>0?L.w:r<0?L.l:L.b);renderAll();};
+/* ---------- nav ---------- */
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));['today','history','numbers'].forEach(s=>$('#'+s).hidden=s!==b.dataset.s);$('main').scrollTop=0;});
+/* ---------- backup ---------- */
+$('#backup').onclick=()=>{const blob=new Blob([JSON.stringify({app:'levels',v:1,saved:new Date().toISOString(),e:data.e},null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='levels-backup-'+today()+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);toast('Backup saved.');};
+$('#restoreBtn').onclick=()=>$('#restore').click();
+$('#restore').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(!Array.isArray(j.e))throw 0;data={e:j.e};save();renderAll();toast('Restored '+j.e.length+' entries.');}catch(err){toast('That file is not a Levels backup.');}e.target.value='';};
+$('#clearSamples').onclick=()=>{data.e=data.e.filter(x=>!x.sample);save();renderAll();toast('Samples cleared.');};
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600);}
+renderAll();
+if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+</script>
+</body>
+</html>
