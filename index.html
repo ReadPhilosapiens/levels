@@ -220,6 +220,7 @@ html[data-skin="neon"] body{background:linear-gradient(180deg,#07000f,#140032)}
 .skin[data-skin="funky"]{background:radial-gradient(circle at 90% 10%,#ffd6e8 0 30%,transparent 31%),#fff3e0}
 .skin[data-skin="funky"] .mbtn{background:linear-gradient(90deg,#7b2ff7,#ff4f81,#ff9f1c)}
 .skin[aria-pressed="true"]{outline:3px solid #ff9f1c;outline-offset:2px}
+.chips.wrap{flex-wrap:wrap;overflow:visible}.lf{display:flex;flex-direction:column;gap:10px}.lf .chips button[aria-pressed="true"]{background:var(--accent);color:var(--btnink);border-color:var(--accent)}.in{width:100%;min-height:46px;border-radius:calc(var(--rad)*.6);border:1px solid var(--line);background:var(--bg);color:var(--ink);font:16px var(--f-body);padding:11px 12px;resize:vertical;-webkit-user-select:text;user-select:text}.in::placeholder{color:var(--muted)}.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.calc{text-align:center;line-height:1.6}.det{font-size:14px}.det span{overflow-wrap:anywhere}.card.open{margin:-4px 0 4px}
 </style>
 </head>
 <body>
@@ -421,6 +422,8 @@ html[data-skin="neon"] body{background:linear-gradient(180deg,#07000f,#140032)}
     <div class="card" id="insights"></div>
     <div class="lbl">By zone</div><div class="card" id="byZone"></div>
     <div class="lbl">Confirmation</div><div class="card" id="byWait"></div>
+    <div class="lbl">Confluences</div><div class="card" id="byConf"></div>
+    <div class="lbl">Feelings</div><div class="card" id="byFeel"></div>
     <div class="lbl">Session</div><div class="card" id="bySess"></div>
     <div class="row2"><button class="b" id="backup" type="button">Save a backup</button><button class="b" id="restoreBtn" type="button">Restore</button></div>
     <input type="file" id="restore" accept="application/json,.json" hidden>
@@ -434,7 +437,7 @@ html[data-skin="neon"] body{background:linear-gradient(180deg,#07000f,#140032)}
   <button type="button" data-s="drill"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>Drill</button>
   <button type="button" data-s="journal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Journal</button>
 </nav>
-<div class="sheet" id="logSheet" hidden><div class="sp"><div class="q" id="logTitle">Log a trade</div><div class="zones" id="zones"></div><div class="rv" id="rv">0R</div><input type="range" id="slider" min="0" max="8" step="1" value="2" aria-label="Result"><div class="ticks"><span>Skip</span><span>−1</span><span>0</span><span>+½</span><span>+1</span><span>+2</span><span>+3</span><span>+4</span><span>+5</span></div><button class="main" id="save" type="button" disabled>Save</button></div></div>
+<div class="sheet" id="logSheet" hidden><div class="sp"><div class="q" id="logTitle">Log a trade</div><div class="lbl">Level type</div><div class="zones" id="zones"></div><div id="logForm" class="lf"></div><div class="lbl">Result</div><div class="rv" id="rv">0R</div><input type="range" id="slider" min="0" max="8" step="1" value="2" aria-label="Result"><div class="ticks"><span>Skip</span><span>−1</span><span>0</span><span>+½</span><span>+1</span><span>+2</span><span>+3</span><span>+4</span><span>+5</span></div><div class="small calc" id="calc"></div><button class="main" id="save" type="button">Save trade</button><button class="b" type="button" onclick="document.getElementById('logSheet').hidden=true">Cancel</button></div></div>
 <div class="sheet" id="ckSheet" hidden><div class="sp" id="ckBody"></div></div>
 <div class="sheet" id="skinSheet" hidden><div class="sp"><div class="q">Pick a design</div><div class="skins" id="skinGrid"></div><button class="main" type="button" onclick="document.getElementById('skinSheet').hidden=true">Done</button></div></div>
 <div class="toast" id="toast" hidden></div>
@@ -784,7 +787,7 @@ function session(ts){const d=new Date(ts),m=d.getHours()*60+d.getMinutes();if(m>
 const SESS={L:'London',N:'New York',O:'Off-session'};
 const trades=()=>data.e.filter(x=>x.r!=null).sort((a,b)=>a.ts-b.ts);
 const avg=a=>a.length?a.reduce((s,x)=>s+x.r,0)/a.length:null;
-function sampleWeek(){const e=[],now=new Date();const mk=(dAgo,h,m,z,r,w)=>{const d=new Date(now);d.setDate(d.getDate()-dAgo);d.setHours(h,m,0,0);const o={id:'s'+e.length,ts:d.getTime(),z,r,sample:1};if(w!==undefined)o.w=w;e.push(o);};
+function sampleWeek(){const e=[],now=new Date();const mk=(dAgo,h,m,z,r,w)=>{const d=new Date(now);d.setDate(d.getDate()-dAgo);d.setHours(h,m,0,0);const o={id:'s'+e.length,ts:d.getTime(),z,r,sample:1};const i=e.length;if(r!=null){const C=['choch2','candle','d1','mtf','fresh','overlap','sess','nonews','stop25'];o.conf=C.slice(0,w?4+(i%4):1+(i%2));o.feel=w?(i%3?['calm']:['sure']):[['fomo'],['rev'],['anx']][i%3];o.tf=['H1','H4','D1'][i%3];o.dir=i%2?'sell':'buy';o.risk=w?1:0.5;o.riskAmt=w?10:5;o.pl=r1(r*o.riskAmt);o.why=w?'CHoCH printed, candle closed on the level.':'Price looked strong, jumped in.';}if(w!==undefined)o.w=w;e.push(o);};
  mk(7,11,40,'A',2,true);mk(7,17,10,'S',-1,true);mk(6,12,5,'A',null,null);mk(6,17,30,'D',-1,false);mk(6,18,20,'A',1,true);mk(5,11,20,'T',0.5,true);mk(5,21,15,'S',-1,false);mk(4,12,30,'A',3,true);mk(3,11,10,'A',-1,true);mk(3,17,45,'A',2,true);mk(2,13,0,'D',null,null);mk(2,17,5,'S',1,true);mk(1,11,35,'A',-1,false);mk(1,17,20,'S',1);return e;}
 if(!data){data={e:sampleWeek()};save();}
 let tt;function toast(m){const t=q('#toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600);}
@@ -847,34 +850,86 @@ function endCheck(ok,why){const z=CK.z;q('#ckBody').innerHTML=ok?`<div class="ve
  q('#ckLog').onclick=()=>{q('#ckSheet').hidden=true;if(ok)toast('Saved in your head. Log it when it closes.');else{addEntry(z.type||'A',null,z.id);}};}
 /* ---------- log ---------- */
 let zPick=null,pickZ=null;
+/* ---------- full trade log ---------- */
+const CONF=[['choch2','CHoCH (2 closes)'],['wave5','5-wave CHoCH'],['candle','Candle on CHoCH level'],['d1','With D1 trend'],['mtf','Timeframes aligned'],['fresh','First touch of level'],['overlap','Levels stacked'],['sweep','Liquidity swept'],['sess','In session'],['nonews','No news near'],['stop25','Stop ≤ 25 pips'],['dual','Dual CHoCH']];
+const FEEL=[['calm','Calm'],['sure','Confident'],['anx','Anxious'],['fomo','FOMO'],['rev','Revenge'],['hes','Hesitant'],['greed','Greedy'],['bored','Bored'],['imp','Impatient']];
+const CALM=['calm','sure'];
+const TFS=['D1','H4','H1','M15'];const RISKS=[0.25,0.5,1,2];
+let LF={};
+const chipRow=(id,arr,sel,multi)=>`<div class="chips wrap" id="${id}" data-multi="${multi?1:0}">${arr.map(([k,n])=>`<button type="button" data-v="${k}" aria-pressed="${multi?sel.includes(k):sel===k}">${n}</button>`).join('')}</div>`;
 q('#zones').innerHTML=Object.entries(ZT).map(([k,z])=>`<button class="zone" type="button" data-z="${k}" aria-pressed="false">${z.n}<small>${z.s}</small></button>`).join('');
-function setR(){const r=STOPS[+q('#slider').value];q('#rv').textContent=fmtR(r);q('#rv').className='rv '+cls(r);}
-q('#slider').oninput=setR;
+function setR(){const r=STOPS[+q('#slider').value];q('#rv').textContent=fmtR(r);q('#rv').className='rv '+cls(r);calcLog();}
+q('#slider').oninput=()=>{LF.rSet=1;setR();};
 qa(".zone").forEach(b=>b.onclick=()=>{zPick=b.dataset.z;qa('.zone').forEach(x=>x.setAttribute('aria-pressed',x===b));q('#save').disabled=false;});
-function openLog(z){pickZ=z?z.id:null;zPick=z?z.type:null;qa('.zone').forEach(x=>x.setAttribute('aria-pressed',x.dataset.z===zPick));q("#save").disabled=!zPick;q('#logTitle').textContent=z?`${z.id} · ${z.dir} ${z.lo}–${z.hi}`:'Log a trade';
- const done=data.e.filter(x=>dayKey(x.ts)===today()&&x.r!=null).length>=2;q('#slider').value=done?0:2;setR();q('#logSheet').hidden=false;}
+const num=id=>{const v=parseFloat((q(id).value||'').replace(',','.'));return isFinite(v)?v:null;};
+function bindChips(){qa('#logForm .chips').forEach(row=>row.querySelectorAll('button').forEach(b=>b.onclick=()=>{const m=row.dataset.multi==='1';if(m)b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');else row.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b&&x.getAttribute('aria-pressed')!=='true'));calcLog();}));}
+const picked=id=>qa('#'+id+' button[aria-pressed="true"]').map(b=>b.dataset.v);
+function calcLog(){const e=num('#fEntry'),sl=num('#fSL'),tp=num('#fTP'),ex=num('#fExit'),out=[];
+ if(e!=null&&sl!=null&&e!==sl){const pips=Math.abs(e-sl)*10;out.push(`Stop <b class="${pips>25?'neg':''}">${Math.round(pips)} pips</b>${pips>25?' (over 25: skip rule)':''}`);
+  if(tp!=null)out.push(`Plan <b>1:${r1(Math.abs(tp-e)/Math.abs(e-sl))}</b>`);
+  if(ex!=null){const dir=e>sl?1:-1;const r=r1((ex-e)*dir/Math.abs(e-sl));out.push(`Result <b class="${cls(r)}">${fmtR(r)}</b> from prices`);LF.autoR=r;}else LF.autoR=null;}else LF.autoR=null;
+ const rr=LF.autoR!=null&&!LF.rSet?LF.autoR:STOPS[+q('#slider').value];const amt=num('#fRiskAmt');
+ if(amt!=null&&rr!=null)out.push(`P/L <b class="${cls(rr)}">${rr<0?'−':rr>0?'+':''}$${Math.abs(r1(rr*amt))}</b>`);
+ const n=picked('fConf').length;out.push(`Confluences <b>${n}</b>`);
+ q('#calc').innerHTML=out.join(' · ');}
+function openLog(z){LF={};pickZ=z?z.id:null;zPick=z?z.type:null;qa('.zone').forEach(x=>x.setAttribute('aria-pressed',x.dataset.z===zPick));q('#logTitle').textContent=z?`${z.id} · ${z.dir} ${z.lo}–${z.hi}`:'Log a trade';
+ const tf=z&&z.tf?z.tf:null,dir=z?(z.dir==='BUY'?'buy':'sell'):null,risk=z&&z.size==='half'?0.5:1;
+ q('#logForm').innerHTML=`
+ <div class="lbl">Level</div>${chipRow('fTF',TFS.map(t=>[t,t]),tf)}${chipRow('fDir',[['buy','Buy'],['sell','Sell']],dir)}
+ <input class="in" id="fLevel" placeholder="Level, e.g. H1 QML 4193–4207" value="${z?(z.label+' '+z.lo+'–'+z.hi).replace(/"/g,''):''}">
+ <div class="lbl">Confluences</div>${chipRow('fConf',CONF,[],1)}
+ <div class="lbl">Why I entered</div><textarea class="in" id="fWhy" rows="2" placeholder="What I saw. What told me go."></textarea>
+ <div class="lbl">Prices</div><div class="g3"><input class="in" id="fEntry" inputmode="decimal" placeholder="Entry"><input class="in" id="fSL" inputmode="decimal" placeholder="Stop"><input class="in" id="fTP" inputmode="decimal" placeholder="Target"></div>
+ <input class="in" id="fExit" inputmode="decimal" placeholder="Exit price (sets result)">
+ <div class="lbl">Risk</div>${chipRow('fRisk',RISKS.map(r=>[String(r),r+'%']),String(risk))}<input class="in" id="fRiskAmt" inputmode="decimal" placeholder="Risk in $ (demo)">
+ <div class="lbl">How I felt</div>${chipRow('fFeel',FEEL,[],1)}
+ <textarea class="in" id="fFeelNote" rows="2" placeholder="During the trade: what went through my head?"></textarea>
+ <div class="lbl">Lesson</div><textarea class="in" id="fLesson" rows="2" placeholder="One line for next time."></textarea>`;
+ bindChips();qa('#logForm input,#logForm textarea').forEach(i=>i.oninput=calcLog);
+ const done=data.e.filter(x=>dayKey(x.ts)===today()&&x.r!=null).length>=2;q('#slider').value=done?0:2;setR();q('#logSheet').hidden=false;q('#logSheet .sp').scrollTop=0;}
 q('#logBtn').onclick=()=>openLog(null);
-function addEntry(z,r,zid){const ent={id:Date.now().toString(36),ts:Date.now(),z,r};if(zid)ent.zid=zid;if(r==null)ent.w=null;data.e.push(ent);save();const L=LESSON[z];toast(r==null?L.s:r>0?L.w:r<0?L.l:L.b);renderAll();}
-q("#save").onclick=()=>{if(!zPick)return;q("#logSheet").hidden=true;addEntry(zPick,STOPS[+q('#slider').value],pickZ);};
+function addEntry(z,r,zid,extra){const ent={id:Date.now().toString(36),ts:Date.now(),z,r,...(extra||{})};if(zid)ent.zid=zid;if(r==null&&ent.w===undefined)ent.w=null;data.e.push(ent);save();const L=LESSON[z];toast(r==null?L.s:r>0?L.w:r<0?L.l:L.b);renderAll();}
+q("#save").onclick=()=>{if(!zPick){toast('Pick the level type first.');q('#logSheet .sp').scrollTop=0;return;}const r=LF.autoR!=null&&!LF.rSet?LF.autoR:STOPS[+q('#slider').value];const conf=picked('fConf');const t=s=>(q(s).value||'').trim();
+ const ex={tf:picked('fTF')[0]||null,dir:picked('fDir')[0]||null,level:t('#fLevel'),conf,why:t('#fWhy'),entry:num('#fEntry'),sl:num('#fSL'),tp:num('#fTP'),exit:num('#fExit'),risk:+(picked('fRisk')[0]||0)||null,riskAmt:num('#fRiskAmt'),feel:picked('fFeel'),feelNote:t('#fFeelNote'),lesson:t('#fLesson')};
+ if(r!=null)ex.w=conf.includes('choch2')||conf.includes('wave5');if(ex.riskAmt!=null&&r!=null)ex.pl=r1(r*ex.riskAmt);
+ Object.keys(ex).forEach(k=>{if(ex[k]==null||ex[k]===''||(Array.isArray(ex[k])&&!ex[k].length))delete ex[k];});
+ q("#logSheet").hidden=true;addEntry(zPick,r,pickZ,ex);};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const CN=Object.fromEntries(CONF),FN=Object.fromEntries(FEEL);
+function detail(x){const L=[];const kv=(k,v)=>v!=null&&v!==''?L.push(`<b>${k}</b><span>${v}</span>`):0;
+ kv('Level',[x.tf,x.dir&&x.dir.toUpperCase(),x.level?esc(x.level):''].filter(Boolean).join(' · ')||null);
+ kv('Confluences',x.conf&&x.conf.length?x.conf.length+': '+x.conf.map(c=>CN[c]||c).join(', '):null);
+ kv('Why',x.why?esc(x.why):null);
+ if(x.entry!=null)kv('Prices',`In ${x.entry}${x.sl!=null?' · SL '+x.sl:''}${x.tp!=null?' · TP '+x.tp:''}${x.exit!=null?' · Out '+x.exit:''}`);
+ if(x.entry!=null&&x.sl!=null)kv('Stop',Math.round(Math.abs(x.entry-x.sl)*10)+' pips');
+ kv('Risk',[x.risk!=null?x.risk+'%':'',x.riskAmt!=null?'$'+x.riskAmt:''].filter(Boolean).join(' · ')||null);
+ kv('Result',x.r==null?'Skipped':fmtR(x.r)+(x.pl!=null?` · ${x.pl<0?'−':'+'}$${Math.abs(x.pl)}`:''));
+ kv('Felt',[x.feel&&x.feel.length?x.feel.map(f=>FN[f]||f).join(', '):'',x.feelNote?'“'+esc(x.feelNote)+'”':''].filter(Boolean).join(' ')||null);
+ kv('Lesson',x.lesson?esc(x.lesson):null);
+ return `<div class="kv det">${L.join('')||'<b>Note</b><span>Only the result was logged.</span>'}</div>`;}
 /* ---------- journal ---------- */
 function verdict(arr){if(arr.length<5)return'wait';const a=avg(arr);return a>=0.5?'full':a>=0?'half':'avoid';}
 function srow(label,arr,tag){const a=avg(arr),v=verdict(arr);return `<div class="stat"><span class="k">${label}</span><span class="n">${arr.length} tr</span><span class="v ${a==null?'zero':a>0?'pos':a<0?'neg':'zero'}">${a==null?'–':fmtR(r1(a))}</span>${tag?`<span class="tag ${v}">${v==='wait'?arr.length+'/5':{full:'Full',half:'Half',avoid:'Avoid'}[v]}</span>`:''}</div>`;}
 function renderJournal(){const t=trades();
  q('#byZone').innerHTML=Object.keys(ZT).map(k=>srow(ZT[k].n,t.filter(x=>x.z===k),1)).join('');
  const yes=t.filter(x=>x.w===true),no=t.filter(x=>x.w===false);q('#byWait').innerHTML=srow('Waited for CHoCH',yes)+srow('Entered early',no);
+ const cc=t.filter(x=>x.conf);q('#byConf').innerHTML=cc.length?srow('0–2 confluences',cc.filter(x=>x.conf.length<=2))+srow('3–4 confluences',cc.filter(x=>x.conf.length>=3&&x.conf.length<=4))+srow('5+ confluences',cc.filter(x=>x.conf.length>=5)):'<div class="small">Tick confluences when you log to see which count pays.</div>';
+ const ff=t.filter(x=>x.feel&&x.feel.length);q('#byFeel').innerHTML=ff.length?srow('Calm or confident',ff.filter(x=>x.feel.every(f=>CALM.includes(f))))+srow('FOMO, revenge, anxious…',ff.filter(x=>x.feel.some(f=>!CALM.includes(f)))):'<div class="small">Tag how you felt to see what emotion costs you.</div>';
  q('#bySess').innerHTML=['L','N','O'].map(s=>srow(SESS[s],t.filter(x=>session(x.ts)===s))).join('');
  const ins=[];const tot=t.reduce((s,x)=>s+x.r,0);ins.push(`Total <b class="${cls(tot)}">${fmtR(r1(tot))}</b> over ${t.length} trades.`);
  const wr=t.length?Math.round(t.filter(x=>x.r>0).length/t.length*100):0;if(t.length)ins.push(`Win rate <b>${wr}%</b>.`);
  const zs=Object.keys(ZT).map(k=>({k,a:avg(t.filter(x=>x.z===k)),n:t.filter(x=>x.z===k).length})).filter(z=>z.n>=3).sort((a,b)=>b.a-a.a);
  if(zs.length)ins.push(`Best zone <b>${ZT[zs[0].k].n}</b> at ${fmtR(r1(zs[0].a))}.`);
  if(yes.length&&no.length)ins.push(`Waiting <b class="pos">${fmtR(r1(avg(yes)))}</b> vs early <b class="${cls(avg(no))}">${fmtR(r1(avg(no)))}</b>.`);
+ const emo=ff.filter(x=>x.feel.some(f=>!CALM.includes(f))),cal=ff.filter(x=>x.feel.every(f=>CALM.includes(f)));if(emo.length>=2&&cal.length>=2)ins.push(`Calm <b class="${cls(avg(cal))}">${fmtR(r1(avg(cal)))}</b> vs emotional <b class="${cls(avg(emo))}">${fmtR(r1(avg(emo)))}</b>.`);
+ const pl=t.filter(x=>x.pl!=null);if(pl.length){const s=r1(pl.reduce((a,x)=>a+x.pl,0));ins.push(`Demo P/L <b class="${cls(s)}">${s<0?'−':'+'}$${Math.abs(s)}</b> over ${pl.length} trades.`);}
  const sk=data.e.filter(x=>x.r==null).length;if(sk)ins.push(`Skips <b>${sk}</b>. Skips are wins too.`);
  q('#insights').innerHTML=t.length?ins.map(s=>`<div>${s}</div>`).join(''):'<div>Log 5 trades to see what works.</div>';
  const h=q('#hist');const e=[...data.e].sort((a,b)=>b.ts-a.ts);let out='',cur='';
  for(const x of e){const k=dayKey(x.ts);if(k!==cur){cur=k;out+=`<div class="lbl">${new Date(x.ts).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</div>`;}
-  const w=x.r==null?'no trade':x.w===true?'waited':x.w===false?'no CHoCH':'';out+=`<div class="item" data-id="${x.id}"><span class="chip">${ZT[x.z].n}</span><span class="small">${new Date(x.ts).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${x.zid?' · '+x.zid:''}${w?' · '+w:''}</span><span class="r ${cls(x.r)}">${fmtR(x.r)}</span></div>`;}
+  const w=x.r==null?'no trade':x.w===true?'waited':x.w===false?'no CHoCH':'';const ex=[x.tf,x.dir&&x.dir.toUpperCase(),x.conf?x.conf.length+' conf':'',x.feel&&x.feel.length?FN[x.feel[0]]:''].filter(Boolean).join(' · ');out+=`<div class="item" data-id="${x.id}"><span class="chip">${ZT[x.z].n}</span><span class="small">${new Date(x.ts).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${x.zid?' · '+x.zid:''}${w?' · '+w:''}${ex?'<br>'+ex:''}</span><span class="r ${cls(x.r)}">${fmtR(x.r)}</span></div>`;}
  h.innerHTML=out||'<div class="small">Nothing logged yet.</div>';
- h.querySelectorAll('.item').forEach(it=>it.onclick=()=>{if(it.querySelector('.row'))return;it.querySelector('.r').hidden=true;const d=document.createElement('div');d.className='row';d.style.marginLeft='auto';d.innerHTML='<button class="b sm no" type="button">Delete</button><button class="b sm" type="button">Keep</button>';it.appendChild(d);const [del,keep]=d.querySelectorAll('button');del.onclick=ev=>{ev.stopPropagation();data.e=data.e.filter(x=>x.id!==it.dataset.id);save();renderAll();};keep.onclick=ev=>{ev.stopPropagation();renderJournal();};});}
+ h.querySelectorAll('.item').forEach(it=>it.onclick=()=>{const nx=it.nextElementSibling;if(nx&&nx.classList.contains('open')){nx.remove();return;}const x=data.e.find(y=>y.id===it.dataset.id);const d=document.createElement('div');d.className='card open';d.innerHTML=detail(x)+'<div class="row"><button class="b sm no" type="button">Delete</button><button class="b sm" type="button">Close</button></div>';it.after(d);const [del,cl]=d.querySelectorAll('.row button');del.onclick=()=>{if(del.dataset.s){data.e=data.e.filter(y=>y.id!==x.id);save();renderAll();}else{del.dataset.s=1;del.textContent='Tap again to delete';}};cl.onclick=()=>d.remove();});}
 qa('#jChips button').forEach(b=>b.onclick=()=>{qa('#jChips button').forEach(x=>x.setAttribute('aria-selected',x===b));q('#j-num').hidden=b.dataset.j!=='num';q('#j-hist').hidden=b.dataset.j!=='hist';});
 q('#backup').onclick=()=>{const blob=new Blob([JSON.stringify({app:'levels',v:2,saved:new Date().toISOString(),e:data.e,skin:LS.get('lv_skin','glass')},null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='levels-backup-'+today()+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);toast('Backup saved.');};
 q('#restoreBtn').onclick=()=>q('#restore').click();
