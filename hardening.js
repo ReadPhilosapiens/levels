@@ -19,7 +19,7 @@ function list(a){if(!Array.isArray(a))return null;var o=[];for(var i=0;i<a.lengt
 function clean(x,i){
  if(!x||typeof x!=='object'||Array.isArray(x))return null;
  if(typeof x.z!=='string'||!Object.prototype.hasOwnProperty.call(ZT,x.z))return null;
- var ts=num(x.ts);if(!ts||ts<=0||ts>Date.now()+366*DAY)return null;
+ var ts=(typeof x.ts==='number'&&isFinite(x.ts))?x.ts:null;if(!ts||ts<=0||ts>Date.now()+366*DAY)return null;
  var r=null;if(x.r!==null&&x.r!==undefined){r=num(x.r);if(r===null||r<-20||r>50)return null}
  var o={id:(typeof x.id==='string'&&/^[A-Za-z0-9_-]{1,40}$/.test(x.id))?x.id:'i'+Date.now().toString(36)+i,ts:ts,z:x.z,r:r};
  if(x.w===true||x.w===false||x.w===null)o.w=x.w;
